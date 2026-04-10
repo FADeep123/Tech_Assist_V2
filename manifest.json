@@ -2,7 +2,7 @@
   "name": "FA Tech Assist — Encore Fire Protection",
   "short_name": "FA Assist",
   "description": "Field troubleshooting tool for Encore Fire Protection technicians",
-  "start_url": "/",
+  "start_url": "/fa-tech-assist/"
   "display": "standalone",
   "background_color": "#0A0A0A",
   "theme_color": "#FF4500",
