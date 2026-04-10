@@ -21,7 +21,6 @@
 --safe-top:env(safe-area-inset-top,0px);
 --safe-bot:env(safe-area-inset-bottom,0px);
 }
-
 :root.light{
 --bg:#F4F4F4;--s1:#FFFFFF;--s2:#EBEBEB;--s3:#E0E0E0;--s4:#D5D5D5;
 --a:#FF4500;--a2:rgba(255,69,0,0.1);--a3:rgba(255,69,0,0.05);
@@ -29,63 +28,69 @@
 --t1:#111111;--t2:#555555;--t3:#888888;--t4:#AAAAAA;
 --bdr:#DDDDDD;--bdr2:#CCCCCC;
 }
-.theme-btn{background:none;border:0.5px solid var(--bdr2);border-radius:8px;padding:4px 8px;color:var(--t2);font-size:13px;cursor:pointer;font-family:inherit;}
-
 html,body{height:100%;overflow:hidden;background:var(--bg);}
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;color:var(--t1);}
 #app{display:flex;flex-direction:column;height:100%;padding-top:var(--safe-top);}
-.sb{display:flex;justify-content:space-between;align-items:center;padding:14px 24px 8px;background:var(--bg);flex-shrink:0;}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 8px;background:var(--bg);flex-shrink:0;}
 .sb-t{font-size:15px;font-weight:700;color:var(--t1);letter-spacing:-0.2px;}
-.sb-r{display:flex;gap:5px;align-items:center;}
+.sb-r{display:flex;gap:8px;align-items:center;}
 .sb-r span{font-size:11px;color:var(--t2);}
+.theme-btn{background:none;border:0.5px solid var(--bdr2);border-radius:8px;padding:4px 9px;color:var(--t2);font-size:13px;cursor:pointer;font-family:inherit;}
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .scroll::-webkit-scrollbar{display:none;}
 .tabbar{display:flex;background:rgba(10,10,10,0.98);border-top:0.5px solid var(--bdr);padding-top:8px;padding-bottom:calc(8px + var(--safe-bot));flex-shrink:0;}
-.tb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 2px;border:none;background:none;position:relative;}
-.tb-dot{width:4px;height:4px;border-radius:50%;background:var(--a);position:absolute;top:0;opacity:0;transition:opacity 0.2s;}
+:root.light .tabbar{background:rgba(244,244,244,0.98);}
+.tb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:3px 2px;border:none;background:none;position:relative;}
+.tb-dot{width:4px;height:4px;border-radius:50%;background:var(--a);position:absolute;top:1px;opacity:0;transition:opacity 0.2s;}
 .tb.on .tb-dot{opacity:1;}
 .tb-ico{font-size:20px;line-height:1;}
-.tb-lbl{font-size:9px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;}
+.tb-lbl{font-size:9px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;}
 .tb.on .tb-lbl{color:var(--a);}
 .tb.off .tb-lbl{color:var(--t4);}
 .anim{animation:fi 0.15s ease;}
 @keyframes fi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
-
-/* INSTALL BANNER */
 .install-banner{display:none;align-items:center;gap:10px;padding:12px 16px;background:var(--a2);border-bottom:0.5px solid rgba(255,69,0,0.2);}
 .install-banner.show{display:flex;}
 .install-txt{flex:1;font-size:13px;color:var(--t1);line-height:1.4;}
 .install-txt strong{color:var(--a);}
 .install-btn{background:var(--a);border:none;border-radius:10px;padding:8px 14px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;}
 .install-close{color:var(--t3);font-size:18px;cursor:pointer;flex-shrink:0;}
-
-/* HOME */
+.pg-head{padding:20px 20px 14px;border-bottom:0.5px solid var(--bdr);}
+.pg-title{font-size:28px;font-weight:800;color:var(--t1);letter-spacing:-0.6px;}
+.pg-sub{font-size:13px;color:var(--t3);margin-top:3px;}
+.back-btn{display:flex;align-items:center;gap:4px;padding:14px 20px 8px;color:var(--a);font-size:15px;font-weight:500;cursor:pointer;border:none;background:none;font-family:inherit;}
+.sec-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;padding:14px 20px 6px;}
+.sp{height:28px;}
+.card-list{padding:12px 16px;}
+.hub-card{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;padding:16px 18px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px;-webkit-user-select:none;}
+.hub-card:active{background:var(--s2);}
+.hub-ico{width:44px;height:44px;border-radius:12px;background:var(--a2);border:0.5px solid rgba(255,69,0,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.hub-info{flex:1;min-width:0;}
+.hub-title{font-size:15px;font-weight:700;color:var(--t1);}
+.hub-desc{font-size:12px;color:var(--t3);margin-top:2px;line-height:1.4;}
+.hub-badge{font-size:10px;font-weight:700;color:var(--a);background:var(--a2);padding:3px 8px;border-radius:20px;flex-shrink:0;}
+.hub-chev{color:var(--t4);font-size:16px;flex-shrink:0;}
 .home-head{padding:22px 22px 0;}
 .home-date{font-size:12px;font-weight:600;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
 .home-title{font-size:30px;font-weight:800;color:var(--t1);letter-spacing:-0.8px;line-height:1.1;}
 .status-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.25);border-radius:20px;padding:5px 12px;margin-top:12px;}
 .status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
 .status-txt{font-size:12px;color:var(--green);font-weight:600;}
-.mod-list{padding:16px 16px 0;}
-.mod-card{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;padding:16px 18px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px;-webkit-user-select:none;user-select:none;}
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 16px 0;}
+.mod-card{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;padding:16px;cursor:pointer;-webkit-user-select:none;}
 .mod-card:active{background:var(--s2);}
-.mod-icon-wrap{width:44px;height:44px;border-radius:12px;background:var(--a2);border:0.5px solid rgba(255,69,0,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.mod-info{flex:1;min-width:0;}
-.mod-title{font-size:15px;font-weight:600;color:var(--t1);}
-.mod-desc{font-size:12px;color:var(--t3);margin-top:2px;line-height:1.4;}
-.mod-arrow{color:var(--t4);font-size:16px;}
-.mod-count{font-size:10px;font-weight:700;color:var(--a);background:var(--a2);padding:3px 8px;border-radius:20px;flex-shrink:0;}
-.qref-wrap{padding:16px;}
-.qref{border-radius:14px;padding:14px 16px;margin-bottom:10px;}
+.mod-accent{width:24px;height:3px;border-radius:2px;background:var(--a);margin-bottom:10px;}
+.mod-title{font-size:14px;font-weight:700;color:var(--t1);}
+.mod-desc{font-size:11px;color:var(--t3);margin-top:3px;line-height:1.4;}
+.mod-count{font-size:10px;font-weight:700;color:var(--a);background:var(--a2);display:inline-block;padding:2px 8px;border-radius:20px;margin-top:8px;}
+.qref-wrap{padding:14px 16px;}
+.qref{border-radius:14px;padding:13px 15px;margin-bottom:10px;}
 .qref-red{background:rgba(239,68,68,0.07);border:0.5px solid rgba(239,68,68,0.2);}
-.qref-ora{background:var(--a3);border:0.5px solid rgba(255,69,0,0.2);}
+.qref-ora{background:var(--a3);border:0.5px solid rgba(255,69,0,0.18);}
 .qref-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:5px;}
 .qref-label-red{color:var(--red);}
 .qref-label-ora{color:var(--a);}
 .qref-body{font-size:13px;color:var(--t2);line-height:1.5;}
-.version-tag{text-align:center;font-size:11px;color:var(--t4);padding:8px 0 24px;}
-
-/* SEARCH */
 .search-top{padding:12px 16px 8px;background:var(--bg);position:sticky;top:0;z-index:10;border-bottom:0.5px solid var(--bdr);}
 .search-input-wrap{display:flex;align-items:center;gap:8px;background:var(--s1);border-radius:12px;padding:10px 14px;border:0.5px solid var(--bdr2);}
 .search-input-wrap input{flex:1;background:none;border:none;outline:none;font-size:15px;color:var(--t1);font-family:inherit;}
@@ -94,14 +99,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .chips::-webkit-scrollbar{display:none;}
 .chip{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:0.5px solid var(--bdr2);background:transparent;color:var(--t3);letter-spacing:0.04em;white-space:nowrap;-webkit-user-select:none;}
 .chip.on{background:var(--a);border-color:var(--a);color:#fff;}
-.rlabel{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;padding:14px 16px 6px;}
+.rlabel{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;padding:12px 16px 6px;}
 .rlist{margin:0 16px;}
 .rrow{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--s1);cursor:pointer;border-bottom:0.5px solid var(--bdr);}
 .rrow:first-child{border-radius:14px 14px 0 0;}
 .rrow:last-child{border-radius:0 0 14px 14px;border-bottom:none;}
 .rrow:only-child{border-radius:14px;}
 .rrow:active{background:var(--s2);}
-.rsev{width:3px;align-self:stretch;border-radius:0;flex-shrink:0;}
+.rsev{width:3px;align-self:stretch;flex-shrink:0;}
 .rsev-t{background:var(--yellow);}
 .rsev-s{background:var(--amber);}
 .rsev-c{background:var(--red);}
@@ -112,11 +117,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .rbadge-s{background:rgba(245,158,11,0.15);color:var(--amber);}
 .rbadge-c{background:rgba(239,68,68,0.15);color:var(--red);}
 .rchev{color:var(--t4);font-size:14px;}
-
-/* DETAIL OVERLAY */
 .detail{position:absolute;inset:0;background:var(--bg);overflow-y:auto;z-index:50;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .detail::-webkit-scrollbar{display:none;}
-.dbtn{display:flex;align-items:center;gap:4px;padding:14px 20px 10px;color:var(--a);font-size:15px;font-weight:500;cursor:pointer;border:none;background:none;font-family:inherit;}
 .dhead{padding:4px 20px 18px;border-bottom:0.5px solid var(--bdr);}
 .dtitle{font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-0.5px;font-family:ui-monospace,monospace;}
 .dsub{font-size:13px;color:var(--t3);margin-top:4px;}
@@ -133,11 +135,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .rel-code{background:var(--s2);border:0.5px solid var(--bdr2);border-radius:8px;padding:4px 10px;font-size:12px;color:var(--t2);font-family:ui-monospace,monospace;}
 .nfpa-box{background:rgba(255,69,0,0.07);border:0.5px solid rgba(255,69,0,0.2);border-radius:12px;padding:12px 14px;margin-top:14px;}
 .nfpa-t{font-size:12px;color:var(--a);line-height:1.5;font-weight:500;}
-
-/* DIAGNOSE */
 .dg-head{padding:18px 20px 14px;border-bottom:0.5px solid var(--bdr);}
-.dg-title{font-size:28px;font-weight:800;color:var(--t1);letter-spacing:-0.5px;}
-.dg-sub{font-size:13px;color:var(--t3);margin-top:2px;}
 .tree-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;}
 .tc{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;padding:16px;cursor:pointer;-webkit-user-select:none;}
 .tc:active{background:var(--s2);}
@@ -145,8 +143,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .tc-title{font-size:13px;font-weight:700;color:var(--t1);}
 .tc-desc{font-size:11px;color:var(--t3);margin-top:3px;line-height:1.4;}
 .tc-new{display:inline-block;font-size:8px;font-weight:800;color:var(--a);background:var(--a2);padding:2px 6px;border-radius:4px;margin-bottom:6px;letter-spacing:0.06em;}
-
-/* FLOW */
 .flow-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;}
 .flow-back{display:flex;align-items:center;gap:6px;color:var(--a);font-size:14px;font-weight:600;cursor:pointer;border:none;background:none;font-family:inherit;}
 .flow-step-pill{background:var(--s2);border:0.5px solid var(--bdr2);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:var(--t2);}
@@ -187,17 +183,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .res-ico{font-size:22px;}
 .res-title{font-size:18px;font-weight:800;color:var(--t1);}
 .res-sev-label{font-size:11px;font-weight:600;margin-top:2px;}
-.res-sev-h{color:var(--red);}
-.res-sev-m{color:var(--amber);}
-.res-sev-l{color:var(--green);}
 .res-body{font-size:14px;color:var(--t2);line-height:1.6;white-space:pre-line;}
 .parts-head{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-top:14px;margin-bottom:8px;}
 .parts-wrap{display:flex;flex-wrap:wrap;gap:8px;}
 .part-tag{background:var(--s3);border:0.5px solid var(--bdr2);border-radius:8px;padding:5px 10px;font-size:12px;color:var(--t2);}
 .res-restart{display:flex;justify-content:center;padding:6px 0 20px;}
 .res-restart button{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:12px 24px;color:var(--t2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
-
-/* PANELS */
 .brands-list{padding:14px 16px;}
 .brand-block{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;overflow:hidden;margin-bottom:10px;}
 .brand-hdr{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:0.5px solid var(--bdr);}
@@ -217,60 +208,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .task-r-warn{background:rgba(245,158,11,0.12);}
 .task-r-eol{background:rgba(34,197,94,0.12);}
 .task-nm{font-size:14px;font-weight:600;color:var(--t1);}
-.task-sub{font-size:11px;color:var(--t3);margin-top:1px;}
 .warn-box{background:rgba(245,158,11,0.08);border:0.5px solid rgba(245,158,11,0.25);border-radius:12px;padding:12px 14px;margin-bottom:14px;}
 .warn-txt{font-size:12px;color:var(--amber);line-height:1.5;}
-
-/* NOTES */
-.notes-list{padding:14px 16px;}
-.note-c{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;padding:15px 16px;margin-bottom:10px;cursor:pointer;}
-.note-c:active{background:var(--s2);}
-.note-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px;}
-.note-site{font-size:15px;font-weight:700;color:var(--t1);}
-.note-date{font-size:11px;color:var(--t3);flex-shrink:0;margin-top:2px;}
-.note-job{font-size:12px;color:var(--t3);margin-bottom:8px;}
-.note-preview{font-size:13px;color:var(--t2);line-height:1.4;margin-bottom:8px;}
-.ntag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:700;margin-right:4px;}
-.ntag-f{background:rgba(59,130,246,0.15);color:#60A5FA;}
-.ntag-a{background:rgba(34,197,94,0.15);color:#4ADE80;}
-.ntag-p{background:rgba(245,158,11,0.15);color:#FCD34D;}
-.ntag-c{background:rgba(239,68,68,0.15);color:#F87171;}
-.fab-wrap{display:flex;justify-content:flex-end;padding:0 20px;margin-top:4px;}
-.fab{width:54px;height:54px;border-radius:50%;background:var(--a);border:none;color:#fff;font-size:26px;cursor:pointer;box-shadow:0 4px 24px rgba(255,69,0,0.35);}
-.entry-row{background:var(--s1);border-radius:12px;padding:13px 14px;margin-bottom:8px;border-left:3px solid transparent;}
-.entry-f{border-left-color:var(--blue);}
-.entry-a{border-left-color:var(--green);}
-.entry-p{border-left-color:var(--amber);}
-.entry-c{border-left-color:var(--red);}
-.entry-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.entry-time{font-size:11px;color:var(--t3);}
-.entry-text{font-size:14px;color:var(--t1);line-height:1.5;}
-.form-wrap{padding:16px;}
-.fl{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
-.fi{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;font-family:inherit;margin-bottom:14px;}
-.fi:focus{border-color:var(--a);}
-.fta{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;min-height:90px;resize:none;font-family:inherit;margin-bottom:14px;}
-.fta:focus{border-color:var(--a);}
-.tag-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.tag-btn{padding:7px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:0.5px solid var(--bdr2);background:transparent;color:var(--t3);font-family:inherit;}
-.tag-btn.sel-f{background:rgba(59,130,246,0.15);border-color:var(--blue);color:#60A5FA;}
-.tag-btn.sel-a{background:rgba(34,197,94,0.15);border-color:var(--green);color:#4ADE80;}
-.tag-btn.sel-p{background:rgba(245,158,11,0.15);border-color:var(--amber);color:#FCD34D;}
-.tag-btn.sel-c{background:rgba(239,68,68,0.15);border-color:var(--red);color:#F87171;}
-.sbmt{width:100%;padding:14px;background:var(--a);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px;font-family:inherit;}
-.cncl{width:100%;padding:12px;background:transparent;border:0.5px solid var(--bdr2);border-radius:12px;color:var(--t2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
-.empty{text-align:center;padding:48px 24px;}
-.empty-ico{font-size:36px;color:var(--t4);margin-bottom:12px;}
-.empty-t{font-size:15px;color:var(--t2);}
-.empty-s{font-size:13px;color:var(--t4);margin-top:4px;}
-.sp{height:24px;}
-.delete-btn{padding:8px 14px;background:rgba(239,68,68,0.12);border:0.5px solid rgba(239,68,68,0.25);border-radius:10px;color:var(--red);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:auto;}
-
-/* CONTACT ID */
 .cid-input-wrap{padding:16px 16px 12px;background:var(--bg);position:sticky;top:0;z-index:10;border-bottom:0.5px solid var(--bdr);}
 .cid-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
-.cid-input-row{display:flex;gap:10px;align-items:center;}
-.cid-input{flex:1;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 18px;font-size:28px;font-weight:800;color:var(--t1);outline:none;font-family:ui-monospace,monospace;letter-spacing:0.1em;text-align:center;}
+.cid-input{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 18px;font-size:32px;font-weight:800;color:var(--t1);outline:none;font-family:ui-monospace,monospace;letter-spacing:0.1em;text-align:center;}
 .cid-input:focus{border-color:var(--a);}
 .cid-qual-row{display:flex;gap:8px;margin-top:10px;}
 .cid-qual{flex:1;padding:8px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:0.5px solid var(--bdr2);background:transparent;color:var(--t3);font-family:inherit;text-align:center;}
@@ -302,8 +244,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .cid-pill-restore{background:rgba(34,197,94,0.15);color:var(--green);}
 .cid-pill-norestore{background:rgba(107,114,128,0.2);color:var(--t3);}
 .cid-pill-nfpa{background:rgba(255,69,0,0.15);color:var(--a);}
-.cid-empty{padding:20px 18px;text-align:center;}
-.cid-empty-t{font-size:14px;color:var(--t3);}
 .cid-section{padding:16px 16px 6px;}
 .cid-section-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;padding:0 2px;}
 .cid-list{margin:0 16px;}
@@ -312,7 +252,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .cid-row:last-child{border-radius:0 0 14px 14px;border-bottom:none;}
 .cid-row:only-child{border-radius:14px;}
 .cid-row:active{background:var(--s2);}
-.cid-row-sev{width:3px;align-self:stretch;border-radius:0;flex-shrink:0;}
+.cid-row-sev{width:3px;align-self:stretch;flex-shrink:0;}
 .cid-sev-high{background:var(--red);}
 .cid-sev-med{background:var(--amber);}
 .cid-sev-low{background:var(--yellow);}
@@ -325,13 +265,135 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .cid-badge-trbl{background:rgba(234,179,8,0.15);color:var(--yellow);}
 .cid-badge-test{background:rgba(59,130,246,0.15);color:var(--blue);}
 .cid-badge-misc{background:rgba(107,114,128,0.2);color:var(--t3);}
+.nfpa-search{padding:12px 16px 8px;background:var(--bg);position:sticky;top:0;z-index:10;border-bottom:0.5px solid var(--bdr);}
+.nfpa-search input{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:10px 14px;font-size:15px;color:var(--t1);outline:none;font-family:inherit;}
+.nfpa-search input::placeholder{color:var(--t4);}
+.nfpa-search input:focus{border-color:var(--a);}
+.nfpa-sec-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;padding:14px 16px 6px;}
+.nfpa-card{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;overflow:hidden;margin:0 16px 10px;}
+.nfpa-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:0.5px solid var(--bdr);cursor:pointer;}
+.nfpa-row:last-child{border-bottom:none;}
+.nfpa-row:active{background:var(--s2);}
+.nfpa-sev{width:3px;align-self:stretch;flex-shrink:0;}
+.nfpa-sev-h{background:var(--red);}
+.nfpa-sev-m{background:var(--amber);}
+.nfpa-sev-i{background:var(--blue);}
+.nfpa-name{flex:1;font-size:13px;font-weight:600;color:var(--t1);line-height:1.3;}
+.nfpa-val{font-size:12px;font-weight:700;color:var(--a);font-family:ui-monospace,monospace;flex-shrink:0;text-align:right;}
+.nfpa-ref{font-size:10px;color:var(--t3);padding:4px 16px 0;}
+.nfpa-detail{position:absolute;inset:0;background:var(--bg);z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.nfpa-detail::-webkit-scrollbar{display:none;}
+.nfpa-detail-body{padding:16px 20px;}
+.nfpa-detail-val{font-size:36px;font-weight:800;color:var(--a);font-family:ui-monospace,monospace;letter-spacing:-0.5px;margin-bottom:4px;}
+.nfpa-detail-label{font-size:16px;font-weight:700;color:var(--t1);margin-bottom:12px;}
+.nfpa-detail-note{font-size:14px;color:var(--t2);line-height:1.6;background:var(--s1);border-radius:12px;padding:14px 16px;border-left:3px solid var(--a);}
+.calc-tabs-row{display:flex;background:var(--s2);border-radius:12px;padding:3px;gap:2px;margin:14px 16px 0;}
+.calc-tab{flex:1;padding:8px 4px;border-radius:10px;font-size:10px;font-weight:700;text-align:center;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:inherit;letter-spacing:0.04em;text-transform:uppercase;-webkit-user-select:none;}
+.calc-tab.on{background:var(--s4);color:var(--t1);}
+.calc-body{padding:14px 16px;}
+.calc-field{margin-bottom:14px;}
+.calc-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.calc-select{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;font-family:inherit;-webkit-appearance:none;appearance:none;}
+.calc-select:focus{border-color:var(--a);}
+.calc-input{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;font-family:inherit;}
+.calc-input:focus{border-color:var(--a);}
+.calc-result{border-radius:14px;padding:16px;margin-top:4px;text-align:center;}
+.calc-result-ok{background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.25);}
+.calc-result-warn{background:rgba(245,158,11,0.1);border:0.5px solid rgba(245,158,11,0.25);}
+.calc-result-fail{background:rgba(239,68,68,0.1);border:0.5px solid rgba(239,68,68,0.25);}
+.calc-result-val{font-size:32px;font-weight:800;font-family:ui-monospace,monospace;}
+.calc-result-val-ok{color:var(--green);}
+.calc-result-val-warn{color:var(--amber);}
+.calc-result-val-fail{color:var(--red);}
+.calc-result-label{font-size:12px;font-weight:600;margin-top:4px;}
+.calc-result-label-ok{color:var(--green);}
+.calc-result-label-warn{color:var(--amber);}
+.calc-result-label-fail{color:var(--red);}
+.calc-result-note{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.5;padding-top:8px;border-top:0.5px solid rgba(255,255,255,0.07);}
+.calc-result-rows{margin-top:10px;text-align:left;}
+.calc-result-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.06);}
+.calc-result-row:last-child{border-bottom:none;}
+.calc-result-row-label{font-size:12px;color:var(--t2);}
+.calc-result-row-val{font-size:12px;font-weight:700;color:var(--t1);font-family:ui-monospace,monospace;}
+.calc-info{background:var(--s2);border-radius:12px;padding:12px 14px;margin-top:12px;}
+.calc-info-txt{font-size:12px;color:var(--t2);line-height:1.5;}
+.timer-body{padding:16px;}
+.timer-site-input{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;font-family:inherit;margin-bottom:14px;}
+.timer-site-input:focus{border-color:var(--a);}
+.timer-type-row{display:flex;gap:8px;margin-bottom:16px;}
+.timer-type-btn{flex:1;padding:10px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:0.5px solid var(--bdr2);background:transparent;color:var(--t3);font-family:inherit;text-align:center;-webkit-user-select:none;}
+.timer-type-btn.sel{background:var(--a);border-color:var(--a);color:#fff;}
+.timer-start{width:100%;padding:14px;background:var(--a);border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;}
+.timer-active{border-radius:16px;padding:20px;text-align:center;margin-bottom:14px;}
+.timer-active-green{background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.25);}
+.timer-active-amber{background:rgba(245,158,11,0.1);border:0.5px solid rgba(245,158,11,0.25);}
+.timer-active-red{background:rgba(239,68,68,0.1);border:0.5px solid rgba(239,68,68,0.25);}
+.timer-elapsed{font-size:48px;font-weight:800;font-family:ui-monospace,monospace;letter-spacing:0.05em;}
+.timer-elapsed-green{color:var(--green);}
+.timer-elapsed-amber{color:var(--amber);}
+.timer-elapsed-red{color:var(--red);}
+.timer-site-label{font-size:14px;font-weight:600;color:var(--t1);margin-top:8px;}
+.timer-type-label{font-size:12px;color:var(--t2);margin-top:3px;}
+.timer-alert{border-radius:10px;padding:10px 12px;margin-bottom:10px;}
+.timer-alert-amber{background:rgba(245,158,11,0.1);border:0.5px solid rgba(245,158,11,0.25);}
+.timer-alert-red{background:rgba(239,68,68,0.1);border:0.5px solid rgba(239,68,68,0.25);}
+.timer-alert-txt{font-size:12px;font-weight:600;line-height:1.4;}
+.timer-alert-txt-amber{color:var(--amber);}
+.timer-alert-txt-red{color:var(--red);}
+.timer-stop{width:100%;padding:13px;background:transparent;border:0.5px solid rgba(239,68,68,0.3);border-radius:12px;color:var(--red);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.notes-list{padding:14px 16px;}
+.note-c{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:16px;padding:15px 16px;margin-bottom:10px;cursor:pointer;}
+.note-c:active{background:var(--s2);}
+.note-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px;}
+.note-site{font-size:15px;font-weight:700;color:var(--t1);}
+.note-date{font-size:11px;color:var(--t3);flex-shrink:0;margin-top:2px;}
+.note-job{font-size:12px;color:var(--t3);margin-bottom:8px;}
+.note-preview{font-size:13px;color:var(--t2);line-height:1.4;margin-bottom:8px;}
+.ntag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;font-weight:700;margin-right:4px;}
+.ntag-f{background:rgba(59,130,246,0.15);color:#60A5FA;}
+.ntag-a{background:rgba(34,197,94,0.15);color:#4ADE80;}
+.ntag-p{background:rgba(245,158,11,0.15);color:#FCD34D;}
+.ntag-c{background:rgba(239,68,68,0.15);color:#F87171;}
+.fab-wrap{display:flex;justify-content:flex-end;padding:0 20px;margin-top:4px;}
+.fab{width:54px;height:54px;border-radius:50%;background:var(--a);border:none;color:#fff;font-size:26px;cursor:pointer;box-shadow:0 4px 20px rgba(255,69,0,0.35);}
+.entry-row{background:var(--s1);border-radius:12px;padding:13px 14px;margin-bottom:8px;border-left:3px solid transparent;}
+.entry-f{border-left-color:var(--blue);}
+.entry-a{border-left-color:var(--green);}
+.entry-p{border-left-color:var(--amber);}
+.entry-c{border-left-color:var(--red);}
+.entry-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.entry-time{font-size:11px;color:var(--t3);}
+.entry-text{font-size:14px;color:var(--t1);line-height:1.5;}
+.form-wrap{padding:16px;}
+.fl{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.fi{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;font-family:inherit;margin-bottom:14px;}
+.fi:focus{border-color:var(--a);}
+.fta{width:100%;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--t1);outline:none;min-height:90px;resize:none;font-family:inherit;margin-bottom:14px;}
+.fta:focus{border-color:var(--a);}
+.tag-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.tag-btn{padding:7px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:0.5px solid var(--bdr2);background:transparent;color:var(--t3);font-family:inherit;}
+.tag-btn.sel-f{background:rgba(59,130,246,0.15);border-color:var(--blue);color:#60A5FA;}
+.tag-btn.sel-a{background:rgba(34,197,94,0.15);border-color:var(--green);color:#4ADE80;}
+.tag-btn.sel-p{background:rgba(245,158,11,0.15);border-color:var(--amber);color:#FCD34D;}
+.tag-btn.sel-c{background:rgba(239,68,68,0.15);border-color:var(--red);color:#F87171;}
+.sbmt{width:100%;padding:14px;background:var(--a);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:8px;font-family:inherit;}
+.cncl{width:100%;padding:12px;background:transparent;border:0.5px solid var(--bdr2);border-radius:12px;color:var(--t2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+.empty{text-align:center;padding:48px 24px;}
+.empty-ico{font-size:36px;color:var(--t4);margin-bottom:12px;}
+.empty-t{font-size:15px;color:var(--t2);}
+.empty-s{font-size:13px;color:var(--t4);margin-top:4px;}
+.delete-btn{padding:8px 14px;background:rgba(239,68,68,0.12);border:0.5px solid rgba(239,68,68,0.25);border-radius:10px;color:var(--red);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:auto;}
+.version-tag{text-align:center;font-size:11px;color:var(--t4);padding:8px 0 24px;}
 </style>
 </head>
 <body>
 <div id="app">
   <div class="sb">
     <span class="sb-t" id="clk">9:41</span>
-    <div class="sb-r"><span id="conn-status" style="font-size:11px;color:var(--t2)">Online</span><button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀</button></div>
+    <div class="sb-r">
+      <span id="conn-status" style="font-size:11px;color:var(--t2)">Online</span>
+      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀</button>
+    </div>
   </div>
   <div id="install-banner" class="install-banner">
     <div class="install-txt"><strong>Add to Home Screen</strong> — works offline, no App Store needed</div>
@@ -340,9 +402,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
   </div>
   <div class="scroll" id="main"></div>
   <div class="tabbar" id="tabs"></div>
-</div>
-
-<script>
+</div><script>
 const EC=[
 {id:'N001',brand:'Notifier',models:'NFS2-640, NFS-320, NFS2-3030',code:'GND FAULT',sev:'TROUBLE',desc:'A conductor on the SLC loop or NAC circuit has contacted earth ground.',causes:['Damaged insulation on wiring (pinched, stapled, abraded)','Water intrusion in junction box or conduit','Device with failed circuitry still connected to loop','Conductor shorted to metallic conduit or box'],steps:['Identify which loop/circuit is faulted from panel display','Disconnect devices in half-loop segments to isolate fault zone','Use a multimeter to check each segment for ground reference','Inspect junction boxes in affected zone for moisture or damage','Replace damaged wire or device as needed'],related:['OPEN CIRCUIT','T-T SHORT'],nfpa:false,symptoms:['ground','earth','gnd fault','grounding','leakage']},
 {id:'N002',brand:'Notifier',models:'NFS2-640, NFS-320, NFS2-3030',code:'OPEN CIRCUIT',sev:'TROUBLE',desc:'A break in the SLC loop or NAC circuit wiring has been detected.',causes:['Wire cut or broken at junction, terminal, or device base','Loose terminal screw at panel or device','Device removed from base without isolation','Failed or missing EOL resistor on conventional zone'],steps:['Confirm which loop/zone is open from panel display','Check terminal connections at panel first','Walk circuit and check each device base for loose wires','Use wire tracer or multimeter continuity check to locate break','Re-terminate or splice as needed per NFPA 72 wiring methods'],related:['GND FAULT','T-T SHORT'],nfpa:false,symptoms:['open','break','broken wire','wire break','open loop','no continuity']},
@@ -392,6 +452,7 @@ const EC=[
 {id:'SS004',brand:'System Sensor',models:'SIGA Series',code:'CHAMBER FAULT',sev:'TROUBLE',desc:'The detector sensing chamber has detected an internal fault — typically a hardware failure.',causes:['Sensing chamber physically damaged (drop impact or crush)','Sensing element has failed internally','Contamination level has exceeded correction capability','Extreme environmental conditions (temperature, humidity) damaged chamber'],steps:['Replace the detector — chamber faults cannot be corrected by cleaning','Match detector model and base type exactly','Set address to match the replaced unit','Test replacement with canned smoke','Document replacement and disposal of failed unit'],related:['SENSOR FAIL','DIRTY SENSOR'],nfpa:false,symptoms:['chamber fault','chamber fail','sensing fault','sensing element','hardware fault']}
 ];
 
+
 const TR={
 ground_fault:{title:'Ground Fault',ico:'⚡',desc:'SLC loop or NAC ground fault isolation',isNew:false,start:'q1',nodes:{q1:{q:'Where is the ground fault indicated on the panel?',type:'ch',opts:[{l:'SLC / IDC Loop',n:'q2'},{l:'NAC Circuit',n:'qn1'},{l:'Multiple / not sure',n:'qm'}]},q2:{q:'Does the panel show a specific device address for the fault?',type:'ch',opts:[{l:'Yes — specific address shown',n:'q3a'},{l:'Loop number only',n:'q3l'},{l:'No detail / system fault',n:'q3l'}]},q3a:{q:'Go to that device address on-site. Is the device properly seated in its base?',type:'yn',y:'q4s',n:'rreseat'},q4s:{q:'Inspect the device base and nearby junction box. Any visible wire damage, moisture, or bare conductors touching metal?',type:'yn',y:'rrepair',n:'q5h'},q3l:{q:'Disconnect the loop wiring at the midpoint (half the devices). Did the fault clear?',type:'yn',y:'q6h',n:'q7o'},q6h:{q:'Fault is in the first half. Continue halving that segment. Can you identify the specific zone?',type:'yn',y:'rrepair',n:'rrepair'},q7o:{q:'Fault in second half or at panel. Disconnect ALL field wiring at panel terminals. Does fault clear?',type:'yn',y:'rfield',n:'rpanel'},q5h:{q:'Disconnect the loop at its midpoint. Did the ground fault clear?',type:'yn',y:'q6h',n:'q7o'},qn1:{q:'Any water exposure or recent construction in that circuit area?',type:'yn',y:'rmoist',n:'qn2'},qn2:{q:'Disconnect NAC at panel terminals. Does the fault clear?',type:'yn',y:'rnacf',n:'rnacp'},qm:{q:'Multiple simultaneous faults often indicate water event or systemic wiring issue. Known flood or recent construction?',type:'yn',y:'rwater',n:'rsys'},rreseat:{type:'res',title:'Reseat Device',body:'Remove and firmly reseat device in its base. Ensure locking tab engages. Clear fault at panel.\n\nIf fault returns after reseating, swap the device with a known-good spare.',parts:['Replacement device (same model and address)'],sev:'low'},rrepair:{type:'res',title:'Wiring Repair Required',body:'Fault zone located. Inspect all conductors in this area for:\n• Abraded or pinched insulation\n• Conductors touching metallic conduit or boxes\n• Moisture inside a junction box\n\nRepair or replace damaged wiring. Re-test the full loop after repair.',parts:['Wire (matching gauge)','Wire nuts or terminal blocks','Electrical tape or heat shrink'],sev:'med'},rfield:{type:'res',title:'Fault Confirmed in Field Wiring',body:'All field wiring removed and fault cleared — confirmed wiring issue, not a panel fault.\n\nContinue halving the circuit to pinpoint the specific run. Inspect all devices and junction boxes in that segment.',parts:['Wire','Replacement devices if needed'],sev:'med'},rpanel:{type:'res',title:'Possible Panel / Loop Card Issue',body:'Fault persists even with all field wiring removed. Panel-side issue:\n• Check loop card seating\n• Inspect loop card terminals for corrosion\n• Contact panel manufacturer tech support\n\nDo NOT restore system until fault is resolved.',parts:['Replacement loop card (if available)'],sev:'high'},rmoist:{type:'res',title:'Moisture-Related Ground Fault',body:'Moisture is the likely cause. Inspect all junction boxes and device housings on this NAC circuit.\n\nLook for standing water, corrosion, or wet insulation. Replace affected devices — allow wiring to dry completely before restoring.',parts:['Replacement horn/strobe if corroded','Weatherproof junction box covers'],sev:'med'},rnacf:{type:'res',title:'NAC Field Wiring Fault',body:'Fault is in NAC field wiring. Disconnect appliances in segments to isolate the fault zone. Check behind each device for conductor damage.',parts:['Wire','EOL resistor (correct value)'],sev:'med'},rnacp:{type:'res',title:'Panel NAC Circuit Issue',body:'Fault remains with field wiring disconnected. NAC circuit output on panel may be faulty.\n\nCheck NAC module/card seating. Escalate to senior tech or manufacturer support.',parts:['NAC module (if replaceable)'],sev:'high'},rwater:{type:'res',title:'Water / Flood Event',body:'Multiple faults from water require a systematic response:\n1. Place system in alarm inhibit if life safety not compromised\n2. Notify building management and AHJ immediately\n3. Inspect all accessible boxes and devices in affected areas\n4. Replace all wet devices — never dry and reuse\n5. Document all findings',parts:['Multiple replacement devices','Wire','Junction box replacements'],sev:'high'},rsys:{type:'res',title:'Multiple Faults — Escalate',body:'Multiple simultaneous ground faults without obvious cause suggest serious wiring problem or loop card failure.\n\nEscalate to senior tech. Document all active faults before disconnecting anything.',parts:[],sev:'high'}}},
 open_circuit:{title:'Open Circuit',ico:'🔌',desc:'Locate and repair a broken conductor',isNew:false,start:'q1',nodes:{q1:{q:'Which type of circuit has the open fault?',type:'ch',opts:[{l:'SLC / Addressable Loop',n:'q2'},{l:'Conventional Zone (IDC)',n:'qc1'},{l:'NAC Circuit',n:'qn1'}]},q2:{q:'Check panel terminals first. Are all SLC wiring terminations tight and undamaged?',type:'yn',y:'q3',n:'rterm'},q3:{q:'Does the panel show a specific device address for the open fault?',type:'yn',y:'q4d',n:'q4l'},q4d:{q:'Go to that device. Is it seated in its base with wires properly terminated?',type:'yn',y:'q5',n:'rbase'},q5:{q:'Check adjacent devices on the loop. Is one physically absent or clearly damaged?',type:'yn',y:'rdevice',n:'q6'},q6:{q:'Use a continuity tester or wire tracer. Can you confirm a specific wire break location?',type:'yn',y:'rwire',n:'rtrace'},q4l:{q:'Disconnect loop at midpoint. Does the open clearly affect only one half?',type:'yn',y:'rwire',n:'qcp'},qcp:{q:'Is the loop configured as Class A (Style 6/7) or Class B (Style 4)?',type:'ch',opts:[{l:'Class A — both legs showing open',n:'rclassa'},{l:'Class B',n:'rtrace'},{l:'Not sure',n:'rtrace'}]},qc1:{q:'Is the EOL resistor present at the last device on this zone?',type:'yn',y:'qc2',n:'reol'},qc2:{q:'Measure resistance at zone terminals on panel (wiring connected). Reading is:',type:'ch',opts:[{l:'Infinite / OL (open)',n:'rwire'},{l:'Correct EOL value',n:'rpzone'},{l:'Zero / short',n:'rshort'}]},qn1:{q:'Is the EOL resistor present with correct value at end of NAC circuit?',type:'yn',y:'qn2',n:'reol'},qn2:{q:'Disconnect NAC at panel. Measure circuit resistance. Shows open (infinite)?',type:'yn',y:'rwire',n:'rnacp'},rterm:{type:'res',title:'Re-Terminate Panel Wiring',body:'Loose or damaged wiring at panel terminals is the single most common cause of open faults.\n\nRe-terminate all connections on the affected circuit. Use correct torque spec for the terminal type.',parts:['None typically needed'],sev:'low'},rbase:{type:'res',title:'Device Base Wiring Issue',body:'A wire has come loose at the device base. Re-terminate the conductor and ensure the screw is properly torqued.\n\nIf the base contact plate is visibly damaged, replace the base.',parts:['Device base (if damaged)'],sev:'low'},rdevice:{type:'res',title:'Failed or Missing Device',body:'A device on the loop is absent or failing internally.\n\nSwap the suspect device with a known-good spare of the same model. Match the address exactly.',parts:['Replacement detector or module (correct model)'],sev:'med'},rwire:{type:'res',title:'Wire Break Found',body:'A conductor is broken. Locate the exact break point:\n• At a junction box connection\n• At a device base terminal\n• In the wire run (stapling, crushing, rodents)\n\nRepair by splicing (NFPA 72 approved method) or pull new wire.',parts:['Wire (matching gauge)','Wire nuts or Wago connectors'],sev:'med'},rtrace:{type:'res',title:'Full Circuit Trace Required',body:'Break location is not immediately apparent.\n\nUse a wire tracer/tone generator to follow the circuit from panel to end of line. Inspect every accessible junction box and device base.',parts:['Tone generator / wire tracer (tool)'],sev:'med'},rclassa:{type:'res',title:'Class A Open — Both Paths Faulting',body:'On a Class A loop, open on both legs indicates a break between two devices. The panel may show which addresses bracket the break.\n\nInspect that wiring segment carefully.',parts:['Wire','Junction box connectors'],sev:'med'},reol:{type:'res',title:'Missing or Wrong EOL Device',body:'End-of-line resistor is missing or incorrect — this is a code deficiency.\n\n1. Verify correct EOL value from panel documentation\n2. Install EOL resistor at last device on circuit\n3. Verify fault clears\n\nDocument in inspection record.',parts:['EOL resistor (correct ohm value per panel specs)'],sev:'low'},rpzone:{type:'res',title:'Panel Zone Board Issue',body:'Wiring resistance reads correct but panel still shows fault. Zone input card may have failed.\n\nTry mapping to a spare zone input and reprogramming. Escalate if issue continues.',parts:['Zone input module (if replaceable)'],sev:'high'},rshort:{type:'res',title:'Short Circuit on Zone',body:'Zero resistance indicates a short, not an open.\n\nReturn to the main diagnostic menu and select the appropriate short circuit or NAC fault tree.',parts:[],sev:'med'},rnacp:{type:'res',title:'Panel NAC Output Issue',body:'Field wiring tests correct but fault remains. NAC output circuit on panel may have failed.\n\nCheck NAC output module seating and connections. Escalate to senior tech.',parts:['NAC module'],sev:'high'}}},
@@ -402,6 +463,7 @@ supervisory:{title:'Supervisory Input',ico:'🔵',desc:'Tamper, waterflow, and v
 zone_trouble:{title:'Zone Trouble — Conventional',ico:'📋',desc:'Conventional zone (IDC) fault diagnosis',isNew:true,start:'q1',nodes:{q1:{q:'What type of conventional zone is faulting?',type:'ch',opts:[{l:'Initiating zone (smoke, heat, pull station)',n:'q_init'},{l:'Waterflow / supervisory zone',n:'q_sup'},{l:'Not sure / general zone trouble',n:'q_init'}]},q_init:{q:'Measure resistance at zone terminals on the panel with wiring connected. Reading shows:',type:'ch',opts:[{l:'Infinite / OL — open circuit',n:'q_open'},{l:'Near correct EOL resistance',n:'q_eol_ok'},{l:'Zero or near zero — short',n:'q_short'},{l:'Slightly low — below EOL',n:'q_low'}]},q_open:{q:'Walk to the last device on the zone and check if the EOL resistor is installed.',type:'yn',y:'q_open2',n:'r_eol_missing'},q_open2:{q:'EOL resistor is present. Disconnect zone wiring at panel and measure resistance of field wiring only. Still shows open?',type:'yn',y:'r_wire_break',n:'r_panel_input'},q_eol_ok:{q:'Resistance reads correct but panel shows trouble. Check zone terminals on panel — is wiring securely connected?',type:'yn',y:'r_panel_input',n:'r_panel_terminal'},q_short:{q:'Disconnect all devices on this zone by removing them from their bases. Does the short clear?',type:'yn',y:'q_device_short',n:'r_wiring_short'},q_device_short:{q:'Short is clear with devices disconnected — the short is in a device. Reconnect one at a time to find the faulty device. Found it?',type:'yn',y:'r_device_shorted',n:'r_device_shorted'},q_low:{q:'Slightly low resistance often indicates moisture bridging across insulation. Check for water damage in junction boxes on this zone.',type:'yn',y:'r_moisture_low',n:'q_eol_check'},q_eol_check:{q:'Verify the EOL resistor value matches what the panel expects. Is the EOL value correct?',type:'yn',y:'r_partial_short',n:'r_eol_wrong'},q_sup:{q:'Is this a waterflow or a tamper/valve supervisory zone?',type:'ch',opts:[{l:'Waterflow',n:'r_sup_flow'},{l:'Tamper / valve',n:'r_sup_tamper'},{l:'Not sure',n:'r_sup_flow'}]},r_eol_missing:{type:'res',title:'EOL Resistor Missing',body:'No end-of-line resistor is installed — zone cannot verify circuit continuity.\n\n1. Identify correct EOL resistance from panel documentation\n2. Install EOL resistor at last device on zone\n3. Verify fault clears\n\nDocument the missing EOL in the service record — this is a code deficiency.',parts:['EOL resistor (correct ohm value per panel specs)'],sev:'low'},r_wire_break:{type:'res',title:'Wire Break in Zone Circuit',body:'A conductor is broken in the zone wiring. Walk the circuit from panel to EOL, inspecting:\n• Every device base for loose wires\n• Every junction box and pull box\n• Any conduit entry where wire could be pinched\n\nRepair by re-splicing or pulling new wire.',parts:['Wire (matching gauge)','Wire nuts or Wago connectors'],sev:'med'},r_panel_input:{type:'res',title:'Panel Zone Input May Have Failed',body:'Field wiring checks correct but panel still shows zone trouble. Zone input circuit on panel may have failed.\n\n1. Try cross-wiring this zone to a spare zone input on the panel\n2. Reprogram to recognize the new zone input\n3. Escalate if no spare zone inputs are available',parts:['Panel zone input module (if modular)'],sev:'high'},r_panel_terminal:{type:'res',title:'Loose Terminal at Panel',body:'Zone resistance is correct at field wiring but not making good contact at panel terminal.\n\n1. Re-terminate zone conductors at panel zone input terminals\n2. Use correct torque for terminal type\n3. Clear fault and verify zone reads correct resistance',parts:[],sev:'low'},r_wiring_short:{type:'res',title:'Short in Zone Field Wiring',body:'Short persists even with all devices disconnected — the short is in the wiring itself.\n\n1. Disconnect wiring at midpoints to isolate shorted segment\n2. Inspect all junction boxes and conduit entries\n3. Look for conductors touching, insulation damaged by staple, or water bridging\n4. Repair or replace damaged wiring',parts:['Wire','Junction box connectors'],sev:'med'},r_device_shorted:{type:'res',title:'Shorted Device Found',body:'A device on the zone has failed with an internal short.\n\n1. Identify the specific device by reconnecting one at a time until short returns\n2. Replace the failed device with a matching model\n3. Verify zone resistance returns to correct EOL value after replacement',parts:['Replacement initiating device (correct model)'],sev:'med'},r_moisture_low:{type:'res',title:'Moisture Causing Low Resistance',body:'Moisture bridging across wire insulation is lowering the effective zone resistance.\n\n1. Inspect all junction boxes on this zone for standing water or condensation\n2. Dry out affected boxes and inspect insulation for damage\n3. Replace wire with damaged insulation\n4. Add weatherproof covers to exterior junction boxes',parts:['Wire','Weatherproof junction box covers'],sev:'med'},r_partial_short:{type:'res',title:'Partial Short in Wiring',body:'Slightly low resistance without obvious cause may be a partial short — insulation is compromised but not fully shorted.\n\n1. Disconnect zone wiring in half-segments and measure each segment\n2. The segment reading low is the fault location\n3. Inspect wiring in that segment for damaged insulation\n4. Repair or replace affected wiring',parts:['Wire'],sev:'med'},r_eol_wrong:{type:'res',title:'Wrong EOL Resistor Value',body:'The installed EOL resistor value does not match what the panel expects.\n\n1. Check panel documentation for correct EOL resistance value for this zone type\n2. Replace the EOL resistor with the correct value\n3. Verify zone reads correctly after correction\n\nCommon values: 2.2kΩ, 3.9kΩ, 4.7kΩ, 5.6kΩ, 10kΩ',parts:['Correct EOL resistor'],sev:'low'},r_sup_flow:{type:'res',title:'Waterflow Zone Trouble',body:'For waterflow supervisory zone trouble, use the Supervisory Input diagnostic tree for a complete waterflow investigation.',parts:[],sev:'low'},r_sup_tamper:{type:'res',title:'Tamper/Valve Zone Trouble',body:'For tamper or valve supervisory zone trouble, use the Supervisory Input diagnostic tree for a complete tamper/valve investigation.',parts:[],sev:'low'}}},
 signal_queue:{title:'Post-Test Queue Drain',ico:'📶',desc:'DACT signal queue after testing — prevent unwanted dispatch',isNew:true,start:'q1',nodes:{q1:{q:'What type of communicator is installed on this panel?',type:'ch',opts:[{l:'Starlink (IP via satellite router)',n:'q_sl'},{l:'Cellular DACT (4G/LTE)',n:'q_cell'},{l:'Dual-path (Starlink + cellular)',n:'q_dual'},{l:'POTS / traditional phone line',n:'q_pots'}]},q_sl:{q:'Did you just complete a walk test, functional test, or were signals being generated during this service call?',type:'yn',y:'q_sl2',n:'q_sl_other'},q_sl2:{q:'IMPORTANT: Is the panel currently showing NORMAL (no active alarms or troubles), but monitoring is still receiving signals?',type:'yn',y:'q_sl3',n:'q_sl_active'},q_sl3:{q:'This is the Starlink queue drain scenario. How long ago did you finish testing?',type:'ch',opts:[{l:'Less than 10 minutes ago',n:'r_sl_draining'},{l:'10–30 minutes ago',n:'r_sl_draining'},{l:'More than 30 minutes ago',n:'r_sl_late'}]},q_sl_active:{q:'Panel still has active alarms or troubles. Resolve all active conditions first. Are you able to clear all active events now?',type:'yn',y:'r_sl_clear_first',n:'r_sl_escalate'},q_sl_other:{q:'No recent testing, but monitoring is receiving signals. Check the DACT transmission log on the panel. Are signals going out continuously or intermittently?',type:'ch',opts:[{l:'Continuous signal transmissions',n:'r_sl_continuous'},{l:'Occasional bursts',n:'r_sl_intermittent'},{l:'Cannot access log',n:'r_sl_check_panel'}]},q_cell:{q:'Did you just complete a walk test or generate test signals during this visit?',type:'yn',y:'q_cell2',n:'q_cell_other'},q_cell2:{q:'Have you notified the monitoring company that testing is complete and to expect residual signals?',type:'yn',y:'r_cell_notified',n:'r_cell_notify_now'},q_cell_other:{q:'No recent testing. Check cellular communicator status LED. Is it showing normal connectivity?',type:'yn',y:'r_cell_spurious',n:'r_cell_no_signal'},q_dual:{q:'Did you just complete testing?',type:'yn',y:'r_dual_post_test',n:'r_dual_monitor'},q_pots:{q:'POTS communicators transmit signals in near-real-time — signal queuing is rare. Are signals being received by monitoring after a test?',type:'yn',y:'r_pots_test',n:'r_pots_other'},r_sl_draining:{type:'res',title:'Starlink Queue Draining — Act Now',body:'The Starlink communicator queued signals generated during testing and is now transmitting them. This is a known behavior with IP/satellite communicators.\n\nIMMEDIATELY:\n1. Call monitoring company — give name, location, and account number\n2. Tell them: "Signals coming in are residual test signals from testing completed at [time]. Please hold all dispatches."\n3. Get a confirmation number from the monitoring operator\n4. Stay on standby until monitoring confirms queue is clear\n\nTypically clears within 5–20 minutes depending on signal volume.',parts:[],sev:'high'},r_sl_late:{type:'res',title:'Late Queue Drain — Verify with Monitoring',body:'More than 30 minutes after testing, the queue should be mostly clear. However, large signal volumes can drain slowly.\n\n1. Call monitoring company immediately if you have not already\n2. Ask them to review signal timestamps — test signals should pre-date when you finished\n3. If signals are still arriving, stay on with monitoring until queue clears\n4. Document: test end time, time signals stopped transmitting\n\nFor future visits: notify monitoring BEFORE testing begins.',parts:[],sev:'med'},r_sl_clear_first:{type:'res',title:'Clear Active Events First',body:'Panel must return to fully normal before you can assess whether remaining signals are residual queue drain.\n\n1. Resolve all active alarms and troubles on the panel\n2. Silence and reset the panel to normal state\n3. Once panel is NORMAL, contact monitoring company\n4. Monitor communicator transmission log for 10–15 minutes\n5. If signals continue after panel is fully normal, it is queue drain — follow post-test queue protocol',parts:[],sev:'med'},r_sl_escalate:{type:'res',title:'Cannot Clear Panel — Escalate',body:'Do not leave the site with the communicator actively transmitting and panel unable to be cleared.\n\n1. Contact monitoring company and advise system is in an active trouble/alarm state\n2. Coordinate with monitoring on whether to place system on test mode or bypass\n3. Escalate to senior tech\n4. Document all active conditions and steps taken',parts:[],sev:'high'},r_sl_continuous:{type:'res',title:'Continuous Transmissions — Investigate',body:'Continuous signal transmissions without active testing suggest a fault in the communicator or a recurring panel event.\n\n1. Check panel event log — is there an active alarm or trouble that keeps generating?\n2. Check Starlink communicator status display for error codes\n3. Verify Starlink router is connected to the internet\n4. If panel is normal and Starlink is connected but still sending — communicator may need a power cycle',parts:[],sev:'high'},r_sl_intermittent:{type:'res',title:'Intermittent Bursts — Monitor',body:'Intermittent signal bursts from a Starlink communicator can indicate:\n• Queued signals from earlier events still draining\n• Intermittent connectivity causing retransmissions\n• A recurring intermittent panel condition\n\n1. Check panel event log for recent recurring events\n2. Check Starlink connectivity status\n3. Monitor for 15 minutes — if bursts stop, it was queue drain\n4. If bursts continue, dig deeper into panel event log',parts:[],sev:'med'},r_sl_check_panel:{type:'res',title:'Access the DACT Transmission Log',body:'The DACT transmission log is essential for diagnosing signal queue issues. How to access on common panels:\n\n• Notifier NFS2-640: HISTORY → DACT LOG\n• Silent Knight: DIAGNOSTICS → COMM LOG\n• EST3: MENU → HISTORY → TRANSMISSION LOG\n• Simplex 4100ES: MAIN MENU → HISTORY → COMM\n\nLook for signal timestamps, types, and whether they match your testing activity.',parts:[],sev:'med'},r_cell_notified:{type:'res',title:'Monitoring Notified — Monitor Queue',body:'Good — monitoring company is aware. Cellular communicators typically have shorter queue drain times than Starlink.\n\n1. Allow 5–10 minutes for the queue to drain\n2. Stay in contact with monitoring until they confirm no more test signals\n3. Get a confirmation number and document in job notes\n4. Before leaving site, confirm monitoring shows panel as NORMAL',parts:[],sev:'low'},r_cell_notify_now:{type:'res',title:'Notify Monitoring Company Now',body:'You must notify the monitoring company immediately.\n\n1. Call monitoring company NOW — do not wait\n2. Provide: technician name, site name, account number, time testing completed\n3. Request they hold all dispatches for test-related signal types\n4. Get a confirmation number\n5. Stay on standby until monitoring confirms queue clear\n\nThis is time-critical — every minute increases risk of a false dispatch.',parts:[],sev:'high'},r_cell_spurious:{type:'res',title:'Cellular — Possible Spurious Signals',body:'Cellular communicator is connected but sending signals with no recent testing. Possible causes:\n• A panel event that is cycling (intermittent alarm/restore)\n• A cellular firmware issue causing false transmissions\n• An actual system condition generating signals\n\n1. Review panel event log for last 24 hours\n2. Power cycle the cellular communicator (confirm with monitoring first)\n3. If signals continue after power cycle, escalate — communicator may need replacement',parts:['Replacement cellular communicator (if needed)'],sev:'med'},r_cell_no_signal:{type:'res',title:'Cellular — No Connectivity',body:'Cellular communicator is not showing normal connectivity — this is a monitoring impairment.\n\n1. Check cellular antenna connection — common failure point\n2. Verify SIM card is seated and active\n3. Check account status with monitoring company — SIM may have lapsed\n4. Move the communicator antenna to better signal position if possible\n5. Document impairment and notify monitoring company',parts:['Cellular antenna replacement if damaged'],sev:'high'},r_dual_post_test:{type:'res',title:'Dual-Path — Post-Test Protocol',body:'Dual-path communicators (Starlink + cellular) can queue signals on BOTH paths and transmit on whichever connects first — then retransmit on the backup path, potentially doubling signal volume.\n\n1. Notify monitoring company that testing is complete on a dual-path system\n2. Advise them to expect duplicate signals on both paths\n3. Ask monitoring to suppress duplicates for the next 30 minutes\n4. Document the session in job notes with signal count if accessible',parts:[],sev:'med'},r_dual_monitor:{type:'res',title:'Dual-Path — Check Both Paths',body:'No recent testing, but signals arriving. On a dual-path system:\n\n1. Check primary path (Starlink) connectivity status\n2. Check secondary path (cellular) connectivity status\n3. A path failure can cause the communicator to resend buffered signals on restoration\n4. Review communicator event log for path failure events\n5. If one path is down, treat as single-path impairment — escalate',parts:[],sev:'med'},r_pots_test:{type:'res',title:'POTS — Test Signals Sent in Real-Time',body:'POTS communicators transmit signals as they happen — there is no queue drain. If monitoring received test signals:\n\n1. Confirm monitoring company has your test complete notification\n2. Verify monitoring has cleared the test mode and is monitoring normally\n3. If you did not notify monitoring before testing, do so now and confirm no dispatch was sent\n\nFor future visits: always notify monitoring BEFORE beginning any testing on a POTS communicator.',parts:[],sev:'low'},r_pots_other:{type:'res',title:'POTS — Unexpected Signals',body:'POTS communicator transmitting unexpected signals (no recent testing) likely means:\n• An active panel condition is generating real signals\n• The phone line is causing noise/false signals (common with VoIP lines)\n• The communicator is malfunctioning\n\n1. Check panel for any active conditions first\n2. Verify the phone line is a dedicated analog POTS line — NOT VoIP\n3. VoIP lines cause DACT failures — if detected, recommend upgrade to IP or cellular communicator',parts:['IP or cellular communicator (if VoIP line detected)'],sev:'med'}}}
 };
+
 
 const EOL_ICON='⚡';
 const PNL=[
@@ -548,149 +610,6 @@ const PNL=[
 ]}
 ];
 
-const STORAGE_KEY='fa_tech_notes_v1';
-const DISMISSED_KEY='fa_tech_install_dismissed';
-
-function loadNotes(){try{const d=localStorage.getItem(STORAGE_KEY);return d?JSON.parse(d):[
-{id:1,site:'Acme Warehouse',job:'ST-2024-1142',date:'Apr 10',entries:[{time:'9:14 AM',text:'GND FAULT on SLC Loop 1. Isolated to segment near loading dock. Found water in J-box at dock door.',tag:'finding'},{time:'9:38 AM',text:'Replaced damaged J-box connector and terminal block. Dried wiring. Fault cleared.',tag:'action'},{time:'9:41 AM',text:'Need weatherproof J-box covers for 3 external boxes on west wall.',tag:'parts'}]},
-{id:2,site:'North Shore Medical',job:'ST-2024-1139',date:'Apr 9',entries:[{time:'2:05 PM',text:'False alarm from duct detector 2-107 in HVAC room 3. HVAC contractor serviced yesterday.',tag:'finding'},{time:'2:31 PM',text:'Cleaned duct detector sampling tubes. Reset and tested with canned smoke. Normal.',tag:'action'}]}
-];}catch(e){return [];}}
-
-function saveNotes(notes){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(notes));}catch(e){}}
-
-let S={
-tab:'home',sq:'',sbrand:'All',scode:null,theme:localStorage.getItem('fa_theme')||'dark',
-dtree:null,dhist:[],dcur:null,
-pb:null,pm:null,pt:null,
-cidInput:'',cidQual:'E',
-notes:loadNotes(),
-addEntry:false,noteIdx:null,newText:'',newTag:'finding',makingSession:false
-};
-
-const NOW=new Date();
-const hh=NOW.getHours()%12||12,mm=NOW.getMinutes().toString().padStart(2,'0');
-document.getElementById('clk').textContent=`${hh}:${mm}`;
-setInterval(()=>{const n=new Date(),h=n.getHours()%12||12,m=n.getMinutes().toString().padStart(2,'0');document.getElementById('clk').textContent=`${h}:${m}`;},30000);
-
-const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const TODAY=`${MONTHS[NOW.getMonth()]} ${NOW.getDate()}`;
-
-window.addEventListener('online',()=>{document.getElementById('conn-status').textContent='Online';});
-window.addEventListener('offline',()=>{document.getElementById('conn-status').textContent='Offline';});
-if(!navigator.onLine) document.getElementById('conn-status').textContent='Offline';
-
-let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();deferredPrompt=e;
-  if(!localStorage.getItem(DISMISSED_KEY)){
-    document.getElementById('install-banner').classList.add('show');
-  }
-});
-document.getElementById('install-btn').addEventListener('click',()=>{
-  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('install-banner').classList.remove('show');});}
-});
-document.getElementById('install-close').addEventListener('click',()=>{
-  localStorage.setItem(DISMISSED_KEY,'1');
-  document.getElementById('install-banner').classList.remove('show');
-});
-
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
-
-function sev2cls(s){return s==='TROUBLE'?'rsev-t':s==='SUPERVISORY'?'rsev-s':'rsev-c';}
-function sev2badge(s){return s==='TROUBLE'?'rbadge-t':s==='SUPERVISORY'?'rbadge-s':'rbadge-c';}
-function sevColor(s){return {high:'#EF4444',med:'#F59E0B',low:'#22C55E'}[s]||'#F59E0B';}
-function sevLabel(s){return {high:'Escalate / Critical',med:'Moderate Fix',low:'Simple Fix'}[s]||'';}
-function sevIco(s){return {high:'🔴',med:'🟡',low:'🟢'}[s]||'🟡';}
-function resClass(s){return {high:'result-banner-high',med:'result-banner-med',low:'result-banner-low'}[s]||'result-banner-med';}
-function resTop(s){return {high:'rb-top-h',med:'rb-top-m',low:'rb-top-l'}[s]||'rb-top-m';}
-
-function R(){
-  const tabs=[
-    {id:'home',l:'Home',i:'⊞'},
-    {id:'search',l:'Codes',i:'⌕'},
-    {id:'diagnose',l:'Diagnose',i:'⑂'},
-    {id:'panels',l:'Panels',i:'◫'},
-    {id:'cid',l:'Contact ID',i:'#'},
-    {id:'notes',l:'Notes',i:'✎'}
-  ];
-  document.getElementById('tabs').innerHTML=tabs.map(t=>`<button class="tb ${S.tab===t.id?'on':'off'}" onclick="gTab('${t.id}')"><div class="tb-dot"></div><span class="tb-ico">${t.i}</span><span class="tb-lbl">${t.l}</span></button>`).join('');
-  const m=document.getElementById('main');
-  m.className='scroll anim';
-  if(S.tab==='home')m.innerHTML=rHome();
-  else if(S.tab==='search')m.innerHTML=rSearch();
-  else if(S.tab==='diagnose')m.innerHTML=rDiagnose();
-  else if(S.tab==='panels')m.innerHTML=rPanels();
-  else if(S.tab==='cid')m.innerHTML=rCID();
-  else if(S.tab==='notes')m.innerHTML=rNotes();
-  m.scrollTop=0;
-}
-
-function rHome(){return `<div class="home-head"><div class="home-date">${DAYS[NOW.getDay()]} · ${TODAY}</div><div class="home-title">FA Tech Assist</div><div class="status-pill"><div class="status-dot"></div><span class="status-txt">Ready · All Systems</span></div></div><div class="mod-list"><div class="mod-card" onclick="gTab('search')"><div class="mod-icon-wrap">⌕</div><div class="mod-info"><div class="mod-title">Error Code Lookup</div><div class="mod-desc">Search by fault code, brand, or symptom</div></div><span class="mod-count">${EC.length} codes</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('diagnose')"><div class="mod-icon-wrap">⑂</div><div class="mod-info"><div class="mod-title">Guided Diagnostics</div><div class="mod-desc">Step-by-step fault isolation trees</div></div><span class="mod-count">${Object.keys(TR).length} trees</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('panels')"><div class="mod-icon-wrap">◫</div><div class="mod-info"><div class="mod-title">Panel Reference</div><div class="mod-desc">Programming steps and gotcha notes</div></div><span class="mod-count">${PNL.length} brands</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('cid')"><div class="mod-icon-wrap">#</div><div class="mod-info"><div class="mod-title">Contact ID Decoder</div><div class="mod-desc">Decode monitoring signals instantly</div></div><span class="mod-count">${CID.length} codes</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('notes')"><div class="mod-icon-wrap">✎</div><div class="mod-info"><div class="mod-title">Job Notes</div><div class="mod-desc">Log findings, actions, and parts needed</div></div><span class="mod-count">${S.notes.length} sessions</span><span class="mod-arrow">›</span></div></div><div class="qref-wrap"><div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Check local jurisdiction requirements. Document all impairment durations in job notes.</div></div><div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it in job notes.</div></div></div><div class="version-tag">FA Tech Assist · Encore Fire Protection · v4.0 PWA</div>`;}
-
-const SMART_HINTS=[
-{kw:['beep','chirp','beeping','constant tone'],hint:'Sounds like Battery Trouble or AC Loss. Check BATT TRBL and AC LOSS codes, or use the Battery Trouble diagnostic tree.',trees:['battery_trouble']},
-{kw:["won't reset","wont reset","can't reset","cant reset","reset fail","reset stuck","wont clear"],hint:'Panel will not reset while a fault or alarm is still active. All conditions must clear before reset completes. Check the display for any remaining active points.',trees:[]},
-{kw:['ground','earth fault','gnd','grounding','earth ground'],hint:'Ground fault — conductor contacting metal or earth. Use the Ground Fault diagnostic tree for step-by-step isolation.',trees:['ground_fault']},
-{kw:['open circuit','open loop','wire break','broken wire','no continuity'],hint:'Open circuit — a conductor is broken somewhere. Use the Open Circuit diagnostic tree.',trees:['open_circuit']},
-{kw:['battery','batt','low batt','replace battery'],hint:'Battery trouble — check age (over 4 years = replace), voltage under load (must be above 24V), and terminal connections.',trees:['battery_trouble']},
-{kw:['ac loss','power out','no power','power fail','breaker tripped','power outage'],hint:'AC Loss — check the dedicated panel circuit breaker first. If breaker holds, inspect AC input wiring at the panel.',trees:['battery_trouble']},
-{kw:['false alarm','nuisance alarm','accidental alarm','unwanted alarm','goes off by itself'],hint:'Use the False Alarm Investigation diagnostic tree to systematically identify the cause.',trees:['false_alarm']},
-{kw:['tamper','cover off','cabinet open','valve closed','valve tamper'],hint:'Supervisory signal — tamper or valve condition. Use the Supervisory Input diagnostic tree.',trees:['supervisory']},
-{kw:['waterflow','water flow','flow switch','sprinkler flow','flow alarm'],hint:'Waterflow supervisory — check for actual flow vs false activation. Use the Supervisory Input diagnostic tree.',trees:['supervisory']},
-{kw:['duct','hvac','air handler','ductwork','duct detector'],hint:'Duct detector issue — often caused by HVAC service or airborne dust. Use the False Alarm tree and select Duct Detector.',trees:['false_alarm']},
-{kw:['dirty','dust','contamination','sensitivity','maintenance alert','dirty sensor'],hint:'Dirty sensor or sensitivity alert — clean detector with compressed air, test sensitivity at panel. Replace if out of range after cleaning.',trees:[]},
-{kw:['communicator','dact','monitoring signal','starlink','cellular','queue','signal drain'],hint:'Communicator issue — check the Signal Queue Drain diagnostic tree, or search FAIL TO COMM for your brand.',trees:['signal_queue']},
-{kw:['slc','loop fault','addressable loop','polling loop','device not found'],hint:'SLC/loop communication fault — use the SLC Communication Fault diagnostic tree.',trees:['slc_comm']},
-{kw:['conventional zone','zone trouble','idc fault','initiating zone'],hint:'Conventional zone trouble — use the Zone Trouble — Conventional diagnostic tree.',trees:['zone_trouble']},
-{kw:['short circuit','t-t short','tip to tip','shorted loop'],hint:'Short circuit detected. Use the Ground Fault tree or search the short circuit code for your brand.',trees:['ground_fault']},
-];
-function getSmartHint(q){const l=q.toLowerCase();for(const h of SMART_HINTS){if(h.kw.some(k=>l.includes(k)))return h;}return null;}
-
-function rSearchResults(){
-const brands=['All','Notifier','Honeywell/Silent Knight','EST/Edwards','Simplex','Bosch','Fire-Lite','System Sensor'];
-const q=S.sq.toLowerCase().trim();
-const filtered=EC.filter(c=>{
-const bm=S.sbrand==='All'||c.brand===S.sbrand||c.brand.startsWith(S.sbrand.split('/')[0]);
-const tm=!q||c.code.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)||c.causes.some(x=>x.toLowerCase().includes(q))||c.brand.toLowerCase().includes(q)||(c.symptoms&&c.symptoms.some(s=>s.includes(q)));
-return bm&&tm;});
-const hint=q.length>=3?getSmartHint(q):null;
-let smart='';
-if(hint&&filtered.length<4){smart=`<div style="margin:10px 16px 0;background:var(--a3);border:0.5px solid rgba(255,69,0,0.2);border-radius:14px;padding:14px 16px"><div style="font-size:10px;font-weight:700;color:var(--a);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Smart Assist</div><div style="font-size:13px;color:var(--t2);line-height:1.5;margin-bottom:${hint.trees.length?'10px':'0'}">${hint.hint}</div>${hint.trees.length?`<div style="display:flex;gap:8px;flex-wrap:wrap">${hint.trees.map(k=>`<button onclick="gTab('diagnose');setTimeout(()=>sDT('${k}'),50);" style="background:var(--a);border:none;border-radius:8px;padding:6px 12px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">${TR[k]?.title||k} Tree →</button>`).join('')}</div>`:''}</div>`;}
-return `<div class="chips">${brands.map(b=>`<button class="chip ${S.sbrand===b?'on':''}" onclick="sBrand('${b}')">${b}</button>`).join('')}</div>
-${smart}<div class="rlabel">${filtered.length} result${filtered.length!==1?'s':''}</div>
-<div class="rlist">${filtered.length===0?`<div style="padding:24px;text-align:center;color:var(--t3);font-size:14px;line-height:1.6">No exact matches.<br/>Try describing what you see — e.g. "beeping" or "won't reset".</div>`:filtered.map(c=>`<div class="rrow" onclick="sSC('${c.id}')"><div class="rsev ${sev2cls(c.sev)}"></div><div style="flex:1;min-width:0"><div class="rcode">${c.code}<span class="rbadge ${sev2badge(c.sev)}">${c.sev}</span></div><div class="rbrand">${c.brand}</div></div><div class="rchev">›</div></div>`).join('')}</div>`;}
-
-function rSearch(){const det=S.scode?rCodeDetail(S.scode):'';return `<div style="position:relative"><div class="search-top"><div class="search-input-wrap"><span style="font-size:16px;color:var(--t3)">⌕</span><input type="text" id="main-search" placeholder="Code, symptom, or describe what you see..." value="${S.sq}" oninput="sSQ(this.value)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />${S.sq?`<span onclick="clearSearch()" style="font-size:16px;color:var(--t3);cursor:pointer;padding:2px 6px;flex-shrink:0">✕</span>`:''}</div></div><div id="sr-results">${rSearchResults()}</div><div class="sp"></div>${det}</div>`;}
-
-function rCodeDetail(id){const c=EC.find(x=>x.id===id);if(!c)return '';return `<div class="detail"><button class="dbtn" onclick="sSC(null)">‹ Back</button><div class="dhead"><div style="margin-bottom:8px"><span class="rbadge ${sev2badge(c.sev)}" style="font-size:11px;padding:3px 8px">${c.sev}</span>${c.nfpa?`<span class="rbadge" style="background:rgba(255,69,0,0.15);color:var(--a);font-size:11px;padding:3px 8px;margin-left:6px">AHJ NOTIFY</span>`:''}</div><div class="dtitle">${c.code}</div><div class="dsub">${c.brand} · ${c.models}</div></div><div class="dsec"><div class="dsec-t">Description</div><div class="dsec-body">${c.desc}</div></div><div class="div-line"></div><div class="dsec"><div class="dsec-t">Common Causes</div>${c.causes.map(x=>`<div class="cause-row"><div class="cause-dot"></div><div class="dsec-body">${x}</div></div>`).join('')}</div><div class="div-line"></div><div class="dsec"><div class="dsec-t">Recommended Steps</div>${c.steps.map((x,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${x}</div></div>`).join('')}</div>${c.related.length?`<div class="div-line"></div><div class="dsec"><div class="dsec-t">Related Codes</div><div class="rel-codes">${c.related.map(r=>`<span class="rel-code">${r}</span>`).join('')}</div></div>`:''} ${c.nfpa?`<div class="dsec"><div class="nfpa-box"><div class="nfpa-t">NFPA 72 — This condition may require AHJ notification depending on outage duration and local authority requirements. Document the impairment start time.</div></div></div>`:''}<div class="sp"></div></div>`;}
-
-function rDiagnose(){if(S.dtree&&S.dcur)return rFlow();return `<div class="dg-head"><div class="dg-title">Diagnose</div><div class="dg-sub">Select a fault type to begin</div></div><div class="tree-grid">${Object.entries(TR).map(([k,t])=>`<div class="tc" onclick="sDT('${k}')">${t.isNew?`<div class="tc-new">NEW</div>`:''}<div class="tc-ico">${t.ico}</div><div class="tc-title">${t.title}</div><div class="tc-desc">${t.desc}</div></div>`).join('')}</div><div class="sp"></div>`;}
-
-function rFlow(){const tree=TR[S.dtree];const node=tree.nodes[S.dcur];if(!node)return rDiagnose();const depth=S.dhist.length;const progress=Math.min(depth/9,1);const nav=`<div class="flow-nav"><button class="flow-back" onclick="exitTree()">‹ ${tree.title}</button><span class="flow-step-pill">${node.type==='res'?'Result':`Step ${depth+1}`}</span></div><div class="progress"><div class="progress-fill" style="width:${Math.round(progress*100)}%"></div></div><div class="crumbs"><span class="crumb link" onclick="exitTree()">${tree.ico} ${tree.title}</span>${S.dhist.map((_,i)=>`<span class="crumb-sep">›</span><span class="crumb">${i+1}</span>`).join('')}${node.type!=='res'?`<span class="crumb-sep">›</span><span class="crumb active">${depth+1}</span>`:''}</div>`;
-if(node.type==='res'){const sc=resClass(node.sev),rt=resTop(node.sev);return `<div>${nav}<div class="result-banner ${sc}"><div class="result-banner-top ${rt}"></div><div class="result-banner-body"><div class="res-icon-row"><span class="res-ico">${sevIco(node.sev)}</span><div><div class="res-title">${node.title}</div><div class="res-sev-label" style="color:${sevColor(node.sev)}">${sevLabel(node.sev)}</div></div></div><div class="res-body">${node.body}</div>${node.parts&&node.parts.length?`<div class="parts-head">Parts / Tools Needed</div><div class="parts-wrap">${node.parts.map(p=>`<div class="part-tag">${p}</div>`).join('')}</div>`:''}</div></div><div class="res-restart"><button onclick="exitTree()">← Back to Trees</button></div><div class="sp"></div></div>`;}
-if(node.type==='yn')return `<div>${nav}<div class="q-card"><div class="q-accent"></div><div class="q-body"><div class="q-label">Step ${depth+1}</div><div class="q-text">${node.q}</div></div></div><div class="yn-row"><button class="yn-btn yn-y" onclick="adv('${node.y}')">✓ Yes</button><button class="yn-btn yn-n" onclick="adv('${node.n}')">✗ No</button></div><div class="esc-btns">${depth>0?`<button class="go-back" onclick="goBack()">← Go Back</button>`:''}<button class="esc-btn" onclick="exitTree()">Escalate / Exit</button></div><div class="sp"></div></div>`;
-if(node.type==='ch')return `<div>${nav}<div class="q-card"><div class="q-accent"></div><div class="q-body"><div class="q-label">Step ${depth+1}</div><div class="q-text">${node.q}</div></div></div>${node.opts.map((o,i)=>`<div class="opt" onclick="adv('${o.n}')"><div class="opt-num">${String.fromCharCode(65+i)}</div><div class="opt-text">${o.l}</div><div class="opt-chev">›</div></div>`).join('')}<div class="esc-btns">${depth>0?`<button class="go-back" onclick="goBack()">← Go Back</button>`:''}<button class="esc-btn" onclick="exitTree()">Escalate / Exit</button></div><div class="sp"></div></div>`;
-if(node.type==='info')return `<div>${nav}<div class="q-card"><div class="q-accent"></div><div class="q-body"><div class="q-label">Note</div><div class="q-text">${node.q}</div></div></div><div style="padding:0 16px"><button style="width:100%;padding:13px;background:var(--a);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit" onclick="adv('${node.next}')">Continue →</button></div><div class="sp"></div></div>`;
-return rDiagnose();}
-
-function rPanels(){if(S.pt!==null&&S.pb!==null&&S.pm!==null)return rTaskDetail();if(S.pm!==null&&S.pb!==null)return rTaskList();return `<div class="dg-head"><div class="dg-title">Panel Ref</div><div class="dg-sub">Programming steps and gotcha notes</div></div><div class="brands-list">${PNL.map((b,bi)=>`<div class="brand-block"><div class="brand-hdr"><div class="brand-ico">⚙</div><div><div class="brand-nm">${b.brand}</div><div class="brand-ct">${b.models.length} model${b.models.length!==1?'s':''} available</div></div></div>${b.models.map((m,mi)=>`<div class="model-r" onclick="sMod(${bi},${mi})"><div><div class="model-nm">${m.name}</div><div class="model-sub">${m.count}</div></div><span style="color:var(--t4)">›</span></div>`).join('')}</div>`).join('')}</div><div class="sp"></div>`;}
-
-function rTaskList(){const b=PNL[S.pb];const m=b.models[S.pm];return `<div><button class="dbtn" onclick="sMod(null,null)">‹ All Panels</button><div class="dg-head" style="padding-top:4px"><div class="dg-title" style="font-size:22px">${m.name}</div><div class="dg-sub">${b.brand}</div></div><div class="task-list-wrap">${m.tasks.map((t,i)=>`<div class="task-r" onclick="sTask(${i})"><div class="task-r-ico ${t.ico===EOL_ICON?'task-r-eol':t.ico==='⚠️'?'task-r-warn':'task-r-ora'}">${t.ico}</div><div style="flex:1"><div class="task-nm">${t.t}</div>${t.eol?`<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:2px;letter-spacing:0.06em">EOL QUICK REF</div>`:''}</div><span style="color:var(--t4)">›</span></div>`).join('')}</div><div class="sp"></div></div>`;}
-
-function rTaskDetail(){const b=PNL[S.pb];const m=b.models[S.pm];const t=m.tasks[S.pt];
-if(t.eol){
-  return `<div><button class="dbtn" onclick="sTask(null)">‹ ${m.name}</button><div class="dg-head" style="padding-top:4px"><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:9px;background:rgba(34,197,94,0.15);border:0.5px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">${EOL_ICON}</div><div><div class="dg-title" style="font-size:20px">${t.t}</div><div class="dg-sub">${m.name} · ${b.brand}</div></div></div></div>${t.warn?`<div style="padding:14px 16px 0"><div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div></div>`:''}<div style="padding:14px 16px">${t.rows.map(r=>`<div style="background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 16px;margin-bottom:10px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px"><div style="font-size:13px;font-weight:600;color:var(--t2)">${r.label}</div><div style="font-family:ui-monospace,monospace;font-size:18px;font-weight:800;color:${r.val==='SELECTABLE'?'var(--amber)':r.val==='N/A'?'var(--t4)':'var(--green)'};flex-shrink:0">${r.val}</div></div>${r.watt!=='—'?`<div style="font-size:11px;color:var(--t3);margin-bottom:6px">${r.watt}${r.pn!=='—'?` · P/N: ${r.pn}`:''}</div>`:''}<div style="font-size:13px;color:var(--t2);line-height:1.5;border-top:0.5px solid var(--bdr);padding-top:8px;margin-top:2px">${r.note}</div></div>`).join('')}</div><div style="height:20px"></div></div>`;
-}
-return `<div><button class="dbtn" onclick="sTask(null)">‹ ${m.name}</button><div class="dg-head" style="padding-top:4px"><div class="dg-title" style="font-size:20px">${t.t}</div><div class="dg-sub">${m.name} · ${b.brand}</div></div><div style="padding:0 16px 16px">${t.warn?`<div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div>`:''} ${t.steps.map((s,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${s}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
-
-function rNotes(){if(S.makingSession)return rMakeSession();if(S.noteIdx!==null)return rNoteDetail();return `<div class="dg-head"><div class="dg-title">Job Notes</div><div class="dg-sub">${S.notes.length} session${S.notes.length!==1?'s':''} · ${TODAY}</div></div><div class="notes-list">${S.notes.length===0?`<div class="empty"><div class="empty-ico">✎</div><div class="empty-t">No sessions yet</div><div class="empty-s">Tap + to start a new job session</div></div>`:S.notes.map((n,i)=>`<div class="note-c" onclick="openN(${i})"><div class="note-top"><div class="note-site">${n.site}</div><div class="note-date">${n.date}</div></div><div class="note-job">Job: ${n.job||'—'}</div><div class="note-preview">${n.entries[n.entries.length-1]?.text?.substring(0,80)||''}${(n.entries[n.entries.length-1]?.text?.length||0)>80?'...':''}</div><div>${[...new Set(n.entries.map(e=>e.tag))].map(tag=>`<span class="ntag ntag-${tag[0]}">${tag}</span>`).join('')}</div></div>`).join('')}</div><div class="fab-wrap"><button class="fab" onclick="startS()">+</button></div><div class="sp"></div>`;}
-
-function rMakeSession(){return `<div><button class="dbtn" onclick="cancelS()">‹ Cancel</button><div class="dg-head" style="padding-top:4px"><div class="dg-title" style="font-size:22px">New Session</div></div><div class="form-wrap"><label class="fl">Site Name</label><input class="fi" type="text" placeholder="e.g. Acme Warehouse — Woburn" id="ns-site" /><label class="fl">Job / Order Number <span style="color:var(--t4);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label><input class="fi" type="text" placeholder="e.g. ST-2024-1150" id="ns-job" /><button class="sbmt" onclick="createS()">Create Session</button><button class="cncl" onclick="cancelS()">Cancel</button></div></div>`;}
-
-function rNoteDetail(){const n=S.notes[S.noteIdx];const tagMap={finding:'f',action:'a',parts:'p',callback:'c'};const borderMap={finding:'var(--blue)',action:'var(--green)',parts:'var(--amber)',callback:'var(--red)'};return `<div><button class="dbtn" onclick="closeN()">‹ All Sessions</button><div class="dg-head" style="padding-top:4px"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px"><div><div class="dg-title" style="font-size:20px">${n.site}</div><div class="dg-sub">Job: ${n.job||'—'} · ${n.date}</div></div><button class="delete-btn" onclick="deleteSession(${S.noteIdx})">Delete</button></div></div><div style="padding:0 16px">${n.entries.map(e=>`<div class="entry-row entry-${tagMap[e.tag]||'f'}"><div class="entry-meta"><span class="entry-time">${e.time}</span><span class="ntag ntag-${tagMap[e.tag]||'f'}">${e.tag}</span></div><div class="entry-text">${e.text}</div></div>`).join('')}${n.entries.length===0?`<div class="empty"><div class="empty-ico">✎</div><div class="empty-t">No entries yet</div><div class="empty-s">Tap + to add your first note</div></div>`:''}</div>${S.addEntry?rAddEntry():`<div class="fab-wrap" style="margin-top:4px"><button class="fab" onclick="togE()">+</button></div>`}<div class="sp"></div></div>`;}
-
-function rAddEntry(){const tags=[{k:'finding',l:'Finding',c:'f'},{k:'action',l:'Action Taken',c:'a'},{k:'parts',l:'Parts Needed',c:'p'},{k:'callback',l:'Callback Required',c:'c'}];return `<div class="form-wrap"><label class="fl">Note</label><textarea class="fta" id="et" placeholder="What did you find or do?" oninput="sNT(this.value)">${S.newText}</textarea><label class="fl">Tag</label><div class="tag-btns">${tags.map(t=>`<button class="tag-btn ${S.newTag===t.k?`sel-${t.c}`:''}" onclick="sTag('${t.k}')">${t.l}</button>`).join('')}</div><button class="sbmt" onclick="saveE()">Add Entry</button><button class="cncl" onclick="togE()">Cancel</button></div>`;}
 
 const CID=[
 {code:'110',name:'Fire Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'General fire alarm condition. A fire zone has activated. Monitoring will dispatch fire department.'},
@@ -759,101 +678,557 @@ const CID=[
 {code:'913',name:'Supervisory Point Test',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'A supervisory point test has been started or ended.'},
 ];
 
-const CID_GROUPS=[
-{label:'Fire Alarms — 110s',codes:['110','111','112','113','114','115','116','117','118','120','162']},
-{label:'Fire Supervisory — 200s',codes:['200','201','202','203','204','205','206']},
-{label:'System Troubles — 300s',codes:['300','301','302','305','306','309','310','311','312','314']},
-{label:'Sounder / NAC Troubles — 320s',codes:['320','321','322','326','327']},
-{label:'SLC / Loop Troubles — 330s',codes:['330','331','332','333']},
-{label:'Communication Troubles — 350s',codes:['350','351','352','354','356','357']},
-{label:'Zone / Sensor Troubles — 370s',codes:['370','371','373','374','380','383','384']},
-{label:'Bypasses — 570s',codes:['570','571']},
-{label:'Test & Misc — 600s',codes:['601','602','604','607','608','614']},
-{label:'Download & Special — 900s',codes:['900','901','902','912','913']},
+const NFPA=[
+{sec:'Battery & Power',ref:'10.6',items:[
+{label:'Standby power required',val:'24 hours',sev:'high',note:'System must maintain power to all devices for 24 hours in standby without AC power.'},
+{label:'Full alarm load required after standby',val:'5 minutes',sev:'high',note:'After 24-hour standby period, system must power full alarm load for a minimum of 5 minutes.'},
+{label:'AC loss — notify AHJ threshold',val:'8 hours',sev:'med',note:'Many jurisdictions require AHJ notification when AC power has been lost for 8+ hours. Verify local requirements before leaving site.'},
+{label:'Battery charger float voltage',val:'26.5–27.6 VDC',sev:'info',note:'Verify charger output at battery terminals after any battery replacement. Below 26.5V indicates a charger issue.'},
+{label:'Battery replacement maximum',val:'5 years',sev:'med',note:'Replace batteries at least every 5 years regardless of condition. Document replacement date.'},
+]},
+{sec:'Smoke Detectors',ref:'17.7',items:[
+{label:'Sensitivity test frequency',val:'Annual',sev:'info',note:'All smoke detectors must be sensitivity tested annually per 14.4.5. Results must be within listed range.'},
+{label:'Maximum detector service life',val:'10 years',sev:'med',note:'Replace smoke detectors within 10 years of the manufacture date on the detector label — not install date.'},
+{label:'Spot detector max spacing (smooth ceiling)',val:'30 ft',sev:'info',note:'Center-to-center spacing must not exceed 30 feet on smooth, level ceilings.'},
+{label:'Coverage area per detector',val:'900 sq ft',sev:'info',note:'Each spot-type detector covers a maximum of 900 square feet on smooth ceilings with standard height.'},
+{label:'Wall clearance minimum',val:'4 inches',sev:'info',note:'Detectors must not be located within 4 inches of any wall or corner.'},
+{label:'Detector in dead air space',val:'Prohibited',sev:'med',note:'Avoid placement within 36 inches of the peak of a peaked ceiling — dead air pockets prevent smoke from reaching the detector.'},
+{label:'False alarm — investigate threshold',val:'2 per 12 months',sev:'med',note:'If a detector activates 2 or more times in a 12-month period without a fire, investigate root cause. Document all activations.'},
+]},
+{sec:'Inspection Intervals',ref:'14.3',items:[
+{label:'Control panel — functional test',val:'Annual',sev:'info',note:'Full functional test of all panel operations required annually.'},
+{label:'Smoke detectors',val:'Annual',sev:'info',note:'Includes sensitivity test and functional activation test.'},
+{label:'Heat detectors',val:'Annual',sev:'info',note:'Functional test using listed heat source (heat gun) — never open flame.'},
+{label:'Manual pull stations',val:'Annual',sev:'info',note:'Functional activation test — verify signal at panel and communicator.'},
+{label:'NAC devices (horns/strobes)',val:'Annual',sev:'info',note:'Verify proper activation, audible level, and strobe flash rate.'},
+{label:'Battery — visual inspection',val:'Semi-annual',sev:'info',note:'Check for swelling, corrosion, loose terminals, and date.'},
+{label:'Battery — load test',val:'Annual',sev:'info',note:'Measure voltage under load after AC disconnect. Must maintain above 24V.'},
+{label:'Waterflow devices',val:'Semi-annual',sev:'info',note:'Functional test via inspector test valve. Must alarm within 90 seconds.'},
+{label:'Valve supervisory (tamper)',val:'Annual',sev:'info',note:'Verify supervisory signal activates within 2 valve stem revolutions of closing.'},
+{label:'Duct detectors',val:'Annual',sev:'info',note:'Functional test using canned smoke or listed aerosol. Verify HVAC shutdown.'},
+]},
+{sec:'Notification Appliances',ref:'18.4',items:[
+{label:'Audible — min above ambient noise',val:'15 dB',sev:'info',note:'Or 5 dB above maximum ambient, whichever is greater. Measure with building HVAC running.'},
+{label:'Sleeping areas — audible minimum',val:'75 dB at pillow',sev:'high',note:'Required at pillow level (typically 24 inches above mattress) in all sleeping areas. Must be measured, not calculated.'},
+{label:'Visible appliance (strobe) spacing',val:'Per Table 18.5',sev:'info',note:'Candela rating required depends on room size. Larger rooms require higher candela strobes. Reference NFPA 72 Table 18.5.'},
+{label:'Strobe — ceiling height max (standard)',val:'30 ft',sev:'info',note:'Standard strobe candela tables apply up to 30 ft ceiling height. Higher ceilings require special engineering.'},
+{label:'Strobe in corridor — max spacing',val:'100 ft',sev:'info',note:'In corridors, visible appliances must be visible from any point within 100 feet of the appliance.'},
+]},
+{sec:'Impairment Procedures',ref:'15.5',items:[
+{label:'Notify monitoring — before impairment',val:'Required',sev:'high',note:'Always notify the monitoring company before placing any portion of the system out of service. Get a confirmation number.'},
+{label:'Notify AHJ — before impairment',val:'Required',sev:'high',note:'Authority Having Jurisdiction must be notified before system is taken out of service. Requirements vary by jurisdiction.'},
+{label:'Post notice at control panel',val:'Required',sev:'med',note:'Post written notice at the FACP stating what is impaired, who authorized it, and when the impairment began.'},
+{label:'Fire watch — when required',val:'AHJ determination',sev:'high',note:'AHJ may require a continuous fire watch patrol when system is significantly impaired. Verify local requirements before leaving.'},
+{label:'Restore system — timeline',val:'As soon as possible',sev:'high',note:'The system must be restored to full service as quickly as practical. Document restoration time when complete.'},
+]},
+{sec:'Walk Test',ref:'14.4.5',items:[
+{label:'Notify monitoring — before test',val:'Required',sev:'high',note:'Contact monitoring company and confirm they have placed the system on test. Get a confirmation number before starting.'},
+{label:'All devices must be activated',val:'Required',sev:'info',note:'Every initiating device must be activated and confirmed to respond. No device may be skipped.'},
+{label:'Failed devices — action required',val:'Replace & retest',sev:'med',note:'Any device that fails to activate must be documented, replaced or repaired, and retested before the walk test is considered complete.'},
+{label:'Close out walk test with monitoring',val:'Required',sev:'high',note:'Always close out the walk test with the monitoring company. An open walk test can suppress alarm signal transmission.'},
+{label:'Document results',val:'Required',sev:'info',note:'Record which devices were tested, which passed, and which failed. This is part of the required inspection record.'},
+]},
+{sec:'Waterflow & Sprinkler',ref:'17.12',items:[
+{label:'Waterflow alarm — max response time',val:'90 seconds',sev:'med',note:'System must transmit alarm within 90 seconds of water flow at the inspector\'s test connection valve.'},
+{label:'Pressure retard — acceptable range',val:'30–90 seconds',sev:'info',note:'Retard setting prevents false alarms from brief pressure fluctuations. Verify setting meets AHJ requirements before adjusting.'},
+{label:'Valve tamper — supervisory response',val:'2 valve revolutions',sev:'high',note:'A supervisory signal must be generated within 2 full revolutions of the valve stem being closed from fully open.'},
+{label:'Closed valve — critical impairment',val:'Notify AHJ immediately',sev:'high',note:'A closed sprinkler control valve is a critical system impairment. Notify building management, AHJ, and monitoring company immediately.'},
+]}
 ];
 
-function cidLookup(code){return CID.find(c=>c.code===code.replace(/[eErR]/g,'').trim());}
-function cidSevClass(sev){return {high:'cid-result-high',med:'cid-result-med',low:'cid-result-low',info:'cid-result-info'}[sev]||'cid-result-none';}
-function cidTopClass(sev){return {high:'cid-rt-high',med:'cid-rt-med',low:'cid-rt-low',info:'cid-rt-info'}[sev]||'';}
-function cidCatClass(sev){return {high:'cid-cat-high',med:'cid-cat-med',low:'cid-cat-low',info:'cid-cat-info'}[sev]||'cid-cat-info';}
+
+const SMART_HINTS=[
+{kw:['beep','chirp','beeping','constant tone'],hint:'Sounds like Battery Trouble or AC Loss. Check BATT TRBL and AC LOSS codes, or use the Battery Trouble diagnostic tree.',trees:['battery_trouble']},
+{kw:["won't reset","wont reset","can't reset","cant reset","reset fail","reset stuck","wont clear"],hint:'Panel will not reset while a fault or alarm is still active. All conditions must clear before reset completes. Check the display for any remaining active points.',trees:[]},
+{kw:['ground','earth fault','gnd','grounding','earth ground'],hint:'Ground fault — conductor contacting metal or earth. Use the Ground Fault diagnostic tree for step-by-step isolation.',trees:['ground_fault']},
+{kw:['open circuit','open loop','wire break','broken wire','no continuity'],hint:'Open circuit — a conductor is broken somewhere. Use the Open Circuit diagnostic tree.',trees:['open_circuit']},
+{kw:['battery','batt','low batt','replace battery'],hint:'Battery trouble — check age (over 4 years = replace), voltage under load (must be above 24V), and terminal connections.',trees:['battery_trouble']},
+{kw:['ac loss','power out','no power','power fail','breaker tripped','power outage'],hint:'AC Loss — check the dedicated panel circuit breaker first. If breaker holds, inspect AC input wiring at the panel.',trees:['battery_trouble']},
+{kw:['false alarm','nuisance alarm','accidental alarm','unwanted alarm','goes off by itself'],hint:'Use the False Alarm Investigation diagnostic tree to systematically identify the cause.',trees:['false_alarm']},
+{kw:['tamper','cover off','cabinet open','valve closed','valve tamper'],hint:'Supervisory signal — tamper or valve condition. Use the Supervisory Input diagnostic tree.',trees:['supervisory']},
+{kw:['waterflow','water flow','flow switch','sprinkler flow','flow alarm'],hint:'Waterflow supervisory — check for actual flow vs false activation. Use the Supervisory Input diagnostic tree.',trees:['supervisory']},
+{kw:['duct','hvac','air handler','ductwork','duct detector'],hint:'Duct detector issue — often caused by HVAC service or airborne dust. Use the False Alarm tree and select Duct Detector.',trees:['false_alarm']},
+{kw:['dirty','dust','contamination','sensitivity','maintenance alert','dirty sensor'],hint:'Dirty sensor or sensitivity alert — clean detector with compressed air, test sensitivity at panel. Replace if out of range after cleaning.',trees:[]},
+{kw:['communicator','dact','monitoring signal','starlink','cellular','queue','signal drain'],hint:'Communicator issue — check the Signal Queue Drain diagnostic tree, or search FAIL TO COMM for your brand.',trees:['signal_queue']},
+{kw:['slc','loop fault','addressable loop','polling loop','device not found'],hint:'SLC/loop communication fault — use the SLC Communication Fault diagnostic tree.',trees:['slc_comm']},
+{kw:['conventional zone','zone trouble','idc fault','initiating zone'],hint:'Conventional zone trouble — use the Zone Trouble — Conventional diagnostic tree.',trees:['zone_trouble']},
+{kw:['short circuit','t-t short','tip to tip','shorted loop'],hint:'Short circuit detected. Use the Ground Fault tree or search the short circuit code for your brand.',trees:['ground_fault']},
+];
+function getSmartHint(q){const l=q.toLowerCase();for(const h of SMART_HINTS){if(h.kw.some(k=>l.includes(k)))return h;}return null;}
+
+const WIRE_RES={'12':1.588,'14':2.525,'16':4.016,'18':6.385,'20':10.15,'22':16.14};
+const WIRE_NAMES={'12':'12 AWG','14':'14 AWG','16':'16 AWG','18':'18 AWG','20':'20 AWG','22':'22 AWG'};
+
+const STORAGE_KEY='fa_tech_notes_v1';
+const DISMISSED_KEY='fa_tech_install_dismissed';
+function loadNotes(){try{const d=localStorage.getItem(STORAGE_KEY);return d?JSON.parse(d):[
+{id:1,site:'Acme Warehouse',job:'ST-2024-1142',date:'Apr 10',entries:[{time:'9:14 AM',text:'GND FAULT on SLC Loop 1. Isolated to segment near loading dock. Found water in J-box at dock door.',tag:'finding'},{time:'9:38 AM',text:'Replaced damaged J-box connector. Fault cleared.',tag:'action'},{time:'9:41 AM',text:'Need weatherproof J-box covers for 3 external boxes on west wall.',tag:'parts'}]},
+{id:2,site:'North Shore Medical',job:'ST-2024-1139',date:'Apr 9',entries:[{time:'2:05 PM',text:'False alarm from duct detector 2-107. HVAC contractor serviced yesterday.',tag:'finding'},{time:'2:31 PM',text:'Cleaned duct detector sampling tubes. Reset and tested. Normal.',tag:'action'}]}
+];}catch(e){return [];}}
+function saveNotes(n){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(n));}catch(e){}}
+
+let S={
+  tab:'home',
+  refSub:null,
+  toolSub:null,
+  calcTab:'nac',
+  calcNAC:{gauge:'18',length:'200',devices:'12',avgCurrent:'80'},
+  calcBatt:{standby:'350',alarm:'3000',alarmMin:'5',battAH:'18'},
+  calcVolt:{gauge:'18',length:'300',current:'1000'},
+  calcEOL:{brand:'Notifier NFS2-640 Onboard NAC',reading:''},
+  timer:{active:false,start:null,site:'',type:'test',elapsed:0},
+  nfpaSearch:'',
+  nfpaDetail:null,
+  sq:'',sbrand:'All',scode:null,
+  dtree:null,dhist:[],dcur:null,
+  pb:null,pm:null,pt:null,
+  cidInput:'',cidQual:'E',
+  theme:localStorage.getItem('fa_theme')||'dark',
+  notes:loadNotes(),
+  addEntry:false,noteIdx:null,newText:'',newTag:'finding',makingSession:false
+};
+
+const NOW=new Date();
+const hh=NOW.getHours()%12||12,mm=NOW.getMinutes().toString().padStart(2,'0');
+document.getElementById('clk').textContent=hh+':'+mm;
+setInterval(()=>{const n=new Date(),h=n.getHours()%12||12,m=n.getMinutes().toString().padStart(2,'0');document.getElementById('clk').textContent=h+':'+m;},30000);
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const TODAY=MONTHS[NOW.getMonth()]+' '+NOW.getDate();
+
+window.addEventListener('online',()=>{document.getElementById('conn-status').textContent='Online';});
+window.addEventListener('offline',()=>{document.getElementById('conn-status').textContent='Offline';});
+if(!navigator.onLine)document.getElementById('conn-status').textContent='Offline';
+
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!localStorage.getItem(DISMISSED_KEY)){document.getElementById('install-banner').classList.add('show');}});
+document.getElementById('install-btn').addEventListener('click',()=>{if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('install-banner').classList.remove('show');});}});
+document.getElementById('install-close').addEventListener('click',()=>{localStorage.setItem(DISMISSED_KEY,'1');document.getElementById('install-banner').classList.remove('show');});
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+
+function toggleTheme(){S.theme=S.theme==='dark'?'light':'dark';localStorage.setItem('fa_theme',S.theme);applyTheme();}
+function applyTheme(){const btn=document.getElementById('theme-btn');if(S.theme==='light'){document.documentElement.classList.add('light');if(btn)btn.textContent='☽';}else{document.documentElement.classList.remove('light');if(btn)btn.textContent='☀';}}
+
+function sev2cls(s){return s==='TROUBLE'?'rsev-t':s==='SUPERVISORY'?'rsev-s':'rsev-c';}
+function sev2badge(s){return s==='TROUBLE'?'rbadge-t':s==='SUPERVISORY'?'rbadge-s':'rbadge-c';}
+function sevColor(s){return {high:'#EF4444',med:'#F59E0B',low:'#22C55E'}[s]||'#F59E0B';}
+function sevLabel(s){return {high:'Escalate / Critical',med:'Moderate Fix',low:'Simple Fix'}[s]||'';}
+function sevIco(s){return {high:'🔴',med:'🟡',low:'🟢'}[s]||'🟡';}
+function resClass(s){return {high:'result-banner-high',med:'result-banner-med',low:'result-banner-low'}[s]||'result-banner-med';}
+function resTop(s){return {high:'rb-top-h',med:'rb-top-m',low:'rb-top-l'}[s]||'rb-top-m';}
+function cidSevClass(s){return {high:'cid-result-high',med:'cid-result-med',low:'cid-result-low',info:'cid-result-info'}[s]||'cid-result-none';}
+function cidTopClass(s){return {high:'cid-rt-high',med:'cid-rt-med',low:'cid-rt-low',info:'cid-rt-info'}[s]||'';}
+function cidCatClass(s){return {high:'cid-cat-high',med:'cid-cat-med',low:'cid-cat-low',info:'cid-cat-info'}[s]||'cid-cat-info';}
 function cidCatLabel(cat){return {fire:'Fire Alarm',sup:'Fire Supervisory',trbl:'System Trouble',test:'Test / Misc',misc:'Informational'}[cat]||cat;}
 function cidBadgeClass(cat){return {fire:'cid-badge-fire',sup:'cid-badge-sup',trbl:'cid-badge-trbl',test:'cid-badge-test',misc:'cid-badge-misc'}[cat]||'cid-badge-misc';}
-function cidRowSevClass(sev){return {high:'cid-sev-high',med:'cid-sev-med',low:'cid-sev-low',info:'cid-sev-info'}[sev]||'cid-sev-info';}
+function cidRowSevClass(s){return {high:'cid-sev-high',med:'cid-sev-med',low:'cid-sev-low',info:'cid-sev-info'}[s]||'cid-sev-info';}
+function cidLookup(code){return CID.find(c=>c.code===code.replace(/[eErR]/g,'').trim());}
+function nfpaSevClass(s){return {high:'nfpa-sev-h',med:'nfpa-sev-m',info:'nfpa-sev-i'}[s]||'nfpa-sev-i';}
 
-function rCID(){
-  const raw=S.cidInput||'';
-  const clean=raw.replace(/[^0-9]/g,'').substring(0,3);
-  const qual=S.cidQual||'E';
-  const match=clean.length===3?cidLookup(clean):null;
-
-  const qualLabel=qual==='E'?'New Event (E)':'Restore / Clear (R)';
-  const qualNote=qual==='R'?' — This is a RESTORE signal. The condition has cleared.':'';
-
-  let resultHTML='';
-  if(clean.length===3){
-    if(match){
-      const sc=cidSevClass(match.sev), tc=cidTopClass(match.sev), cc=cidCatClass(match.sev);
-      const restoreNote=qual==='R'?`<div style="background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.25);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--green);font-weight:600">✓ RESTORE — This condition has cleared at the panel.</div>`:'';
-      resultHTML=`<div class="cid-result ${sc}">
-        <div class="cid-result-top ${tc}"></div>
-        <div class="cid-result-body">
-          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
-            <div class="cid-code-num">${qual}${clean}</div>
-            <div style="font-size:11px;color:var(--t3);font-weight:600">${qual==='E'?'New Event':'Restore'}</div>
-          </div>
-          <div class="cid-code-name">${match.name}</div>
-          <div class="cid-code-cat ${cc}">${cidCatLabel(match.cat)}</div>
-          <div class="cid-pills">
-            ${match.dispatch&&qual==='E'?'<span class="cid-pill cid-pill-dispatch">FD DISPATCH</span>':''}
-            ${match.restore?'<span class="cid-pill cid-pill-restore">RESTORE EXPECTED</span>':'<span class="cid-pill cid-pill-norestore">NO RESTORE</span>'}
-            ${match.nfpa?'<span class="cid-pill cid-pill-nfpa">NFPA 72 NOTE</span>':''}
-          </div>
-          <div class="cid-code-desc">${match.desc}${restoreNote?'':qualNote}</div>
-          ${restoreNote}
-        </div>
-      </div>`;
-    } else {
-      resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty"><div class="cid-code-num" style="color:var(--t3)">${qual}${clean}</div><div class="cid-empty-t" style="margin-top:8px">Code not in FA reference list.<br/>May be a burglar alarm, access control,<br/>or custom manufacturer code.</div></div></div></div>`;
-    }
-  } else if(clean.length>0){
-    resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty"><div class="cid-code-num" style="color:var(--t4);font-size:40px">${qual}${clean}${'_'.repeat(3-clean.length)}</div><div class="cid-empty-t" style="margin-top:8px">Enter 3 digits to decode</div></div></div></div>`;
-  } else {
-    resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty"><div style="font-size:40px;color:var(--t4);font-family:ui-monospace,monospace;font-weight:800;letter-spacing:0.1em">E___</div><div class="cid-empty-t" style="margin-top:8px">Type a 3-digit Contact ID code<br/>to instantly decode it</div></div></div></div>`;
-  }
-
-  const groupHTML=CID_GROUPS.map(g=>{
-    const rows=g.codes.map(code=>{
-      const c=CID.find(x=>x.code===code);
-      if(!c)return '';
-      return `<div class="cid-row" onclick="setCIDInput('${c.code}')">
-        <div class="cid-row-sev ${cidRowSevClass(c.sev)}"></div>
-        <div class="cid-row-code">${c.code}</div>
-        <div class="cid-row-name">${c.name}</div>
-        <span class="cid-row-badge ${cidBadgeClass(c.cat)}">${cidCatLabel(c.cat).split(' ')[0]}</span>
-      </div>`;
-    }).join('');
-    return `<div class="cid-section"><div class="cid-section-label">${g.label}</div></div><div class="cid-list">${rows}</div>`;
-  }).join('');
-
-  return `<div>
-    <div class="cid-input-wrap">
-      <div class="cid-label">Contact ID Decoder</div>
-      <div class="cid-input-row">
-        <input class="cid-input" type="tel" maxlength="4" placeholder="110" value="${raw}" oninput="setCIDRaw(this.value)" />
-      </div>
-      <div class="cid-qual-row">
-        <button class="cid-qual ${qual==='E'?'on-e':''}" onclick="setCIDQual('E')">E — New Event</button>
-        <button class="cid-qual ${qual==='R'?'on-r':''}" onclick="setCIDQual('R')">R — Restore / Clear</button>
-      </div>
-    </div>
-    ${resultHTML}
-    <div class="cid-section"><div class="cid-section-label">Full FA Reference</div></div>
-    ${groupHTML}
-    <div class="sp"></div>
-  </div>`;
+function R(){
+  const tabs=[
+    {id:'home',l:'Home',i:'⊞'},
+    {id:'diagnose',l:'Diagnose',i:'⑂'},
+    {id:'reference',l:'Reference',i:'◫'},
+    {id:'tools',l:'Tools',i:'⚙'},
+    {id:'notes',l:'Notes',i:'✎'}
+  ];
+  document.getElementById('tabs').innerHTML=tabs.map(t=>`<button class="tb ${S.tab===t.id?'on':'off'}" onclick="gTab('${t.id}')"><div class="tb-dot"></div><span class="tb-ico">${t.i}</span><span class="tb-lbl">${t.l}</span></button>`).join('');
+  const m=document.getElementById('main');
+  m.className='scroll anim';
+  if(S.tab==='home')m.innerHTML=rHome();
+  else if(S.tab==='diagnose')m.innerHTML=rDiagnose();
+  else if(S.tab==='reference')m.innerHTML=rReference();
+  else if(S.tab==='tools')m.innerHTML=rTools();
+  else if(S.tab==='notes')m.innerHTML=rNotes();
+  m.scrollTop=0;
 }
 
-function gTab(t){S.tab=t;S.scode=null;if(t!=='diagnose'){S.dtree=null;S.dcur=null;S.dhist=[];}if(t!=='panels'){S.pb=null;S.pm=null;S.pt=null;}if(t!=='notes'){S.noteIdx=null;S.addEntry=false;S.makingSession=false;}R();}
+function rHome(){return `<div>
+<div class="home-head">
+  <div class="home-date">${DAYS[NOW.getDay()]} · ${TODAY}</div>
+  <div class="home-title">FA Tech Assist</div>
+  <div class="status-pill"><div class="status-dot"></div><span class="status-txt">Ready · All Systems</span></div>
+</div>
+<div class="mod-grid">
+  <div class="mod-card" onclick="gTab('diagnose')"><div class="mod-accent"></div><div class="mod-title">Diagnose</div><div class="mod-desc">Step-by-step fault isolation trees</div><span class="mod-count">${Object.keys(TR).length} trees</span></div>
+  <div class="mod-card" onclick="gTab('reference')"><div class="mod-accent"></div><div class="mod-title">Reference</div><div class="mod-desc">Codes, panels, NFPA 72, Contact ID</div><span class="mod-count">4 sections</span></div>
+  <div class="mod-card" onclick="gTab('tools')"><div class="mod-accent"></div><div class="mod-title">Tools</div><div class="mod-desc">Electrical calculators and timers</div><span class="mod-count">2 tools</span></div>
+  <div class="mod-card" onclick="gTab('notes')"><div class="mod-accent"></div><div class="mod-title">Job Notes</div><div class="mod-desc">Log findings, actions, and parts</div><span class="mod-count">${S.notes.length} sessions</span></div>
+</div>
+<div class="qref-wrap">
+  <div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Document all impairment durations in job notes.</div></div>
+  <div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it.</div></div>
+</div>
+<div class="version-tag">FA Tech Assist · Encore Fire Protection · v5.0 PWA</div>
+</div>`;}
+
+function rReference(){
+  if(S.refSub==='codes')return rCodes();
+  if(S.refSub==='panels')return rPanels();
+  if(S.refSub==='cid')return rCIDTab();
+  if(S.refSub==='nfpa')return rNFPA();
+  return rRefHub();
+}
+
+function rRefHub(){return `<div>
+<div class="pg-head"><div class="pg-title">Reference</div><div class="pg-sub">All field reference material</div></div>
+<div class="card-list">
+  <div class="hub-card" onclick="setRef('codes')"><div class="hub-ico">⌕</div><div class="hub-info"><div class="hub-title">Error Code Lookup</div><div class="hub-desc">Search by code, symptom, or brand — smart assist included</div></div><span class="hub-badge">${EC.length} codes</span><div class="hub-chev">›</div></div>
+  <div class="hub-card" onclick="setRef('panels')"><div class="hub-ico">◫</div><div class="hub-info"><div class="hub-title">Panel Reference</div><div class="hub-desc">Programming steps, EOL values, gotcha notes</div></div><span class="hub-badge">${PNL.length} brands</span><div class="hub-chev">›</div></div>
+  <div class="hub-card" onclick="setRef('cid')"><div class="hub-ico">#</div><div class="hub-info"><div class="hub-title">Contact ID Decoder</div><div class="hub-desc">Decode monitoring signals instantly — E/R qualifier toggle</div></div><span class="hub-badge">${CID.length} codes</span><div class="hub-chev">›</div></div>
+  <div class="hub-card" onclick="setRef('nfpa')"><div class="hub-ico">📋</div><div class="hub-info"><div class="hub-title">NFPA 72 Quick Ref</div><div class="hub-desc">Key code requirements — batteries, detectors, inspection intervals, impairment</div></div><span class="hub-badge">NEW</span><div class="hub-chev">›</div></div>
+</div>
+<div class="sp"></div></div>`;}
+
+function rTools(){
+  if(S.toolSub==='calc')return rCalc();
+  if(S.toolSub==='timer')return rTimer();
+  return rToolHub();
+}
+
+function rToolHub(){
+  const timerRunning=S.timer.active;
+  return `<div>
+<div class="pg-head"><div class="pg-title">Tools</div><div class="pg-sub">Calculators and field utilities</div></div>
+<div class="card-list">
+  <div class="hub-card" onclick="setTool('calc')">
+    <div class="hub-ico">⚡</div>
+    <div class="hub-info">
+      <div class="hub-title">Electrical Calculators</div>
+      <div class="hub-desc">NAC load · Battery standby · Voltage drop · EOL resistance check</div>
+    </div>
+    <div class="hub-chev">›</div>
+  </div>
+  <div class="hub-card" onclick="setTool('timer')">
+    <div class="hub-ico">⏱</div>
+    <div class="hub-info">
+      <div class="hub-title">Impairment Timer</div>
+      <div class="hub-desc">Track system impairment duration — alerts at 4hr and 8hr marks</div>
+    </div>
+    ${timerRunning?`<span class="hub-badge" style="background:rgba(239,68,68,0.15);color:var(--red)">ACTIVE</span>`:''}
+    <div class="hub-chev">›</div>
+  </div>
+</div>
+<div class="sp"></div></div>`;}
+
+function rSearchResults(){
+  const brands=['All','Notifier','Honeywell/Silent Knight','EST/Edwards','Simplex','Bosch','Fire-Lite','System Sensor'];
+  const q=S.sq.toLowerCase().trim();
+  const filtered=EC.filter(c=>{
+    const bm=S.sbrand==='All'||c.brand===S.sbrand||c.brand.startsWith(S.sbrand.split('/')[0]);
+    const tm=!q||c.code.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)||c.causes.some(x=>x.toLowerCase().includes(q))||c.brand.toLowerCase().includes(q)||(c.symptoms&&c.symptoms.some(s=>s.includes(q)));
+    return bm&&tm;
+  });
+  const hint=q.length>=3?getSmartHint(q):null;
+  let smart='';
+  if(hint&&filtered.length<4){smart=`<div style="margin:10px 16px 0;background:var(--a3);border:0.5px solid rgba(255,69,0,0.2);border-radius:14px;padding:14px 16px"><div style="font-size:10px;font-weight:700;color:var(--a);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Smart Assist</div><div style="font-size:13px;color:var(--t2);line-height:1.5;margin-bottom:${hint.trees.length?'10px':'0'}">${hint.hint}</div>${hint.trees.length?`<div style="display:flex;gap:8px;flex-wrap:wrap">${hint.trees.map(k=>`<button onclick="gTab('diagnose');setTimeout(()=>sDT('${k}'),50);" style="background:var(--a);border:none;border-radius:8px;padding:6px 12px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">${TR[k]?.title||k} Tree →</button>`).join('')}</div>`:''}</div>`;};
+  return `<div class="chips">${brands.map(b=>`<button class="chip ${S.sbrand===b?'on':''}" onclick="sBrand('${b}')">${b}</button>`).join('')}</div>
+${smart}<div class="rlabel">${filtered.length} result${filtered.length!==1?'s':''}</div>
+<div class="rlist">${filtered.length===0?`<div style="padding:24px;text-align:center;color:var(--t3);font-size:14px;line-height:1.6">No exact matches.<br/>Try describing what you see — e.g. "beeping" or "won't reset".</div>`:filtered.map(c=>`<div class="rrow" onclick="sSC('${c.id}')"><div class="rsev ${sev2cls(c.sev)}"></div><div style="flex:1;min-width:0"><div class="rcode">${c.code}<span class="rbadge ${sev2badge(c.sev)}">${c.sev}</span></div><div class="rbrand">${c.brand}</div></div><div class="rchev">›</div></div>`).join('')}</div>`;
+}
+
+function rCodes(){
+  const det=S.scode?rCodeDetail(S.scode):'';
+  return `<div style="position:relative">
+<button class="back-btn" onclick="setRef(null)">‹ Reference</button>
+<div class="search-top" style="top:0">
+  <div class="search-input-wrap">
+    <span style="font-size:16px;color:var(--t3)">⌕</span>
+    <input type="text" id="main-search" placeholder="Code, symptom, or describe what you see..." value="${S.sq}" oninput="sSQ(this.value)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    ${S.sq?`<span onclick="clearSearch()" style="font-size:16px;color:var(--t3);cursor:pointer;padding:2px 6px;flex-shrink:0">✕</span>`:''}
+  </div>
+</div>
+<div id="sr-results">${rSearchResults()}</div>
+<div class="sp"></div>
+${det}
+</div>`;}
+
+function rCodeDetail(id){const c=EC.find(x=>x.id===id);if(!c)return '';return `<div class="detail"><button class="back-btn" onclick="sSC(null)">‹ Back</button><div class="dhead"><div style="margin-bottom:8px"><span class="rbadge ${sev2badge(c.sev)}" style="font-size:11px;padding:3px 8px">${c.sev}</span>${c.nfpa?`<span class="rbadge" style="background:rgba(255,69,0,0.15);color:var(--a);font-size:11px;padding:3px 8px;margin-left:6px">AHJ NOTIFY</span>`:''}</div><div class="dtitle">${c.code}</div><div class="dsub">${c.brand} · ${c.models}</div></div><div class="dsec"><div class="dsec-t">Description</div><div class="dsec-body">${c.desc}</div></div><div class="div-line"></div><div class="dsec"><div class="dsec-t">Common Causes</div>${c.causes.map(x=>`<div class="cause-row"><div class="cause-dot"></div><div class="dsec-body">${x}</div></div>`).join('')}</div><div class="div-line"></div><div class="dsec"><div class="dsec-t">Recommended Steps</div>${c.steps.map((x,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${x}</div></div>`).join('')}</div>${c.related.length?`<div class="div-line"></div><div class="dsec"><div class="dsec-t">Related Codes</div><div class="rel-codes">${c.related.map(r=>`<span class="rel-code">${r}</span>`).join('')}</div></div>`:''}${c.nfpa?`<div class="dsec"><div class="nfpa-box"><div class="nfpa-t">NFPA 72 — This condition may require AHJ notification depending on outage duration and local authority requirements. Document the impairment start time.</div></div></div>`:''} <div class="sp"></div></div>`;}
+
+function rPanels(){
+  if(S.pt!==null&&S.pb!==null&&S.pm!==null)return rTaskDetail();
+  if(S.pm!==null&&S.pb!==null)return rTaskList();
+  return `<div>
+<button class="back-btn" onclick="setRef(null)">‹ Reference</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">Panel Reference</div><div class="pg-sub">Programming steps, EOL values and gotcha notes</div></div>
+<div class="brands-list">${PNL.map((b,bi)=>`<div class="brand-block"><div class="brand-hdr"><div class="brand-ico">⚙</div><div><div class="brand-nm">${b.brand}</div><div class="brand-ct">${b.models.length} model${b.models.length!==1?'s':''} available</div></div></div>${b.models.map((m,mi)=>`<div class="model-r" onclick="sMod(${bi},${mi})"><div><div class="model-nm">${m.name}</div><div class="model-sub">${m.count}</div></div><span style="color:var(--t4)">›</span></div>`).join('')}</div>`).join('')}</div>
+<div class="sp"></div></div>`;}
+
+function rTaskList(){const b=PNL[S.pb];const m=b.models[S.pm];return `<div><button class="back-btn" onclick="sMod(null,null)">‹ All Panels</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:22px">${m.name}</div><div class="pg-sub">${b.brand}</div></div><div class="task-list-wrap">${m.tasks.map((t,i)=>`<div class="task-r" onclick="sTask(${i})"><div class="task-r-ico ${t.ico===EOL_ICON?'task-r-eol':t.ico==='⚠️'?'task-r-warn':'task-r-ora'}">${t.ico}</div><div style="flex:1"><div class="task-nm">${t.t}</div>${t.eol?`<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:2px;letter-spacing:0.06em">EOL QUICK REF</div>`:''}</div><span style="color:var(--t4)">›</span></div>`).join('')}</div><div class="sp"></div></div>`;}
+
+function rTaskDetail(){const b=PNL[S.pb];const m=b.models[S.pm];const t=m.tasks[S.pt];
+if(t.eol){return `<div><button class="back-btn" onclick="sTask(null)">‹ ${m.name}</button><div class="pg-head" style="padding-top:4px"><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:9px;background:rgba(34,197,94,0.15);border:0.5px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">${EOL_ICON}</div><div><div class="pg-title" style="font-size:20px">${t.t}</div><div class="pg-sub">${m.name} · ${b.brand}</div></div></div></div>${t.warn?`<div style="padding:14px 16px 0"><div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div></div>`:''}<div style="padding:14px 16px">${t.rows.map(r=>`<div style="background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 16px;margin-bottom:10px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px"><div style="font-size:13px;font-weight:600;color:var(--t2)">${r.label}</div><div style="font-family:ui-monospace,monospace;font-size:18px;font-weight:800;color:${r.val==='SELECTABLE'?'var(--amber)':r.val==='N/A'?'var(--t4)':'var(--green)'};flex-shrink:0">${r.val}</div></div>${r.watt!=='—'?`<div style="font-size:11px;color:var(--t3);margin-bottom:6px">${r.watt}${r.pn!=='—'?` · P/N: ${r.pn}`:''}</div>`:''} <div style="font-size:13px;color:var(--t2);line-height:1.5;border-top:0.5px solid var(--bdr);padding-top:8px;margin-top:2px">${r.note}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
+return `<div><button class="back-btn" onclick="sTask(null)">‹ ${m.name}</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:20px">${t.t}</div><div class="pg-sub">${m.name} · ${b.brand}</div></div><div style="padding:0 16px 16px">${t.warn?`<div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div>`:''}${t.steps.map((s,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${s}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
+
+function rCIDTab(){
+  const raw=S.cidInput||'';const clean=raw.replace(/[^0-9]/g,'').substring(0,3);const qual=S.cidQual||'E';
+  const match=clean.length===3?cidLookup(clean):null;
+  let resultHTML='';
+  if(clean.length===3){if(match){const sc=cidSevClass(match.sev),tc=cidTopClass(match.sev),cc=cidCatClass(match.sev);const restoreNote=qual==='R'?`<div style="background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.25);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--green);font-weight:600">✓ RESTORE — This condition has cleared at the panel.</div>`:'';resultHTML=`<div class="cid-result ${sc}"><div class="cid-result-top ${tc}"></div><div class="cid-result-body"><div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px"><div class="cid-code-num">${qual}${clean}</div><div style="font-size:11px;color:var(--t3);font-weight:600">${qual==='E'?'New Event':'Restore'}</div></div><div class="cid-code-name">${match.name}</div><div class="cid-code-cat ${cc}">${cidCatLabel(match.cat)}</div><div class="cid-pills">${match.dispatch&&qual==='E'?'<span class="cid-pill cid-pill-dispatch">FD DISPATCH</span>':''}${match.restore?'<span class="cid-pill cid-pill-restore">RESTORE EXPECTED</span>':'<span class="cid-pill cid-pill-norestore">NO RESTORE</span>'}${match.nfpa?'<span class="cid-pill cid-pill-nfpa">NFPA 72 NOTE</span>':''}</div><div class="cid-code-desc">${match.desc}</div>${restoreNote}</div></div>`;};}else if(clean.length>0){resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty" style="padding:16px 0;text-align:center"><div class="cid-code-num" style="color:var(--t4);font-size:36px">${qual}${clean}${'_'.repeat(3-clean.length)}</div><div style="font-size:13px;color:var(--t3);margin-top:8px">Enter 3 digits to decode</div></div></div></div>`;};
+  const groupHTML=buildCIDGroups();
+  return `<div style="position:relative">
+<button class="back-btn" onclick="setRef(null)">‹ Reference</button>
+<div class="cid-input-wrap">
+  <div class="cid-label">Contact ID Decoder</div>
+  <input class="cid-input" type="tel" maxlength="4" placeholder="110" value="${raw}" oninput="setCIDRaw(this.value)" />
+  <div class="cid-qual-row">
+    <button class="cid-qual ${qual==='E'?'on-e':''}" onclick="setCIDQual('E')">E — New Event</button>
+    <button class="cid-qual ${qual==='R'?'on-r':''}" onclick="setCIDQual('R')">R — Restore / Clear</button>
+  </div>
+</div>
+${resultHTML||`<div class="cid-result cid-result-none"><div class="cid-result-body"><div style="padding:16px 0;text-align:center"><div style="font-size:40px;color:var(--t4);font-family:ui-monospace,monospace;font-weight:800;letter-spacing:0.1em">E___</div><div style="font-size:13px;color:var(--t3);margin-top:8px">Type a 3-digit Contact ID code</div></div></div></div>`}
+<div class="cid-section"><div class="cid-section-label">Full FA Reference</div></div>
+${groupHTML}
+<div class="sp"></div>
+</div>`;}
+
+function rNFPA(){
+  const q=S.nfpaSearch.toLowerCase().trim();
+  const filtered=NFPA.map(s=>{const items=s.items.filter(i=>!q||i.label.toLowerCase().includes(q)||i.val.toLowerCase().includes(q)||(i.note&&i.note.toLowerCase().includes(q)));return{...s,items};}). filter(s=>s.items.length>0);
+  const detailHTML=S.nfpaDetail?rNFPADetail():'';
+  return `<div style="position:relative">
+<button class="back-btn" onclick="setRef(null)">‹ Reference</button>
+<div class="nfpa-search">
+  <input type="text" placeholder="Search requirements..." value="${S.nfpaSearch}" oninput="setNFPASearch(this.value)" autocomplete="off" autocorrect="off" />
+</div>
+${filtered.map(sec=>`
+<div class="nfpa-sec-label">${sec.sec} <span style="color:var(--t4);font-weight:400">· §${sec.ref}</span></div>
+<div class="nfpa-card">
+${sec.items.map(item=>`<div class="nfpa-row" onclick="setNFPADetail(${JSON.stringify(item).replace(/'/g,"\\'")})">
+  <div class="nfpa-sev ${nfpaSevClass(item.sev)}"></div>
+  <div class="nfpa-name">${item.label}</div>
+  <div class="nfpa-val">${item.val}</div>
+</div>`).join('')}
+</div>`).join('')}
+<div style="padding:12px 16px 6px;font-size:11px;color:var(--t4);line-height:1.5;font-style:italic">NFPA 72 reference is informational only — always verify with the current adopted edition and your local AHJ requirements.</div>
+<div class="sp"></div>
+${detailHTML}
+</div>`;}
+
+function rNFPADetail(){
+  const item=S.nfpaDetail;
+  return `<div class="nfpa-detail">
+<button class="back-btn" onclick="setNFPADetail(null)">‹ NFPA 72</button>
+<div class="nfpa-detail-body">
+  <div class="nfpa-detail-val">${item.val}</div>
+  <div class="nfpa-detail-label">${item.label}</div>
+  ${item.note?`<div class="nfpa-detail-note">${item.note}</div>`:`<div class="nfpa-detail-note" style="color:var(--t3)">No additional detail available for this item.</div>`}
+</div>
+</div>`;}
+
+function rCalc(){
+  const tab=S.calcTab;
+  let calcHTML='';
+  if(tab==='nac'){
+    const g=S.calcNAC.gauge,len=parseFloat(S.calcNAC.length)||0,dev=parseFloat(S.calcNAC.devices)||0,avg=parseFloat(S.calcNAC.avgCurrent)||0;
+    const res=(WIRE_RES[g]||6.385)/1000;
+    const totalCurrent=(dev*avg)/1000;
+    const vDrop=totalCurrent*(res*len*2);
+    const vEnd=24-vDrop;
+    const limit=1.5;
+    const ok=totalCurrent<=limit&&vEnd>=21;
+    const warn=totalCurrent<=limit&&vEnd>=21&&vEnd<22.5;
+    const cls=!ok?'calc-result-fail':warn?'calc-result-warn':'calc-result-ok';
+    const vcls=!ok?'calc-result-val-fail':warn?'calc-result-val-warn':'calc-result-val-ok';
+    const lcls=!ok?'calc-result-label-fail':warn?'calc-result-label-warn':'calc-result-label-ok';
+    calcHTML=`
+<div class="calc-field"><label class="calc-label">Wire Gauge</label><select class="calc-select" onchange="updateCalc('nac','gauge',this.value)">${Object.entries(WIRE_NAMES).map(([k,v])=>`<option value="${k}" ${S.calcNAC.gauge===k?'selected':''}>${v}</option>`).join('')}</select></div>
+<div class="calc-field"><label class="calc-label">One-Way Run Length (ft)</label><input class="calc-input" type="number" value="${S.calcNAC.length}" oninput="updateCalc('nac','length',this.value)" placeholder="200" /></div>
+<div class="calc-field"><label class="calc-label">Number of Devices</label><input class="calc-input" type="number" value="${S.calcNAC.devices}" oninput="updateCalc('nac','devices',this.value)" placeholder="12" /></div>
+<div class="calc-field"><label class="calc-label">Avg Current per Device (mA)</label><input class="calc-input" type="number" value="${S.calcNAC.avgCurrent}" oninput="updateCalc('nac','avgCurrent',this.value)" placeholder="80" /></div>
+<div class="calc-result ${cls}">
+  <div class="calc-result-val ${vcls}">${totalCurrent.toFixed(2)} A</div>
+  <div class="calc-result-label ${lcls}">${!ok?(totalCurrent>limit?'Over Circuit Limit':'Low Voltage at End'):warn?'Marginal — Check Closely':'Within Limits ✓'}</div>
+  <div class="calc-result-rows">
+    <div class="calc-result-row"><span class="calc-result-row-label">Total current draw</span><span class="calc-result-row-val">${totalCurrent.toFixed(3)} A</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Circuit limit (typical)</span><span class="calc-result-row-val">1.5 A</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Voltage drop</span><span class="calc-result-row-val">${vDrop.toFixed(2)} V</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Voltage at end of run</span><span class="calc-result-row-val ${vEnd<21?'calc-result-val-fail':''}"><b>${vEnd.toFixed(1)} V</b></span></div>
+  </div>
+  <div class="calc-result-note">${!ok&&totalCurrent>limit?'Current draw exceeds 1.5A circuit limit. Consider splitting the circuit or using heavier gauge wire.':!ok&&vEnd<21?'Voltage too low at end of run. Use heavier gauge wire or shorten the run.':warn?'Voltage is marginal at end of run. Verify device minimum operating voltage.':'NAC circuit is within typical operating limits. Verify against your specific panel specifications.'}</div>
+</div>`;
+  } else if(tab==='battery'){
+    const stand=parseFloat(S.calcBatt.standby)||0,alm=parseFloat(S.calcBatt.alarm)||0,almMin=parseFloat(S.calcBatt.alarmMin)||5,batt=parseFloat(S.calcBatt.battAH)||0;
+    const required=((stand/1000)*24+(alm/1000)*(almMin/60))*1.2;
+    const margin=batt-required;
+    const ok=batt>=required;
+    const cls=ok?'calc-result-ok':'calc-result-fail';
+    const vcls=ok?'calc-result-val-ok':'calc-result-val-fail';
+    const lcls=ok?'calc-result-label-ok':'calc-result-label-fail';
+    calcHTML=`
+<div class="calc-field"><label class="calc-label">Panel Standby Current (mA)</label><input class="calc-input" type="number" value="${S.calcBatt.standby}" oninput="updateCalc('battery','standby',this.value)" placeholder="350" /></div>
+<div class="calc-field"><label class="calc-label">Full Alarm Current (mA)</label><input class="calc-input" type="number" value="${S.calcBatt.alarm}" oninput="updateCalc('battery','alarm',this.value)" placeholder="3000" /></div>
+<div class="calc-field"><label class="calc-label">Alarm Duration Required (min)</label><input class="calc-input" type="number" value="${S.calcBatt.alarmMin}" oninput="updateCalc('battery','alarmMin',this.value)" placeholder="5" /></div>
+<div class="calc-field"><label class="calc-label">Installed Battery Rating (AH)</label><input class="calc-input" type="number" value="${S.calcBatt.battAH}" oninput="updateCalc('battery','battAH',this.value)" placeholder="18" /></div>
+<div class="calc-result ${cls}">
+  <div class="calc-result-val ${vcls}">${required.toFixed(1)} AH</div>
+  <div class="calc-result-label ${lcls}">Required per NFPA 72 (24hr standby + ${almMin} min alarm + 20% margin)</div>
+  <div class="calc-result-rows">
+    <div class="calc-result-row"><span class="calc-result-row-label">Required battery AH</span><span class="calc-result-row-val">${required.toFixed(2)} AH</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Installed battery AH</span><span class="calc-result-row-val">${batt} AH</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Margin</span><span class="calc-result-row-val ${margin<0?'calc-result-val-fail':''}">${margin>=0?'+':''}${margin.toFixed(2)} AH</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">NFPA 72 compliant</span><span class="calc-result-row-val">${ok?'✓ Yes':'✗ No'}</span></div>
+  </div>
+  <div class="calc-result-note">${ok?`Battery is sufficient. Margin of ${margin.toFixed(2)} AH above required.`:`Battery is UNDERSIZED. Need ${(required-batt).toFixed(2)} more AH. Replace with larger battery. Common sizes: 7, 12, 18, 26, 33 AH.`}</div>
+</div>`;
+  } else if(tab==='voltdrop'){
+    const g=S.calcVolt.gauge,len=parseFloat(S.calcVolt.length)||0,cur=parseFloat(S.calcVolt.current)||0;
+    const res=(WIRE_RES[g]||6.385)/1000;
+    const curA=cur/1000;
+    const vDrop=curA*(res*len*2);
+    const vEnd=24-vDrop;
+    const ok=vEnd>=21;
+    const warn=vEnd>=21&&vEnd<22;
+    const cls=!ok?'calc-result-fail':warn?'calc-result-warn':'calc-result-ok';
+    const vcls=!ok?'calc-result-val-fail':warn?'calc-result-val-warn':'calc-result-val-ok';
+    calcHTML=`
+<div class="calc-field"><label class="calc-label">Wire Gauge</label><select class="calc-select" onchange="updateCalc('volt','gauge',this.value)">${Object.entries(WIRE_NAMES).map(([k,v])=>`<option value="${k}" ${S.calcVolt.gauge===k?'selected':''}>${v}</option>`).join('')}</select></div>
+<div class="calc-field"><label class="calc-label">One-Way Run Length (ft)</label><input class="calc-input" type="number" value="${S.calcVolt.length}" oninput="updateCalc('volt','length',this.value)" placeholder="300" /></div>
+<div class="calc-field"><label class="calc-label">Current Draw (mA)</label><input class="calc-input" type="number" value="${S.calcVolt.current}" oninput="updateCalc('volt','current',this.value)" placeholder="1000" /></div>
+<div class="calc-result ${cls}">
+  <div class="calc-result-val ${vcls}">${vEnd.toFixed(1)} V</div>
+  <div class="calc-result-label ${vcls}">Voltage at end of run</div>
+  <div class="calc-result-rows">
+    <div class="calc-result-row"><span class="calc-result-row-label">Wire resistance (round trip)</span><span class="calc-result-row-val">${(res*len*2).toFixed(2)} Ω</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Voltage drop</span><span class="calc-result-row-val">${vDrop.toFixed(2)} V</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Voltage at end of run</span><span class="calc-result-row-val">${vEnd.toFixed(1)} V</span></div>
+    <div class="calc-result-row"><span class="calc-result-row-label">Minimum device voltage (typical)</span><span class="calc-result-row-val">21.0 V</span></div>
+  </div>
+  <div class="calc-result-note">${!ok?'Voltage is too low at the end of the run. Use a heavier gauge wire or shorten the run. Most devices require at least 21V DC minimum.':warn?'Voltage is marginal. Check the minimum operating voltage for your specific devices.':'Voltage is adequate at end of run.'}</div>
+</div>`;
+  } else if(tab==='eol'){
+    const EOL_VALS={
+      'Notifier — Onboard NAC (NFS-320, NFS2-640)':{expected:2200,range:[1800,2600],unit:'Ω'},
+      'Notifier — FCM-1 / XP6-C Module NAC':{expected:47000,range:[42000,52000],unit:'Ω'},
+      'Silent Knight — NAC (SK-5208, SK-5820XL)':{expected:4700,range:[4200,5200],unit:'Ω'},
+      'Silent Knight — IDC Zone (SK-5208)':{expected:4700,range:[4200,5200],unit:'Ω'},
+      'EST / Edwards — NAC (iO64, iO500)':{expected:15000,range:[13000,17000],unit:'Ω'},
+      'Simplex — NAC (4100ES, 4010ES)':{expected:10000,range:[9000,11000],unit:'Ω'},
+      'Fire-Lite — NAC (MS-9200, MS-9600)':{expected:4700,range:[4200,5200],unit:'Ω'},
+      'Fire-Lite — MMF-300 / MDF-300 Module IDC':{expected:47000,range:[42000,52000],unit:'Ω'},
+      'Fire-Lite — MMF-302 Module IDC':{expected:3900,range:[3400,4400],unit:'Ω'},
+      'Bosch — Zone / NAC (D7412, D9412, FPD-7024)':{expected:1000,range:[800,1200],unit:'Ω'},
+    };
+    const sel=S.calcEOL.brand;
+    const reading=parseFloat(S.calcEOL.reading);
+    const spec=EOL_VALS[sel];
+    let resultCard='';
+    if(spec&&!isNaN(reading)&&reading>0){
+      const exp=spec.expected;
+      const isShort=reading<100;
+      const isOpen=reading>exp*10;
+      const isOk=reading>=spec.range[0]&&reading<=spec.range[1];
+      const cls=isShort||isOpen?'calc-result-fail':isOk?'calc-result-ok':'calc-result-warn';
+      const vcls=isShort||isOpen?'calc-result-val-fail':isOk?'calc-result-val-ok':'calc-result-val-warn';
+      const status=isShort?'SHORT CIRCUIT':isOpen?'OPEN CIRCUIT':isOk?'NORMAL ✓':'WRONG VALUE';
+      const note=isShort?'Reading indicates a short circuit on this circuit. Do not confuse with a low-value EOL.':isOpen?'Reading indicates an open circuit — EOL resistor may be missing, wiring is broken, or last device is disconnected.':isOk?`Reading is within normal range for this circuit type. Expected: ${(exp/1000).toFixed(1)}kΩ, Normal range: ${(spec.range[0]/1000).toFixed(1)}–${(spec.range[1]/1000).toFixed(1)}kΩ.`:`Reading is outside normal range. Expected ${(exp/1000).toFixed(1)}kΩ. Wrong EOL installed, or circuit fault causing reading to be ${reading<exp?'low (possible partial short or wrong resistor)':'high (possible high-resistance joint or wrong resistor)'}.`;
+      resultCard=`<div class="calc-result ${cls}"><div class="calc-result-val ${vcls}" style="font-size:24px">${status}</div><div class="calc-result-rows"><div class="calc-result-row"><span class="calc-result-row-label">Your reading</span><span class="calc-result-row-val">${reading>=1000?(reading/1000).toFixed(2)+'kΩ':reading+'Ω'}</span></div><div class="calc-result-row"><span class="calc-result-row-label">Expected value</span><span class="calc-result-row-val">${(exp/1000).toFixed(1)}kΩ</span></div><div class="calc-result-row"><span class="calc-result-row-label">Normal range</span><span class="calc-result-row-val">${(spec.range[0]/1000).toFixed(1)}–${(spec.range[1]/1000).toFixed(1)}kΩ</span></div></div><div class="calc-result-note">${note}</div></div>`;
+    } else if(spec){resultCard=`<div class="calc-info"><div class="calc-info-txt">Expected EOL value for this circuit: <strong style="color:var(--t1)">${(spec.expected/1000).toFixed(1)} kΩ</strong><br/>Normal multimeter range: ${(spec.range[0]/1000).toFixed(1)}–${(spec.range[1]/1000).toFixed(1)} kΩ<br/>Reading below ~100Ω = short circuit. Reading above ${(spec.expected/100).toFixed(0)}kΩ = open circuit.</div></div>`;}
+    calcHTML=`
+<div class="calc-field"><label class="calc-label">Panel / Circuit Type</label><select class="calc-select" onchange="updateCalcEOL('brand',this.value)">${Object.keys(EOL_VALS).map(k=>`<option value="${k}" ${S.calcEOL.brand===k?'selected':''}>${k}</option>`).join('')}</select></div>
+<div class="calc-field"><label class="calc-label">Multimeter Reading (Ω)</label><input class="calc-input" type="number" value="${S.calcEOL.reading}" oninput="updateCalcEOL('reading',this.value)" placeholder="e.g. 2200" /></div>
+${resultCard}`;
+  }
+  return `<div>
+<button class="back-btn" onclick="setTool(null)">‹ Tools</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">Electrical Calc</div><div class="pg-sub">Field calculations for FA circuits</div></div>
+<div class="calc-tabs-row">
+  <button class="calc-tab ${tab==='nac'?'on':''}" onclick="setCalcTab('nac')">NAC Load</button>
+  <button class="calc-tab ${tab==='battery'?'on':''}" onclick="setCalcTab('battery')">Battery</button>
+  <button class="calc-tab ${tab==='voltdrop'?'on':''}" onclick="setCalcTab('voltdrop')">Volt Drop</button>
+  <button class="calc-tab ${tab==='eol'?'on':''}" onclick="setCalcTab('eol')">EOL Check</button>
+</div>
+<div class="calc-body">${calcHTML}</div>
+<div class="sp"></div></div>`;}
+
+let timerInterval=null;
+function rTimer(){
+  const t=S.timer;
+  const elapsed=t.active?(Date.now()-t.start):t.elapsed;
+  const hrs=Math.floor(elapsed/3600000);
+  const mins=Math.floor((elapsed%3600000)/60000);
+  const secs=Math.floor((elapsed%60000)/1000);
+  const fmt=`${hrs.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
+  const totalHrs=elapsed/3600000;
+  const colorClass=totalHrs>=8?'timer-active-red':totalHrs>=4?'timer-active-amber':'timer-active-green';
+  const elClass=totalHrs>=8?'timer-elapsed-red':totalHrs>=4?'timer-elapsed-amber':'timer-elapsed-green';
+  const typeLabels={test:'Walk Test / System Test',bypass:'Zone or System Bypass',repair:'Repair in Progress'};
+  const types=[{k:'test',l:'Test Mode'},{k:'bypass',l:'Bypass'},{k:'repair',l:'Repair'}];
+  if(t.active){
+    let alerts='';
+    if(totalHrs>=8){alerts+=`<div class="timer-alert timer-alert-red"><div class="timer-alert-txt timer-alert-txt-red">⚠ 8+ hours — AHJ notification may be required. Verify local requirements immediately.</div></div>`;}
+    else if(totalHrs>=4){alerts+=`<div class="timer-alert timer-alert-amber"><div class="timer-alert-txt timer-alert-txt-amber">⏱ 4+ hours — approaching AHJ notification threshold. Document impairment start time in job notes.</div></div>`;}
+    return `<div>
+<button class="back-btn" onclick="setTool(null)">‹ Tools</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">Impairment Timer</div><div class="pg-sub">${t.site||'Active Impairment'}</div></div>
+<div class="timer-body">
+  ${alerts}
+  <div class="timer-active ${colorClass}">
+    <div class="timer-elapsed ${elClass}">${fmt}</div>
+    <div class="timer-site-label">${t.site||'Unnamed Site'}</div>
+    <div class="timer-type-label">${typeLabels[t.type]||t.type}</div>
+  </div>
+  <button class="timer-stop" onclick="stopTimer()">Stop Timer &amp; Log to Notes</button>
+</div>
+<div class="sp"></div></div>`;
+  }
+  return `<div>
+<button class="back-btn" onclick="setTool(null)">‹ Tools</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">Impairment Timer</div><div class="pg-sub">Track system impairment duration</div></div>
+<div class="timer-body">
+  <label class="fl">Site Name</label>
+  <input class="timer-site-input" type="text" placeholder="e.g. Acme Warehouse — Woburn" id="timer-site" value="${t.site}" oninput="S.timer.site=this.value" />
+  <label class="fl">Impairment Type</label>
+  <div class="timer-type-row">${types.map(ty=>`<button class="timer-type-btn ${t.type===ty.k?'sel':''}" onclick="setTimerType('${ty.k}')">${ty.l}</button>`).join('')}</div>
+  <button class="timer-start" onclick="startTimer()">Start Timer</button>
+  <div class="calc-info" style="margin-top:14px"><div class="calc-info-txt">Timer alerts you at 4 hours (amber) and 8 hours (red).<br/>When stopped, duration is automatically logged to your current job notes session.</div></div>
+</div>
+<div class="sp"></div></div>`;}
+
+function rDiagnose(){
+  if(S.dtree&&S.dcur)return rFlow();
+  return `<div>
+<div class="dg-head"><div class="pg-title">Diagnose</div><div class="pg-sub">Select a fault type to begin</div></div>
+<div class="tree-grid">${Object.entries(TR).map(([k,t])=>`<div class="tc" onclick="sDT('${k}')">${t.isNew?`<div class="tc-new">NEW</div>`:''} <div class="tc-ico">${t.ico}</div><div class="tc-title">${t.title}</div><div class="tc-desc">${t.desc}</div></div>`).join('')}</div>
+<div class="sp"></div></div>`;}
+
+function rFlow(){
+  const tree=TR[S.dtree];const node=tree.nodes[S.dcur];if(!node)return rDiagnose();
+  const depth=S.dhist.length;const progress=Math.min(depth/9,1);
+  const nav=`<div class="flow-nav"><button class="flow-back" onclick="exitTree()">‹ ${tree.title}</button><span class="flow-step-pill">${node.type==='res'?'Result':`Step ${depth+1}`}</span></div><div class="progress"><div class="progress-fill" style="width:${Math.round(progress*100)}%"></div></div><div class="crumbs"><span class="crumb link" onclick="exitTree()">${tree.ico} ${tree.title}</span>${S.dhist.map((_,i)=>`<span class="crumb-sep">›</span><span class="crumb">${i+1}</span>`).join('')}${node.type!=='res'?`<span class="crumb-sep">›</span><span class="crumb active">${depth+1}</span>`:''}</div>`;
+  if(node.type==='res'){const sc=resClass(node.sev),rt=resTop(node.sev);return `<div>${nav}<div class="result-banner ${sc}"><div class="result-banner-top ${rt}"></div><div class="result-banner-body"><div class="res-icon-row"><span class="res-ico">${sevIco(node.sev)}</span><div><div class="res-title">${node.title}</div><div class="res-sev-label" style="color:${sevColor(node.sev)}">${sevLabel(node.sev)}</div></div></div><div class="res-body">${node.body}</div>${node.parts&&node.parts.length?`<div class="parts-head">Parts / Tools Needed</div><div class="parts-wrap">${node.parts.map(p=>`<div class="part-tag">${p}</div>`).join('')}</div>`:''}</div></div><div class="res-restart"><button onclick="exitTree()">← Back to Trees</button></div><div class="sp"></div></div>`;}
+  if(node.type==='yn')return `<div>${nav}<div class="q-card"><div class="q-accent"></div><div class="q-body"><div class="q-label">Step ${depth+1}</div><div class="q-text">${node.q}</div></div></div><div class="yn-row"><button class="yn-btn yn-y" onclick="adv('${node.y}')">✓ Yes</button><button class="yn-btn yn-n" onclick="adv('${node.n}')">✗ No</button></div><div class="esc-btns">${depth>0?`<button class="go-back" onclick="goBack()">← Go Back</button>`:''} <button class="esc-btn" onclick="exitTree()">Escalate / Exit</button></div><div class="sp"></div></div>`;
+  if(node.type==='ch')return `<div>${nav}<div class="q-card"><div class="q-accent"></div><div class="q-body"><div class="q-label">Step ${depth+1}</div><div class="q-text">${node.q}</div></div></div>${node.opts.map((o,i)=>`<div class="opt" onclick="adv('${o.n}')"><div class="opt-num">${String.fromCharCode(65+i)}</div><div class="opt-text">${o.l}</div><div class="opt-chev">›</div></div>`).join('')}<div class="esc-btns">${depth>0?`<button class="go-back" onclick="goBack()">← Go Back</button>`:''} <button class="esc-btn" onclick="exitTree()">Escalate / Exit</button></div><div class="sp"></div></div>`;
+  if(node.type==='info')return `<div>${nav}<div class="q-card"><div class="q-accent"></div><div class="q-body"><div class="q-label">Note</div><div class="q-text">${node.q}</div></div></div><div style="padding:0 16px"><button style="width:100%;padding:13px;background:var(--a);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit" onclick="adv('${node.next}')">Continue →</button></div><div class="sp"></div></div>`;
+  return rDiagnose();}
+
+function rNotes(){
+  if(S.makingSession)return rMakeSession();
+  if(S.noteIdx!==null)return rNoteDetail();
+  return `<div>
+<div class="pg-head"><div class="pg-title">Job Notes</div><div class="pg-sub">${S.notes.length} session${S.notes.length!==1?'s':''} · ${TODAY}</div></div>
+<div class="notes-list">${S.notes.length===0?`<div class="empty"><div class="empty-ico">✎</div><div class="empty-t">No sessions yet</div><div class="empty-s">Tap + to start a new session</div></div>`:S.notes.map((n,i)=>`<div class="note-c" onclick="openN(${i})"><div class="note-top"><div class="note-site">${n.site}</div><div class="note-date">${n.date}</div></div><div class="note-job">Job: ${n.job||'—'}</div><div class="note-preview">${n.entries[n.entries.length-1]?.text?.substring(0,80)||''}${(n.entries[n.entries.length-1]?.text?.length||0)>80?'...':''}</div><div>${[...new Set(n.entries.map(e=>e.tag))].map(tag=>`<span class="ntag ntag-${tag[0]}">${tag}</span>`).join('')}</div></div>`).join('')}</div>
+<div class="fab-wrap"><button class="fab" onclick="startS()">+</button></div>
+<div class="sp"></div></div>`;}
+
+function rMakeSession(){return `<div><button class="back-btn" onclick="cancelS()">‹ Cancel</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:22px">New Session</div></div><div class="form-wrap"><label class="fl">Site Name</label><input class="fi" type="text" placeholder="e.g. Acme Warehouse — Woburn" id="ns-site" /><label class="fl">Job / Order Number <span style="color:var(--t4);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label><input class="fi" type="text" placeholder="e.g. ST-2024-1150" id="ns-job" /><button class="sbmt" onclick="createS()">Create Session</button><button class="cncl" onclick="cancelS()">Cancel</button></div></div>`;}
+
+function rNoteDetail(){const n=S.notes[S.noteIdx];const tagMap={finding:'f',action:'a',parts:'p',callback:'c'};return `<div><button class="back-btn" onclick="closeN()">‹ All Sessions</button><div class="pg-head" style="padding-top:4px"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px"><div><div class="pg-title" style="font-size:20px">${n.site}</div><div class="pg-sub">Job: ${n.job||'—'} · ${n.date}</div></div><button class="delete-btn" onclick="deleteSession(${S.noteIdx})">Delete</button></div></div><div style="padding:0 16px">${n.entries.map(e=>`<div class="entry-row entry-${tagMap[e.tag]||'f'}"><div class="entry-meta"><span class="entry-time">${e.time}</span><span class="ntag ntag-${tagMap[e.tag]||'f'}">${e.tag}</span></div><div class="entry-text">${e.text}</div></div>`).join('')}${n.entries.length===0?`<div class="empty"><div class="empty-ico">✎</div><div class="empty-t">No entries yet</div></div>`:''}</div>${S.addEntry?rAddEntry():`<div class="fab-wrap" style="margin-top:4px"><button class="fab" onclick="togE()">+</button></div>`}<div class="sp"></div></div>`;}
+
+function rAddEntry(){const tags=[{k:'finding',l:'Finding',c:'f'},{k:'action',l:'Action Taken',c:'a'},{k:'parts',l:'Parts Needed',c:'p'},{k:'callback',l:'Callback Required',c:'c'}];return `<div class="form-wrap"><label class="fl">Note</label><textarea class="fta" id="et" placeholder="What did you find or do?" oninput="sNT(this.value)">${S.newText}</textarea><label class="fl">Tag</label><div class="tag-btns">${tags.map(t=>`<button class="tag-btn ${S.newTag===t.k?`sel-${t.c}`:''}" onclick="sTag('${t.k}')">${t.l}</button>`).join('')}</div><button class="sbmt" onclick="saveE()">Add Entry</button><button class="cncl" onclick="togE()">Cancel</button></div>`;}
+
+function gTab(t){S.tab=t;S.scode=null;if(t!=='diagnose'){S.dtree=null;S.dcur=null;S.dhist=[];}if(t!=='reference'){S.refSub=null;}if(t!=='tools'){/* keep tool state */}if(t!=='notes'){S.noteIdx=null;S.addEntry=false;S.makingSession=false;}R();}
+function setRef(sub){S.refSub=sub;S.scode=null;S.pb=null;S.pm=null;S.pt=null;R();}
+function setTool(sub){S.toolSub=sub;R();}
+function setCalcTab(t){S.calcTab=t;R();}
+function updateCalc(type,field,val){if(type==='nac')S.calcNAC[field]=val;else if(type==='battery')S.calcBatt[field]=val;else if(type==='volt')S.calcVolt[field]=val;const el=document.getElementById('main');if(el)el.innerHTML=rCalc();}
+function updateCalcEOL(field,val){S.calcEOL[field]=val;const el=document.getElementById('main');if(el)el.innerHTML=rCalc();}
+function setTimerType(t){S.timer.type=t;R();}
+function startTimer(){const site=document.getElementById('timer-site')?.value||S.timer.site||'';S.timer.site=site;S.timer.active=true;S.timer.start=Date.now();S.timer.elapsed=0;R();timerInterval=setInterval(()=>{const el=document.getElementById('main');if(el&&S.toolSub==='timer')el.innerHTML=rTimer();},1000);}
+function stopTimer(){const elapsed=S.timer.active?(Date.now()-S.timer.start):S.timer.elapsed;const hrs=Math.floor(elapsed/3600000),mins=Math.floor((elapsed%3600000)/60000),secs=Math.floor((elapsed%60000)/1000);const dur=`${hrs}h ${mins}m ${secs}s`;S.timer.active=false;S.timer.elapsed=elapsed;clearInterval(timerInterval);const typeLabels={test:'Walk Test',bypass:'Bypass',repair:'Repair'};if(S.notes.length>0){const now=new Date(),h=now.getHours()%12||12,m=now.getMinutes().toString().padStart(2,'0'),ap=now.getHours()>=12?'PM':'AM';S.notes[0].entries.push({time:`${h}:${m} ${ap}`,text:`Impairment ended — ${typeLabels[S.timer.type]||S.timer.type} at ${S.timer.site||'site'} — duration: ${dur}`,tag:'action'});saveNotes(S.notes);}R();}
+function setNFPASearch(v){S.nfpaSearch=v;const el=document.getElementById('main');if(el)el.innerHTML=rNFPA();}
+function setNFPADetail(item){S.nfpaDetail=item?JSON.parse(JSON.stringify(item)):null;R();}
 function sSQ(v){S.sq=v;const el=document.getElementById('sr-results');if(el){el.innerHTML=rSearchResults();}else{R();}}
 function clearSearch(){S.sq='';R();}
 function sBrand(b){S.sbrand=b;const el=document.getElementById('sr-results');if(el){el.innerHTML=rSearchResults();}else{R();}}
@@ -874,19 +1249,26 @@ function cancelS(){S.makingSession=false;R();}
 function deleteSession(i){if(confirm('Delete this session and all its entries?')){S.notes.splice(i,1);saveNotes(S.notes);S.noteIdx=null;R();}}
 function createS(){const site=document.getElementById('ns-site')?.value||'';const job=document.getElementById('ns-job')?.value||'';S.notes.unshift({id:Date.now(),site:site||'New Session',job,date:TODAY,entries:[]});saveNotes(S.notes);S.makingSession=false;S.noteIdx=0;R();}
 function saveE(){const text=S.newText||document.getElementById('et')?.value||'';if(!text.trim())return;const now=new Date(),h=now.getHours()%12||12,m=now.getMinutes().toString().padStart(2,'0'),ap=now.getHours()>=12?'PM':'AM';S.notes[S.noteIdx].entries.push({time:`${h}:${m} ${ap}`,text:text.trim(),tag:S.newTag});saveNotes(S.notes);S.addEntry=false;S.newText='';R();}
-function toggleTheme(){
-  S.theme=S.theme==='dark'?'light':'dark';
-  localStorage.setItem('fa_theme',S.theme);
-  applyTheme();
-}
-function applyTheme(){
-  const btn=document.getElementById('theme-btn');
-  if(S.theme==='light'){document.documentElement.classList.add('light');if(btn)btn.textContent='☽';}
-  else{document.documentElement.classList.remove('light');if(btn)btn.textContent='☀';}
-}
 function setCIDRaw(v){S.cidInput=v.replace(/[^0-9]/g,'').substring(0,3);R();}
 function setCIDQual(q){S.cidQual=q;R();}
 function setCIDInput(code){S.cidInput=code;S.cidQual='E';document.getElementById('main').scrollTop=0;R();}
+function toggleTheme(){S.theme=S.theme==='dark'?'light':'dark';localStorage.setItem('fa_theme',S.theme);applyTheme();}
+function applyTheme(){const btn=document.getElementById('theme-btn');if(S.theme==='light'){document.documentElement.classList.add('light');if(btn)btn.textContent='☽';}else{document.documentElement.classList.remove('light');if(btn)btn.textContent='☀';}}
+
+function buildCIDGroups(){return CID_GROUPS.map(function(g){var rows=g.codes.map(function(code){var c=CID.find(function(x){return x.code===code;});if(!c)return '';return '<div class="cid-row" onclick="setCIDInput(\''+c.code+'\')"><div class="cid-row-sev '+cidRowSevClass(c.sev)+'"></div><div class="cid-row-code">'+c.code+'</div><div class="cid-row-name">'+c.name+'</div><span class="cid-row-badge '+cidBadgeClass(c.cat)+'">'+cidCatLabel(c.cat).split(' ')[0]+'</span></div>';}).join('');return '<div class="cid-section"><div class="cid-section-label">'+g.label+'</div></div><div class="cid-list">'+rows+'</div>';}).join('');}
+const CID_GROUPS=[
+{label:'Fire Alarms — 110s',codes:['110','111','112','113','114','115','116','117','118','120','162']},
+{label:'Fire Supervisory — 200s',codes:['200','201','202','203','204','205','206']},
+{label:'System Troubles — 300s',codes:['300','301','302','305','306','309','310','311','312','314']},
+{label:'Sounder / NAC Troubles — 320s',codes:['320','321','322','326','327']},
+{label:'SLC / Loop Troubles — 330s',codes:['330','331','332','333']},
+{label:'Communication Troubles — 350s',codes:['350','351','352','354','356','357']},
+{label:'Zone / Sensor Troubles — 370s',codes:['370','371','373','374','380','383','384']},
+{label:'Bypasses — 570s',codes:['570','571']},
+{label:'Test & Misc — 600s',codes:['601','602','604','607','608','614']},
+{label:'Download & Special — 900s',codes:['900','901','902','912','913']},
+];
+
 applyTheme();
 R();
 </script>
