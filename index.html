@@ -254,6 +254,66 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .empty-s{font-size:13px;color:var(--t4);margin-top:4px;}
 .sp{height:24px;}
 .delete-btn{padding:8px 14px;background:rgba(239,68,68,0.12);border:0.5px solid rgba(239,68,68,0.25);border-radius:10px;color:var(--red);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-left:auto;}
+
+/* CONTACT ID */
+.cid-input-wrap{padding:16px 16px 12px;background:var(--bg);position:sticky;top:0;z-index:10;border-bottom:0.5px solid var(--bdr);}
+.cid-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.cid-input-row{display:flex;gap:10px;align-items:center;}
+.cid-input{flex:1;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 18px;font-size:28px;font-weight:800;color:var(--t1);outline:none;font-family:ui-monospace,monospace;letter-spacing:0.1em;text-align:center;}
+.cid-input:focus{border-color:var(--a);}
+.cid-qual-row{display:flex;gap:8px;margin-top:10px;}
+.cid-qual{flex:1;padding:8px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:0.5px solid var(--bdr2);background:transparent;color:var(--t3);font-family:inherit;text-align:center;}
+.cid-qual.on-e{background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.3);color:var(--red);}
+.cid-qual.on-r{background:rgba(34,197,94,0.12);border-color:rgba(34,197,94,0.3);color:var(--green);}
+.cid-result{margin:12px 16px 0;border-radius:16px;overflow:hidden;}
+.cid-result-high{background:rgba(239,68,68,0.1);border:0.5px solid rgba(239,68,68,0.25);}
+.cid-result-med{background:rgba(245,158,11,0.1);border:0.5px solid rgba(245,158,11,0.25);}
+.cid-result-low{background:rgba(234,179,8,0.1);border:0.5px solid rgba(234,179,8,0.25);}
+.cid-result-info{background:rgba(59,130,246,0.1);border:0.5px solid rgba(59,130,246,0.25);}
+.cid-result-none{background:var(--s1);border:0.5px solid var(--bdr2);}
+.cid-result-top{height:3px;}
+.cid-rt-high{background:var(--red);}
+.cid-rt-med{background:var(--amber);}
+.cid-rt-low{background:var(--yellow);}
+.cid-rt-info{background:var(--blue);}
+.cid-result-body{padding:16px 18px;}
+.cid-code-num{font-family:ui-monospace,monospace;font-size:32px;font-weight:800;color:var(--t1);letter-spacing:0.08em;}
+.cid-code-name{font-size:18px;font-weight:700;color:var(--t1);margin-top:4px;}
+.cid-code-cat{font-size:12px;font-weight:600;margin-top:3px;}
+.cid-cat-high{color:var(--red);}
+.cid-cat-med{color:var(--amber);}
+.cid-cat-low{color:var(--yellow);}
+.cid-cat-info{color:var(--blue);}
+.cid-code-desc{font-size:14px;color:var(--t2);line-height:1.5;margin-top:12px;padding-top:12px;border-top:0.5px solid rgba(255,255,255,0.06);}
+.cid-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.cid-pill{font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;letter-spacing:0.06em;}
+.cid-pill-dispatch{background:rgba(239,68,68,0.15);color:var(--red);}
+.cid-pill-restore{background:rgba(34,197,94,0.15);color:var(--green);}
+.cid-pill-norestore{background:rgba(107,114,128,0.2);color:var(--t3);}
+.cid-pill-nfpa{background:rgba(255,69,0,0.15);color:var(--a);}
+.cid-empty{padding:20px 18px;text-align:center;}
+.cid-empty-t{font-size:14px;color:var(--t3);}
+.cid-section{padding:16px 16px 6px;}
+.cid-section-label{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;padding:0 2px;}
+.cid-list{margin:0 16px;}
+.cid-row{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--s1);border-bottom:0.5px solid var(--bdr);cursor:pointer;}
+.cid-row:first-child{border-radius:14px 14px 0 0;}
+.cid-row:last-child{border-radius:0 0 14px 14px;border-bottom:none;}
+.cid-row:only-child{border-radius:14px;}
+.cid-row:active{background:var(--s2);}
+.cid-row-sev{width:3px;align-self:stretch;border-radius:0;flex-shrink:0;}
+.cid-sev-high{background:var(--red);}
+.cid-sev-med{background:var(--amber);}
+.cid-sev-low{background:var(--yellow);}
+.cid-sev-info{background:var(--blue);}
+.cid-row-code{font-family:ui-monospace,monospace;font-size:14px;font-weight:700;color:var(--t1);min-width:36px;}
+.cid-row-name{flex:1;font-size:13px;color:var(--t2);line-height:1.3;}
+.cid-row-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;flex-shrink:0;}
+.cid-badge-fire{background:rgba(239,68,68,0.15);color:var(--red);}
+.cid-badge-sup{background:rgba(245,158,11,0.15);color:var(--amber);}
+.cid-badge-trbl{background:rgba(234,179,8,0.15);color:var(--yellow);}
+.cid-badge-test{background:rgba(59,130,246,0.15);color:var(--blue);}
+.cid-badge-misc{background:rgba(107,114,128,0.2);color:var(--t3);}
 </style>
 </head>
 <body>
@@ -322,6 +382,7 @@ let S={
 tab:'home',sq:'',sbrand:'All',scode:null,
 dtree:null,dhist:[],dcur:null,
 pb:null,pm:null,pt:null,
+cidInput:'',cidQual:'E',
 notes:loadNotes(),
 addEntry:false,noteIdx:null,newText:'',newTag:'finding',makingSession:false
 };
@@ -354,7 +415,7 @@ document.getElementById('install-close').addEventListener('click',()=>{
   document.getElementById('install-banner').classList.remove('show');
 });
 
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/fa-tech-assist/sw.js');}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
 
 function sev2cls(s){return s==='TROUBLE'?'rsev-t':s==='SUPERVISORY'?'rsev-s':'rsev-c';}
 function sev2badge(s){return s==='TROUBLE'?'rbadge-t':s==='SUPERVISORY'?'rbadge-s':'rbadge-c';}
@@ -365,7 +426,14 @@ function resClass(s){return {high:'result-banner-high',med:'result-banner-med',l
 function resTop(s){return {high:'rb-top-h',med:'rb-top-m',low:'rb-top-l'}[s]||'rb-top-m';}
 
 function R(){
-  const tabs=[{id:'home',l:'Home',i:'⊞'},{id:'search',l:'Codes',i:'⌕'},{id:'diagnose',l:'Diagnose',i:'⑂'},{id:'panels',l:'Panels',i:'◫'},{id:'notes',l:'Notes',i:'✎'}];
+  const tabs=[
+    {id:'home',l:'Home',i:'⊞'},
+    {id:'search',l:'Codes',i:'⌕'},
+    {id:'diagnose',l:'Diagnose',i:'⑂'},
+    {id:'panels',l:'Panels',i:'◫'},
+    {id:'cid',l:'Contact ID',i:'#'},
+    {id:'notes',l:'Notes',i:'✎'}
+  ];
   document.getElementById('tabs').innerHTML=tabs.map(t=>`<button class="tb ${S.tab===t.id?'on':'off'}" onclick="gTab('${t.id}')"><div class="tb-dot"></div><span class="tb-ico">${t.i}</span><span class="tb-lbl">${t.l}</span></button>`).join('');
   const m=document.getElementById('main');
   m.className='scroll anim';
@@ -373,11 +441,12 @@ function R(){
   else if(S.tab==='search')m.innerHTML=rSearch();
   else if(S.tab==='diagnose')m.innerHTML=rDiagnose();
   else if(S.tab==='panels')m.innerHTML=rPanels();
+  else if(S.tab==='cid')m.innerHTML=rCID();
   else if(S.tab==='notes')m.innerHTML=rNotes();
   m.scrollTop=0;
 }
 
-function rHome(){return `<div class="home-head"><div class="home-date">${DAYS[NOW.getDay()]} · ${TODAY}</div><div class="home-title">FA Tech Assist</div><div class="status-pill"><div class="status-dot"></div><span class="status-txt">Ready · All Systems</span></div></div><div class="mod-list"><div class="mod-card" onclick="gTab('search')"><div class="mod-icon-wrap">⌕</div><div class="mod-info"><div class="mod-title">Error Code Lookup</div><div class="mod-desc">Search by fault code, brand, or symptom</div></div><span class="mod-count">${EC.length} codes</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('diagnose')"><div class="mod-icon-wrap">⑂</div><div class="mod-info"><div class="mod-title">Guided Diagnostics</div><div class="mod-desc">Step-by-step fault isolation trees</div></div><span class="mod-count">${Object.keys(TR).length} trees</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('panels')"><div class="mod-icon-wrap">◫</div><div class="mod-info"><div class="mod-title">Panel Reference</div><div class="mod-desc">Programming steps and gotcha notes</div></div><span class="mod-count">${PNL.length} brands</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('notes')"><div class="mod-icon-wrap">✎</div><div class="mod-info"><div class="mod-title">Job Notes</div><div class="mod-desc">Log findings, actions, and parts needed</div></div><span class="mod-count">${S.notes.length} sessions</span><span class="mod-arrow">›</span></div></div><div class="qref-wrap"><div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Check local jurisdiction requirements. Document all impairment durations in job notes.</div></div><div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it in job notes.</div></div></div><div class="version-tag">FA Tech Assist · Encore Fire Protection · v2.0 PWA</div>`;}
+function rHome(){return `<div class="home-head"><div class="home-date">${DAYS[NOW.getDay()]} · ${TODAY}</div><div class="home-title">FA Tech Assist</div><div class="status-pill"><div class="status-dot"></div><span class="status-txt">Ready · All Systems</span></div></div><div class="mod-list"><div class="mod-card" onclick="gTab('search')"><div class="mod-icon-wrap">⌕</div><div class="mod-info"><div class="mod-title">Error Code Lookup</div><div class="mod-desc">Search by fault code, brand, or symptom</div></div><span class="mod-count">${EC.length} codes</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('diagnose')"><div class="mod-icon-wrap">⑂</div><div class="mod-info"><div class="mod-title">Guided Diagnostics</div><div class="mod-desc">Step-by-step fault isolation trees</div></div><span class="mod-count">${Object.keys(TR).length} trees</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('panels')"><div class="mod-icon-wrap">◫</div><div class="mod-info"><div class="mod-title">Panel Reference</div><div class="mod-desc">Programming steps and gotcha notes</div></div><span class="mod-count">${PNL.length} brands</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('cid')"><div class="mod-icon-wrap">#</div><div class="mod-info"><div class="mod-title">Contact ID Decoder</div><div class="mod-desc">Decode monitoring signals instantly</div></div><span class="mod-count">${CID.length} codes</span><span class="mod-arrow">›</span></div><div class="mod-card" onclick="gTab('notes')"><div class="mod-icon-wrap">✎</div><div class="mod-info"><div class="mod-title">Job Notes</div><div class="mod-desc">Log findings, actions, and parts needed</div></div><span class="mod-count">${S.notes.length} sessions</span><span class="mod-arrow">›</span></div></div><div class="qref-wrap"><div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Check local jurisdiction requirements. Document all impairment durations in job notes.</div></div><div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it in job notes.</div></div></div><div class="version-tag">FA Tech Assist · Encore Fire Protection · v3.0 PWA</div>`;}
 
 function rSearch(){const brands=['All','Notifier','Honeywell/Silent Knight','EST/Edwards','Simplex','Bosch'];const q=S.sq.toLowerCase().trim();const filtered=EC.filter(c=>{const bm=S.sbrand==='All'||c.brand===S.sbrand||c.brand.startsWith(S.sbrand.split('/')[0]);const tm=!q||c.code.toLowerCase().includes(q)||c.desc.toLowerCase().includes(q)||c.causes.some(x=>x.toLowerCase().includes(q))||c.brand.toLowerCase().includes(q);return bm&&tm;});const det=S.scode?rCodeDetail(S.scode):'';return `<div style="position:relative"><div class="search-top"><div class="search-input-wrap"><span style="font-size:16px;color:var(--t3)">⌕</span><input type="text" placeholder="Code, symptom, or brand..." value="${S.sq}" oninput="sSQ(this.value)" /></div></div><div class="chips">${brands.map(b=>`<button class="chip ${S.sbrand===b?'on':''}" onclick="sBrand('${b}')">${b}</button>`).join('')}</div><div class="rlabel">${filtered.length} result${filtered.length!==1?'s':''}</div><div class="rlist">${filtered.length===0?`<div style="padding:24px;text-align:center;color:var(--t3);font-size:14px">No results — try a different search.</div>`:filtered.map(c=>`<div class="rrow" onclick="sSC('${c.id}')"><div class="rsev ${sev2cls(c.sev)}"></div><div style="flex:1;min-width:0"><div class="rcode">${c.code}<span class="rbadge ${sev2badge(c.sev)}">${c.sev}</span></div><div class="rbrand">${c.brand}</div></div><div class="rchev">›</div></div>`).join('')}</div><div class="sp"></div>${det}</div>`;}
 
@@ -406,6 +475,167 @@ function rNoteDetail(){const n=S.notes[S.noteIdx];const tagMap={finding:'f',acti
 
 function rAddEntry(){const tags=[{k:'finding',l:'Finding',c:'f'},{k:'action',l:'Action Taken',c:'a'},{k:'parts',l:'Parts Needed',c:'p'},{k:'callback',l:'Callback Required',c:'c'}];return `<div class="form-wrap"><label class="fl">Note</label><textarea class="fta" id="et" placeholder="What did you find or do?" oninput="sNT(this.value)">${S.newText}</textarea><label class="fl">Tag</label><div class="tag-btns">${tags.map(t=>`<button class="tag-btn ${S.newTag===t.k?`sel-${t.c}`:''}" onclick="sTag('${t.k}')">${t.l}</button>`).join('')}</div><button class="sbmt" onclick="saveE()">Add Entry</button><button class="cncl" onclick="togE()">Cancel</button></div>`;}
 
+const CID=[
+{code:'110',name:'Fire Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'General fire alarm condition. A fire zone has activated. Monitoring will dispatch fire department.'},
+{code:'111',name:'Smoke Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Smoke detector has activated on the specified zone.'},
+{code:'112',name:'Combustion Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Combustion products detected. Often from ionization-type smoke detectors.'},
+{code:'113',name:'Waterflow Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Water is flowing in the sprinkler system. Could be an open head, leak, or surge. Monitoring will dispatch fire department.'},
+{code:'114',name:'Heat Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Heat detector has activated on the specified zone.'},
+{code:'115',name:'Pull Station Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Manual pull station has been activated on the specified zone.'},
+{code:'116',name:'Duct Detector Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Duct smoke detector has activated. HVAC system should shut down automatically on this signal.'},
+{code:'117',name:'Flame Detector Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Flame detector has activated on the specified zone.'},
+{code:'118',name:'Near Alarm',cat:'fire',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Detector is approaching alarm threshold but has not yet alarmed. Pre-alarm condition — investigate the device.'},
+{code:'120',name:'Panic Alarm',cat:'fire',sev:'high',dispatch:true,restore:false,nfpa:false,desc:'Panic button or zone has activated.'},
+{code:'162',name:'CO Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Carbon monoxide detector has activated. Monitoring will dispatch. Building should be evacuated.'},
+{code:'200',name:'Fire Supervisory',cat:'sup',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'General fire supervisory condition. A monitored supervisory point has activated. Investigate the specific zone.'},
+{code:'201',name:'Low Water Pressure',cat:'sup',sev:'med',dispatch:false,restore:true,nfpa:true,desc:'Sprinkler system water pressure has dropped below the supervisory setpoint. Investigate immediately.'},
+{code:'202',name:'Low CO2',cat:'sup',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'CO2 level in a suppression system has dropped below minimum.'},
+{code:'203',name:'Gate Valve / Tamper',cat:'sup',sev:'med',dispatch:false,restore:true,nfpa:true,desc:'A gate valve or OS&Y valve tamper switch has activated. Valve may be partially or fully closed. Investigate immediately.'},
+{code:'204',name:'Low Water Level',cat:'sup',sev:'med',dispatch:false,restore:true,nfpa:true,desc:'Water level in a storage tank or reservoir has dropped below the supervisory setpoint.'},
+{code:'205',name:'Pump Activated',cat:'sup',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Fire pump has activated. Could be normal (in response to pressure drop) or indicate a system demand.'},
+{code:'206',name:'Pump Failure',cat:'sup',sev:'high',dispatch:false,restore:true,nfpa:true,desc:'Fire pump has failed to start or has shut down unexpectedly. Critical supervisory condition.'},
+{code:'300',name:'System Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'General system trouble. Check panel for specific trouble condition.'},
+{code:'301',name:'AC Loss',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Panel has lost AC primary power and is running on battery backup. Check dedicated breaker. If over 4 hours, may require AHJ notification.'},
+{code:'302',name:'Low System Battery',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:true,desc:'Panel battery is low or failing. Battery must be tested and replaced if necessary. NFPA 72 requires functional battery backup.'},
+{code:'305',name:'System Reset',cat:'trbl',sev:'low',dispatch:false,restore:false,nfpa:false,desc:'Panel has been reset. Could be after an alarm or a power cycle. Check event log for what preceded the reset.'},
+{code:'306',name:'Panel Program Changed',cat:'trbl',sev:'low',dispatch:false,restore:false,nfpa:false,desc:'Programming has been modified in the panel. Document who made the change and why.'},
+{code:'309',name:'Battery Test Failure',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:true,desc:'Automatic battery test has failed. Battery must be replaced.'},
+{code:'310',name:'Ground Fault',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'A ground fault has been detected on an SLC loop or NAC circuit. See Ground Fault diagnostic tree.'},
+{code:'311',name:'Battery Missing / Dead',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:true,desc:'Battery is either completely missing or has failed entirely. System impairment — replace battery immediately.'},
+{code:'312',name:'Power Supply Overcurrent',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Panel power supply is drawing excessive current. Could indicate a short or an overloaded circuit.'},
+{code:'314',name:'Primary Power Supply Failure',cat:'trbl',sev:'high',dispatch:false,restore:true,nfpa:true,desc:'Primary power supply has failed. Panel is on battery only. Escalate — panel power supply may need replacement.'},
+{code:'320',name:'Sounder / Relay Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'General trouble on a sounder or relay circuit.'},
+{code:'321',name:'NAC Circuit 1 Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Notification Appliance Circuit 1 (Bell 1) has a trouble condition — open, short, or ground fault.'},
+{code:'322',name:'NAC Circuit 2 Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Notification Appliance Circuit 2 (Bell 2) has a trouble condition.'},
+{code:'326',name:'NAC Circuit 3 Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Notification Appliance Circuit 3 has a trouble condition.'},
+{code:'327',name:'NAC Circuit 4 Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Notification Appliance Circuit 4 has a trouble condition.'},
+{code:'330',name:'System Peripheral Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'A system peripheral device (annunciator, remote display, printer) has reported a trouble condition.'},
+{code:'331',name:'Polling Loop Open',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Open circuit detected on an SLC/polling loop. See Open Circuit diagnostic tree.'},
+{code:'332',name:'Polling Loop Short',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Short circuit detected on an SLC/polling loop.'},
+{code:'333',name:'Expansion Module Failure',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'An expansion module or loop card has failed or lost communication with the main panel.'},
+{code:'350',name:'Communication Trouble',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'General communication trouble between panel and monitoring. Check DACT/communicator.'},
+{code:'351',name:'Telco Line 1 Fault',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Phone line 1 used by the DACT is faulted or missing. Check phone line connection at panel.'},
+{code:'352',name:'Telco Line 2 Fault',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Phone line 2 (backup) used by the DACT is faulted or missing.'},
+{code:'354',name:'Failure to Communicate',cat:'trbl',sev:'high',dispatch:false,restore:true,nfpa:true,desc:'Panel attempted to send a signal to monitoring but failed after all retries. Monitoring has not received the signal — this is a system impairment. Investigate communicator immediately.'},
+{code:'356',name:'Loss of Radio Supervision',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Cellular or radio communicator has lost contact with the monitoring receiver.'},
+{code:'357',name:'Long Range Radio Trouble',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'Long range radio transmitter has reported a trouble condition.'},
+{code:'370',name:'Protection Loop Failure',cat:'trbl',sev:'med',dispatch:false,restore:true,nfpa:false,desc:'A protection loop has failed.'},
+{code:'371',name:'Protection Loop Open',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Open circuit on a conventional protection/initiating zone. Check EOL resistor, device wiring, and connections.'},
+{code:'373',name:'Fire Zone Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'A fire zone is reporting a trouble condition — open, short, or ground fault. Does not necessarily indicate a fire. Investigate the specified zone.'},
+{code:'374',name:'Exit Error',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'Exit error condition reported for an alarm zone.'},
+{code:'380',name:'Sensor Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'A specific sensor or initiating device has reported a trouble condition.'},
+{code:'383',name:'Sensor Tamper',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'A device tamper switch has activated. Cover may be open or device may be removed from base.'},
+{code:'384',name:'RF Sensor Trouble',cat:'trbl',sev:'low',dispatch:false,restore:true,nfpa:false,desc:'A wireless RF sensor has reported a trouble condition.'},
+{code:'401',name:'Open / Close',cat:'misc',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'System has been opened (disarmed) or closed (armed). Includes user ID information.'},
+{code:'570',name:'Zone / Sensor Bypass',cat:'misc',sev:'info',dispatch:false,restore:true,nfpa:false,desc:'A zone or sensor has been bypassed and is no longer being monitored.'},
+{code:'571',name:'Fire Zone Bypass',cat:'misc',sev:'med',dispatch:false,restore:true,nfpa:true,desc:'A fire zone has been bypassed. This is a system impairment — the bypassed zone will not transmit alarms. Document and notify AHJ per NFPA 72 impairment procedures.'},
+{code:'601',name:'Manual Test',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'A manual test has been initiated. Monitoring should have been notified prior to this signal.'},
+{code:'602',name:'Periodic Test',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'Scheduled automatic periodic test signal from the communicator. Confirms the communicator is functional.'},
+{code:'604',name:'Fire Test',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'Fire alarm test has been initiated. Monitoring should have been notified before testing began.'},
+{code:'607',name:'Walk Test Mode',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'Panel has been placed in walk test mode. Activations will be logged but alarms suppressed. Confirm monitoring was notified.'},
+{code:'608',name:'Periodic Test — Trouble Present',cat:'test',sev:'med',dispatch:false,restore:false,nfpa:false,desc:'Periodic test fired but the system currently has an active trouble condition. Investigate the trouble on the panel.'},
+{code:'614',name:'Fire Zone Walk Tested',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'A specific fire zone has been successfully walk tested.'},
+{code:'900',name:'Download Abort',cat:'misc',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'A remote programming download was aborted before completion.'},
+{code:'901',name:'Download Start / End',cat:'misc',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'Remote programming download has started or ended. Someone is uploading/downloading programming to this panel remotely.'},
+{code:'902',name:'Download Interrupted',cat:'misc',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'Remote programming download was interrupted before completion.'},
+{code:'912',name:'Fire Alarm Silenced',cat:'misc',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'Fire alarm outputs have been silenced at the panel. System is still in alarm state — not yet reset.'},
+{code:'913',name:'Supervisory Point Test',cat:'test',sev:'info',dispatch:false,restore:false,nfpa:false,desc:'A supervisory point test has been started or ended.'},
+];
+
+const CID_GROUPS=[
+{label:'Fire Alarms — 110s',codes:['110','111','112','113','114','115','116','117','118','120','162']},
+{label:'Fire Supervisory — 200s',codes:['200','201','202','203','204','205','206']},
+{label:'System Troubles — 300s',codes:['300','301','302','305','306','309','310','311','312','314']},
+{label:'Sounder / NAC Troubles — 320s',codes:['320','321','322','326','327']},
+{label:'SLC / Loop Troubles — 330s',codes:['330','331','332','333']},
+{label:'Communication Troubles — 350s',codes:['350','351','352','354','356','357']},
+{label:'Zone / Sensor Troubles — 370s',codes:['370','371','373','374','380','383','384']},
+{label:'Bypasses — 570s',codes:['570','571']},
+{label:'Test & Misc — 600s',codes:['601','602','604','607','608','614']},
+{label:'Download & Special — 900s',codes:['900','901','902','912','913']},
+];
+
+function cidLookup(code){return CID.find(c=>c.code===code.replace(/[eErR]/g,'').trim());}
+function cidSevClass(sev){return {high:'cid-result-high',med:'cid-result-med',low:'cid-result-low',info:'cid-result-info'}[sev]||'cid-result-none';}
+function cidTopClass(sev){return {high:'cid-rt-high',med:'cid-rt-med',low:'cid-rt-low',info:'cid-rt-info'}[sev]||'';}
+function cidCatClass(sev){return {high:'cid-cat-high',med:'cid-cat-med',low:'cid-cat-low',info:'cid-cat-info'}[sev]||'cid-cat-info';}
+function cidCatLabel(cat){return {fire:'Fire Alarm',sup:'Fire Supervisory',trbl:'System Trouble',test:'Test / Misc',misc:'Informational'}[cat]||cat;}
+function cidBadgeClass(cat){return {fire:'cid-badge-fire',sup:'cid-badge-sup',trbl:'cid-badge-trbl',test:'cid-badge-test',misc:'cid-badge-misc'}[cat]||'cid-badge-misc';}
+function cidRowSevClass(sev){return {high:'cid-sev-high',med:'cid-sev-med',low:'cid-sev-low',info:'cid-sev-info'}[sev]||'cid-sev-info';}
+
+function rCID(){
+  const raw=S.cidInput||'';
+  const clean=raw.replace(/[^0-9]/g,'').substring(0,3);
+  const qual=S.cidQual||'E';
+  const match=clean.length===3?cidLookup(clean):null;
+
+  const qualLabel=qual==='E'?'New Event (E)':'Restore / Clear (R)';
+  const qualNote=qual==='R'?' — This is a RESTORE signal. The condition has cleared.':'';
+
+  let resultHTML='';
+  if(clean.length===3){
+    if(match){
+      const sc=cidSevClass(match.sev), tc=cidTopClass(match.sev), cc=cidCatClass(match.sev);
+      const restoreNote=qual==='R'?`<div style="background:rgba(34,197,94,0.1);border:0.5px solid rgba(34,197,94,0.25);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--green);font-weight:600">✓ RESTORE — This condition has cleared at the panel.</div>`:'';
+      resultHTML=`<div class="cid-result ${sc}">
+        <div class="cid-result-top ${tc}"></div>
+        <div class="cid-result-body">
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+            <div class="cid-code-num">${qual}${clean}</div>
+            <div style="font-size:11px;color:var(--t3);font-weight:600">${qual==='E'?'New Event':'Restore'}</div>
+          </div>
+          <div class="cid-code-name">${match.name}</div>
+          <div class="cid-code-cat ${cc}">${cidCatLabel(match.cat)}</div>
+          <div class="cid-pills">
+            ${match.dispatch&&qual==='E'?'<span class="cid-pill cid-pill-dispatch">FD DISPATCH</span>':''}
+            ${match.restore?'<span class="cid-pill cid-pill-restore">RESTORE EXPECTED</span>':'<span class="cid-pill cid-pill-norestore">NO RESTORE</span>'}
+            ${match.nfpa?'<span class="cid-pill cid-pill-nfpa">NFPA 72 NOTE</span>':''}
+          </div>
+          <div class="cid-code-desc">${match.desc}${restoreNote?'':qualNote}</div>
+          ${restoreNote}
+        </div>
+      </div>`;
+    } else {
+      resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty"><div class="cid-code-num" style="color:var(--t3)">${qual}${clean}</div><div class="cid-empty-t" style="margin-top:8px">Code not in FA reference list.<br/>May be a burglar alarm, access control,<br/>or custom manufacturer code.</div></div></div></div>`;
+    }
+  } else if(clean.length>0){
+    resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty"><div class="cid-code-num" style="color:var(--t4);font-size:40px">${qual}${clean}${'_'.repeat(3-clean.length)}</div><div class="cid-empty-t" style="margin-top:8px">Enter 3 digits to decode</div></div></div></div>`;
+  } else {
+    resultHTML=`<div class="cid-result cid-result-none"><div class="cid-result-body"><div class="cid-empty"><div style="font-size:40px;color:var(--t4);font-family:ui-monospace,monospace;font-weight:800;letter-spacing:0.1em">E___</div><div class="cid-empty-t" style="margin-top:8px">Type a 3-digit Contact ID code<br/>to instantly decode it</div></div></div></div>`;
+  }
+
+  const groupHTML=CID_GROUPS.map(g=>{
+    const rows=g.codes.map(code=>{
+      const c=CID.find(x=>x.code===code);
+      if(!c)return '';
+      return `<div class="cid-row" onclick="setCIDInput('${c.code}')">
+        <div class="cid-row-sev ${cidRowSevClass(c.sev)}"></div>
+        <div class="cid-row-code">${c.code}</div>
+        <div class="cid-row-name">${c.name}</div>
+        <span class="cid-row-badge ${cidBadgeClass(c.cat)}">${cidCatLabel(c.cat).split(' ')[0]}</span>
+      </div>`;
+    }).join('');
+    return `<div class="cid-section"><div class="cid-section-label">${g.label}</div></div><div class="cid-list">${rows}</div>`;
+  }).join('');
+
+  return `<div>
+    <div class="cid-input-wrap">
+      <div class="cid-label">Contact ID Decoder</div>
+      <div class="cid-input-row">
+        <input class="cid-input" type="tel" maxlength="4" placeholder="110" value="${raw}" oninput="setCIDRaw(this.value)" />
+      </div>
+      <div class="cid-qual-row">
+        <button class="cid-qual ${qual==='E'?'on-e':''}" onclick="setCIDQual('E')">E — New Event</button>
+        <button class="cid-qual ${qual==='R'?'on-r':''}" onclick="setCIDQual('R')">R — Restore / Clear</button>
+      </div>
+    </div>
+    ${resultHTML}
+    <div class="cid-section"><div class="cid-section-label">Full FA Reference</div></div>
+    ${groupHTML}
+    <div class="sp"></div>
+  </div>`;
+}
+
 function gTab(t){S.tab=t;S.scode=null;if(t!=='diagnose'){S.dtree=null;S.dcur=null;S.dhist=[];}if(t!=='panels'){S.pb=null;S.pm=null;S.pt=null;}if(t!=='notes'){S.noteIdx=null;S.addEntry=false;S.makingSession=false;}R();}
 function sSQ(v){S.sq=v;R();}
 function sBrand(b){S.sbrand=b;R();}
@@ -426,6 +656,9 @@ function cancelS(){S.makingSession=false;R();}
 function deleteSession(i){if(confirm('Delete this session and all its entries?')){S.notes.splice(i,1);saveNotes(S.notes);S.noteIdx=null;R();}}
 function createS(){const site=document.getElementById('ns-site')?.value||'';const job=document.getElementById('ns-job')?.value||'';S.notes.unshift({id:Date.now(),site:site||'New Session',job,date:TODAY,entries:[]});saveNotes(S.notes);S.makingSession=false;S.noteIdx=0;R();}
 function saveE(){const text=S.newText||document.getElementById('et')?.value||'';if(!text.trim())return;const now=new Date(),h=now.getHours()%12||12,m=now.getMinutes().toString().padStart(2,'0'),ap=now.getHours()>=12?'PM':'AM';S.notes[S.noteIdx].entries.push({time:`${h}:${m} ${ap}`,text:text.trim(),tag:S.newTag});saveNotes(S.notes);S.addEntry=false;S.newText='';R();}
+function setCIDRaw(v){S.cidInput=v.replace(/[^0-9]/g,'').substring(0,3);R();}
+function setCIDQual(q){S.cidQual=q;R();}
+function setCIDInput(code){S.cidInput=code;S.cidQual='E';document.getElementById('main').scrollTop=0;R();}
 R();
 </script>
 </body>
