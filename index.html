@@ -354,7 +354,7 @@ document.getElementById('install-close').addEventListener('click',()=>{
   document.getElementById('install-banner').classList.remove('show');
 });
 
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/fa-tech-assist/sw.js');}
 
 function sev2cls(s){return s==='TROUBLE'?'rsev-t':s==='SUPERVISORY'?'rsev-s':'rsev-c';}
 function sev2badge(s){return s==='TROUBLE'?'rbadge-t':s==='SUPERVISORY'?'rbadge-s':'rbadge-c';}
