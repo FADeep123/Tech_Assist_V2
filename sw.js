@@ -1,4 +1,4 @@
-const CACHE = 'fa-tech-assist-v5';
+const CACHE = 'fa-tech-assist-v6';
 const ASSETS = [
   '/',
   '/index.html',
