@@ -1,15 +1,15 @@
-const CACHE = 'fa-tech-assist-v7';
+const CACHE = 'fa-tech-assist-v7-1';
 const ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  '/icons/icon-512.png',
+  '/icons/apple-touch-icon.png'
 ];
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c => {
-      // Use addAll but catch individual failures so a missing icon doesn't block install
       return Promise.allSettled(ASSETS.map(a => c.add(a)));
     }).then(() => self.skipWaiting())
   );
