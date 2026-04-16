@@ -295,8 +295,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;co
 .nfpa-detail-val{font-size:36px;font-weight:800;color:var(--a);font-family:ui-monospace,monospace;letter-spacing:-0.5px;margin-bottom:4px;}
 .nfpa-detail-label{font-size:16px;font-weight:700;color:var(--t1);margin-bottom:12px;}
 .nfpa-detail-note{font-size:14px;color:var(--t2);line-height:1.6;background:var(--s1);border-radius:12px;padding:14px 16px;border-left:3px solid var(--a);}
-.calc-tabs-row{display:flex;background:var(--s2);border-radius:12px;padding:3px;gap:2px;margin:14px 16px 0;}
-.calc-tab{flex:1;padding:8px 4px;border-radius:10px;font-size:10px;font-weight:700;text-align:center;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:inherit;letter-spacing:0.04em;text-transform:uppercase;-webkit-user-select:none;}
+.calc-tabs-row{display:flex;background:var(--s2);border-radius:12px;padding:3px;gap:2px;margin:14px 16px 0;overflow-x:auto;scrollbar-width:none;}
+.calc-tabs-row::-webkit-scrollbar{display:none;}
+.calc-tab{flex:0 0 auto;padding:8px 14px;border-radius:10px;font-size:10px;font-weight:700;text-align:center;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:inherit;letter-spacing:0.04em;text-transform:uppercase;-webkit-user-select:none;white-space:nowrap;}
 .calc-tab.on{background:var(--s4);color:var(--t1);}
 .calc-body{padding:14px 16px;}
 .calc-field{margin-bottom:14px;}
@@ -624,6 +625,106 @@ body::before{
 .anim > div > .mod-grid > *:nth-child(4),
 .anim > div > .card-list > *:nth-child(4){animation-delay:0.16s;}
 @keyframes fiStagger{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ================================================================
+   v7.2 ADDITIONS — Ohm's Law + Resistor decoder
+================================================================ */
+
+/* Section divider pattern reused from hub */
+.calc-sec-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--t3);text-transform:uppercase;padding:20px 0 8px;display:flex;align-items:center;gap:10px;}
+.calc-sec-label::after{content:'';flex:1;height:0.5px;background:var(--bdr);}
+
+/* Ohm's Law 4-input grid */
+.ohm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+.ohm-field{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:12px 14px;position:relative;overflow:hidden;}
+.ohm-field::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);}
+.ohm-field.active{border-color:rgba(230,57,70,0.4);background:var(--a3);}
+.ohm-field.derived{border-style:dashed;border-color:rgba(122,157,224,0.35);}
+.ohm-field-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.ohm-var{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--t2);text-transform:uppercase;}
+.ohm-badge{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:0.1em;padding:2px 6px;border-radius:4px;text-transform:uppercase;}
+.ohm-badge.input{background:var(--a2);color:var(--a);}
+.ohm-badge.derived{background:var(--b2);color:var(--b-lt);}
+.ohm-input{width:100%;background:none;border:none;outline:none;color:var(--t1);font-family:var(--mono);font-size:18px;font-weight:700;padding:2px 0;font-variant-numeric:tabular-nums;}
+.ohm-input:disabled{color:var(--b-lt);}
+.ohm-input::placeholder{color:var(--t4);font-weight:400;}
+.ohm-unit{font-family:var(--mono);font-size:11px;color:var(--t3);margin-left:4px;}
+
+.ohm-clear{margin-top:6px;padding:10px;background:transparent;border:0.5px solid var(--bdr2);border-radius:10px;color:var(--t2);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;width:100%;}
+.ohm-clear:active{background:var(--s2);}
+
+/* Wheel diagram */
+.ohm-wheel-wrap{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px;margin-top:4px;overflow:hidden;}
+.ohm-wheel-wrap svg{display:block;width:100%;height:auto;max-width:360px;margin:0 auto;}
+
+/* Active formula rows — show the math with values substituted */
+.ohm-formulas{margin-top:10px;padding-top:10px;border-top:0.5px solid var(--bdr);}
+.ohm-formula-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-family:var(--mono);font-size:13px;color:var(--t1);font-variant-numeric:tabular-nums;line-height:1.4;}
+.ohm-formula-row-var{font-weight:700;color:var(--a);min-width:18px;}
+.ohm-formula-row-eq{color:var(--t3);}
+.ohm-formula-row-val{color:var(--b-lt);font-weight:700;}
+.ohm-empty-hint{padding:14px;text-align:center;color:var(--t3);font-size:12px;line-height:1.5;font-family:var(--mono);letter-spacing:0.04em;}
+
+/* ===== RESISTOR DECODER ===== */
+
+.res-mode-toggle{display:flex;background:var(--s2);border:0.5px solid var(--bdr2);border-radius:10px;padding:2px;margin-bottom:14px;position:relative;overflow:hidden;}
+.res-mode-btn{flex:1;padding:9px 10px;border-radius:8px;border:none;background:transparent;color:var(--t3);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:color 0.2s var(--ease);position:relative;z-index:2;}
+.res-mode-btn.active{color:var(--a);}
+.res-mode-bg{position:absolute;top:2px;bottom:2px;width:calc(50% - 2px);background:var(--a2);border:0.5px solid rgba(230,57,70,0.3);border-radius:8px;z-index:1;transition:transform 0.32s var(--ease);}
+
+/* Resistor visual — 4-band renderer */
+.res-visual{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:20px 14px;margin-bottom:14px;}
+.res-body{position:relative;height:64px;max-width:320px;margin:0 auto;}
+.res-leads{position:absolute;top:50%;height:2px;background:#9CA3AF;transform:translateY(-50%);}
+.res-lead-l{left:-8px;width:38px;}
+.res-lead-r{right:-8px;width:38px;}
+.res-shell{position:absolute;top:0;left:30px;right:30px;height:64px;background:linear-gradient(180deg,#E8D7B3 0%,#D4BF94 50%,#B39A6D 100%);border-radius:26px;box-shadow:inset 0 2px 4px rgba(255,255,255,0.3),inset 0 -2px 4px rgba(0,0,0,0.2);}
+.res-band{position:absolute;top:0;height:64px;width:12%;}
+.res-band-1{left:18%;}
+.res-band-2{left:34%;}
+.res-band-3{left:50%;}
+.res-band-4{left:76%;}
+
+.res-band-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;}
+.res-band-col{display:flex;flex-direction:column;gap:4px;align-items:center;}
+.res-band-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--t3);text-transform:uppercase;margin-bottom:4px;text-align:center;line-height:1.2;min-height:22px;}
+.res-band-swatch{width:100%;aspect-ratio:1;border-radius:8px;border:0.5px solid var(--bdr2);cursor:pointer;position:relative;}
+.res-band-swatch.current{border:2px solid var(--a);box-shadow:0 0 8px var(--a-glow);}
+.res-band-swatch-ico{width:100%;height:100%;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:800;}
+
+/* Color picker popup (open dropdown style) */
+.res-color-list{margin-top:10px;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:8px;background:var(--s2);border:0.5px solid var(--bdr2);border-radius:10px;}
+.res-color-chip{aspect-ratio:1;border-radius:6px;cursor:pointer;position:relative;border:0.5px solid var(--bdr2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:800;}
+.res-color-chip.selected{border:2px solid var(--a);box-shadow:0 0 8px var(--a-glow);}
+.res-color-chip.disabled{opacity:0.25;cursor:not-allowed;}
+
+/* Decode result */
+.res-result{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:18px 16px;margin-top:10px;text-align:center;}
+.res-result-val{font-family:var(--mono);font-size:30px;font-weight:800;color:var(--a);letter-spacing:-0.01em;font-variant-numeric:tabular-nums;line-height:1;}
+.res-result-tol{font-family:var(--mono);font-size:12px;color:var(--t2);margin-top:6px;}
+.res-result-range{font-family:var(--mono);font-size:11px;color:var(--t3);margin-top:4px;}
+.res-eol-match{margin-top:12px;padding-top:12px;border-top:0.5px solid var(--bdr);}
+.res-eol-match-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--green);text-transform:uppercase;}
+.res-eol-match-list{margin-top:6px;font-size:12px;color:var(--t2);line-height:1.6;}
+.res-eol-match-none{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--t3);text-transform:uppercase;}
+
+/* Encode mode: value → colors */
+.res-encode-field{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:14px;margin-bottom:12px;}
+.res-encode-input-row{display:flex;gap:8px;align-items:center;}
+.res-encode-input{flex:1;background:none;border:none;outline:none;color:var(--t1);font-family:var(--mono);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;}
+.res-encode-input::placeholder{color:var(--t4);font-weight:400;}
+.res-encode-unit-group{display:flex;gap:4px;background:var(--s3);border-radius:8px;padding:2px;}
+.res-encode-unit-btn{padding:6px 10px;background:transparent;border:none;border-radius:6px;color:var(--t3);font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.04em;}
+.res-encode-unit-btn.active{background:var(--s4);color:var(--t1);}
+.res-encode-preset-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.res-encode-preset{padding:6px 10px;background:var(--s2);border:0.5px solid var(--bdr2);border-radius:7px;color:var(--t2);font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.04em;}
+.res-encode-preset:active{background:var(--s3);transform:scale(0.96);}
+.res-encode-result-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.1em;color:var(--t3);text-transform:uppercase;margin-top:12px;margin-bottom:6px;}
+
+/* Reference image section */
+.ref-image-wrap{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:12px;margin-top:10px;}
+.ref-image-wrap svg{display:block;width:100%;height:auto;margin:0 auto;}
+.ref-image-caption{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--t3);text-transform:uppercase;text-align:center;margin-top:10px;}
 </style>
 </head>
 <body>
@@ -1029,6 +1130,8 @@ let S={
   calcBatt:{standby:'350',alarm:'3000',alarmMin:'5',battAH:'18'},
   calcVolt:{gauge:'18',length:'300',current:'1000'},
   calcEOL:{brand:'Notifier NFS2-640 Onboard NAC',reading:''},
+  calcOhm:{v:'',i:'',r:'',p:''},
+  calcRes:{mode:'decode',b1:2,b2:2,b3:2,b4:'gold',enc:'2.2',encUnit:'k'},
   timer:{active:false,start:null,site:'',type:'test',elapsed:0},
   nfpaSearch:'',
   nfpaDetail:null,
@@ -1127,7 +1230,7 @@ function rHome(){return `<div>
   <div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Document all impairment durations in job notes.</div></div>
   <div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it.</div></div>
 </div>
-<div class="version-tag">FA Tech Assist · Encore Fire Protection · v7.0</div>
+<div class="version-tag">FA Tech Assist · Encore Fire Protection · v7.2</div>
 </div>`;}
 
 function rReference(){
@@ -1163,7 +1266,7 @@ function rToolHub(){
     <div class="hub-ico">⚡</div>
     <div class="hub-info">
       <div class="hub-title">Electrical Calculators</div>
-      <div class="hub-desc">NAC load · Battery standby · Voltage drop · EOL resistance check</div>
+      <div class="hub-desc">NAC load · Battery · Voltage drop · EOL check · Ohm's Law · Resistor decoder</div>
     </div>
     <div class="hub-chev">›</div>
   </div>
@@ -1396,6 +1499,10 @@ function rCalc(){
 <div class="calc-field"><label class="calc-label">Panel / Circuit Type</label><select class="calc-select" onchange="updateCalcEOL('brand',this.value)">${Object.keys(EOL_VALS).map(k=>`<option value="${k}" ${S.calcEOL.brand===k?'selected':''}>${k}</option>`).join('')}</select></div>
 <div class="calc-field"><label class="calc-label">Multimeter Reading (Ω)</label><input class="calc-input" type="number" value="${S.calcEOL.reading}" oninput="updateCalcEOL('reading',this.value)" placeholder="e.g. 2200" /></div>
 ${resultCard}`;
+  } else if(tab==='ohms'){
+    calcHTML=renderOhmsLaw();
+  } else if(tab==='resistor'){
+    calcHTML=renderResistor();
   }
   return `<div>
 <button class="back-btn" onclick="setTool(null)">‹ Tools</button>
@@ -1405,9 +1512,537 @@ ${resultCard}`;
   <button class="calc-tab ${tab==='battery'?'on':''}" onclick="setCalcTab('battery')">Battery</button>
   <button class="calc-tab ${tab==='voltdrop'?'on':''}" onclick="setCalcTab('voltdrop')">Volt Drop</button>
   <button class="calc-tab ${tab==='eol'?'on':''}" onclick="setCalcTab('eol')">EOL Check</button>
+  <button class="calc-tab ${tab==='ohms'?'on':''}" onclick="setCalcTab('ohms')">Ohm's Law</button>
+  <button class="calc-tab ${tab==='resistor'?'on':''}" onclick="setCalcTab('resistor')">Resistor</button>
 </div>
 <div class="calc-body">${calcHTML}</div>
 <div class="sp"></div></div>`;}
+
+/* ================================================================
+   v7.2 — OHM'S LAW SOLVER
+================================================================ */
+
+function parseOhm(v){
+  if(v===null||v===undefined||v==='')return null;
+  const n=parseFloat(v);
+  return isNaN(n)?null:n;
+}
+function fmtOhm(n,unit){
+  if(n===null||n===undefined||isNaN(n))return '—';
+  if(Math.abs(n)>=1000000)return (n/1000000).toFixed(3).replace(/\.?0+$/,'')+' M'+unit;
+  if(Math.abs(n)>=1000)return (n/1000).toFixed(3).replace(/\.?0+$/,'')+' k'+unit;
+  if(Math.abs(n)>=1)return n.toFixed(3).replace(/\.?0+$/,'')+' '+unit;
+  if(Math.abs(n)>=0.001)return (n*1000).toFixed(3).replace(/\.?0+$/,'')+' m'+unit;
+  return n.toExponential(2)+' '+unit;
+}
+
+function renderOhmsLaw(){
+  const V=parseOhm(S.calcOhm.v);
+  const I=parseOhm(S.calcOhm.i);
+  const R=parseOhm(S.calcOhm.r);
+  const P=parseOhm(S.calcOhm.p);
+
+  // Figure out what's derivable from the two (or more) inputs
+  const inputs={V,I,R,P};
+  const provided=Object.entries(inputs).filter(([k,v])=>v!==null);
+  const derived={V:null,I:null,R:null,P:null};
+  let formulas=[]; // each: {var, expr, value, steps}
+
+  if(provided.length>=2){
+    // Iteratively solve — keep deriving until nothing new
+    const known={};
+    provided.forEach(([k,v])=>known[k]=v);
+    let changed=true;
+    let iter=0;
+    while(changed && iter<8){
+      changed=false;
+      iter++;
+      // V = I*R
+      if(known.V===undefined && known.I!==undefined && known.R!==undefined){
+        known.V=known.I*known.R;
+        formulas.push({v:'V',expr:'I × R',subst:`${known.I} × ${known.R}`,val:known.V,unit:'V'});
+        changed=true;
+      }
+      // V = P/I
+      if(known.V===undefined && known.P!==undefined && known.I!==undefined && known.I!==0){
+        known.V=known.P/known.I;
+        formulas.push({v:'V',expr:'P / I',subst:`${known.P} / ${known.I}`,val:known.V,unit:'V'});
+        changed=true;
+      }
+      // V = √(P*R)
+      if(known.V===undefined && known.P!==undefined && known.R!==undefined && known.P*known.R>=0){
+        known.V=Math.sqrt(known.P*known.R);
+        formulas.push({v:'V',expr:'√(P × R)',subst:`√(${known.P} × ${known.R})`,val:known.V,unit:'V'});
+        changed=true;
+      }
+      // I = V/R
+      if(known.I===undefined && known.V!==undefined && known.R!==undefined && known.R!==0){
+        known.I=known.V/known.R;
+        formulas.push({v:'I',expr:'V / R',subst:`${known.V} / ${known.R}`,val:known.I,unit:'A'});
+        changed=true;
+      }
+      // I = P/V
+      if(known.I===undefined && known.P!==undefined && known.V!==undefined && known.V!==0){
+        known.I=known.P/known.V;
+        formulas.push({v:'I',expr:'P / V',subst:`${known.P} / ${known.V}`,val:known.I,unit:'A'});
+        changed=true;
+      }
+      // I = √(P/R)
+      if(known.I===undefined && known.P!==undefined && known.R!==undefined && known.R!==0 && known.P/known.R>=0){
+        known.I=Math.sqrt(known.P/known.R);
+        formulas.push({v:'I',expr:'√(P / R)',subst:`√(${known.P} / ${known.R})`,val:known.I,unit:'A'});
+        changed=true;
+      }
+      // R = V/I
+      if(known.R===undefined && known.V!==undefined && known.I!==undefined && known.I!==0){
+        known.R=known.V/known.I;
+        formulas.push({v:'R',expr:'V / I',subst:`${known.V} / ${known.I}`,val:known.R,unit:'Ω'});
+        changed=true;
+      }
+      // R = V²/P
+      if(known.R===undefined && known.V!==undefined && known.P!==undefined && known.P!==0){
+        known.R=(known.V*known.V)/known.P;
+        formulas.push({v:'R',expr:'V² / P',subst:`${known.V}² / ${known.P}`,val:known.R,unit:'Ω'});
+        changed=true;
+      }
+      // R = P/I²
+      if(known.R===undefined && known.P!==undefined && known.I!==undefined && known.I!==0){
+        known.R=known.P/(known.I*known.I);
+        formulas.push({v:'R',expr:'P / I²',subst:`${known.P} / ${known.I}²`,val:known.R,unit:'Ω'});
+        changed=true;
+      }
+      // P = V*I
+      if(known.P===undefined && known.V!==undefined && known.I!==undefined){
+        known.P=known.V*known.I;
+        formulas.push({v:'P',expr:'V × I',subst:`${known.V} × ${known.I}`,val:known.P,unit:'W'});
+        changed=true;
+      }
+      // P = V²/R
+      if(known.P===undefined && known.V!==undefined && known.R!==undefined && known.R!==0){
+        known.P=(known.V*known.V)/known.R;
+        formulas.push({v:'P',expr:'V² / R',subst:`${known.V}² / ${known.R}`,val:known.P,unit:'W'});
+        changed=true;
+      }
+      // P = I²*R
+      if(known.P===undefined && known.I!==undefined && known.R!==undefined){
+        known.P=known.I*known.I*known.R;
+        formulas.push({v:'P',expr:'I² × R',subst:`${known.I}² × ${known.R}`,val:known.P,unit:'W'});
+        changed=true;
+      }
+    }
+    const providedKeys=new Set(provided.map(([k])=>k));
+    ['V','I','R','P'].forEach(k=>{
+      if(!providedKeys.has(k) && known[k]!==undefined){derived[k]=known[k];}
+    });
+  }
+
+  const field=(variable,label,unit,stateKey)=>{
+    const val=S.calcOhm[stateKey];
+    const isInput=val!==null && val!=='';
+    const isDerived=!isInput && derived[variable]!==null;
+    const displayVal=isInput?val:(isDerived?fmtOhm(derived[variable],'').replace(' ','').replace(unit,'').trim():'');
+    const cls=isInput?'ohm-field active':(isDerived?'ohm-field derived':'ohm-field');
+    const badge=isInput?'<span class="ohm-badge input">Input</span>':(isDerived?'<span class="ohm-badge derived">Derived</span>':'');
+    return `<div class="${cls}">
+      <div class="ohm-field-head">
+        <span class="ohm-var">${label}</span>
+        ${badge}
+      </div>
+      <input class="ohm-input" type="number" step="any" value="${isInput?val:''}" placeholder="${isDerived?fmtOhm(derived[variable],'').replace(/\s?[VARΩW]+$/,''):'—'}" oninput="updateOhm('${stateKey}',this.value)" />
+      <span class="ohm-unit">${unit}</span>
+    </div>`;
+  };
+
+  const hasAny=['v','i','r','p'].some(k=>S.calcOhm[k]!=='');
+
+  let formulaBlock='';
+  if(formulas.length>0){
+    formulaBlock=`<div class="ohm-formulas">
+      ${formulas.map(f=>`<div class="ohm-formula-row"><span class="ohm-formula-row-var">${f.v}</span><span class="ohm-formula-row-eq">=</span><span>${f.expr}</span><span class="ohm-formula-row-eq">=</span><span class="ohm-formula-row-val">${fmtOhm(f.val,f.unit)}</span></div>`).join('')}
+    </div>`;
+  } else if(!hasAny){
+    formulaBlock=`<div class="ohm-empty-hint">Enter any two values above to see the math</div>`;
+  } else {
+    formulaBlock=`<div class="ohm-empty-hint">Enter at least 2 values to solve</div>`;
+  }
+
+  // Active variables for wheel highlighting
+  const activeVars=new Set();
+  ['V','I','R','P'].forEach(k=>{if(inputs[k]!==null || derived[k]!==null)activeVars.add(k);});
+
+  return `
+<div class="calc-sec-label">Inputs</div>
+<div class="ohm-grid">
+  ${field('P','P','W','p')}
+  ${field('V','V','V','v')}
+  ${field('I','I','A','i')}
+  ${field('R','R','Ω','r')}
+</div>
+${hasAny?'<button class="ohm-clear" onclick="clearOhm()">Clear all</button>':''}
+
+<div class="calc-sec-label">Solution</div>
+<div class="ohm-wheel-wrap">
+  ${renderOhmsWheel(activeVars)}
+  ${formulaBlock}
+</div>
+
+<div class="calc-sec-label">Reference</div>
+<div class="ref-image-wrap">
+  ${renderOhmsWheel(new Set(['V','I','R','P']),true)}
+  <div class="ref-image-caption">Ohm's Law Wheel — all 12 formulas</div>
+</div>
+`;
+}
+
+/* Ohm's Law wheel SVG — renders the 4-quadrant formula ring.
+   activeVars: which quadrants to highlight. refMode: full ref (no highlight). */
+function renderOhmsWheel(activeVars,refMode=false){
+  const quadrants=[
+    {v:'P',label:'P',unit:'Watts',color:'#EAB308',formulas:[{f:'I × V',x:0.5,y:-0.78},{f:'I² × R',x:-0.78,y:-0.5},{f:'V²/R',x:0.78,y:-0.5}]},
+    {v:'V',label:'V',unit:'Volts',color:'#22C55E',formulas:[{f:'I × R',x:0.5,y:-0.78},{f:'P/I',x:0.78,y:-0.5},{f:'√(P × R)',x:0.78,y:0.5}]},
+    {v:'R',label:'R',unit:'Ohms',color:'#3B82F6',formulas:[{f:'V/I',x:0.78,y:0.5},{f:'V²/P',x:0.5,y:0.78},{f:'P/I²',x:-0.78,y:0.5}]},
+    {v:'I',label:'I',unit:'Amps',color:'#EF4444',formulas:[{f:'√(P/R)',x:-0.78,y:0.5},{f:'V/R',x:-0.78,y:-0.5},{f:'P/V',x:-0.5,y:0.78}]}
+  ];
+  // We'll use a simpler SVG wheel — 4 quadrant center labels + wedges colored
+  const cx=180,cy=180,rInner=50,rOuter=165;
+
+  // Wedges path (each quadrant = 3 sub-wedges)
+  function wedgePath(startAngle,endAngle,rI,rO){
+    const s=startAngle*Math.PI/180, e=endAngle*Math.PI/180;
+    const x1=cx+rO*Math.cos(s), y1=cy+rO*Math.sin(s);
+    const x2=cx+rO*Math.cos(e), y2=cy+rO*Math.sin(e);
+    const x3=cx+rI*Math.cos(e), y3=cy+rI*Math.sin(e);
+    const x4=cx+rI*Math.cos(s), y4=cy+rI*Math.sin(s);
+    const large=(endAngle-startAngle)>180?1:0;
+    return `M ${x1} ${y1} A ${rO} ${rO} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${rI} ${rI} 0 ${large} 0 ${x4} ${y4} Z`;
+  }
+
+  // Each of the 4 quadrants gets 3 sub-wedges, so 12 total
+  // Quadrant order starts at top and goes clockwise:
+  // P (top, -135 to -45), V (right, -45 to 45), R (bottom, 45 to 135), I (left, 135 to 225)
+  const quadAngles=[
+    {v:'P',start:-135,end:-45,centerLabel:{x:cx,y:cy-25},unitLabel:{x:cx,y:cy-10}},
+    {v:'V',start:-45,end:45,centerLabel:{x:cx+25,y:cy},unitLabel:{x:cx+25,y:cy+15}},
+    {v:'R',start:45,end:135,centerLabel:{x:cx,y:cy+25},unitLabel:{x:cx,y:cy+40}},
+    {v:'I',start:135,end:225,centerLabel:{x:cx-25,y:cy},unitLabel:{x:cx-25,y:cy+15}}
+  ];
+
+  // 12 formula positions
+  const formulaPositions={
+    'P':['I × V','I² × R','V²/R'],
+    'V':['I × R','P/I','√(P·R)'],
+    'R':['V/I','V²/P','P/I²'],
+    'I':['√(P/R)','V/R','P/V']
+  };
+
+  let wedges='';
+  quadAngles.forEach(q=>{
+    const active=activeVars.has(q.v);
+    const baseColor=quadrants.find(x=>x.v===q.v).color;
+    const wedgeColor=active?baseColor:'#2E2E2E';
+    const opacity=active?(refMode?0.85:0.78):(refMode?0.35:0.18);
+    // 3 sub-wedges per quadrant
+    for(let i=0;i<3;i++){
+      const sub=q.start+i*((q.end-q.start)/3);
+      const subEnd=q.start+(i+1)*((q.end-q.start)/3);
+      wedges+=`<path d="${wedgePath(sub,subEnd,rInner,rOuter)}" fill="${wedgeColor}" opacity="${opacity}" stroke="#0E0F14" stroke-width="1.5"/>`;
+      // formula text
+      const formula=formulaPositions[q.v][i];
+      const midAngle=(sub+subEnd)/2*Math.PI/180;
+      const textR=(rInner+rOuter)/2;
+      const tx=cx+textR*Math.cos(midAngle);
+      const ty=cy+textR*Math.sin(midAngle)+3;
+      wedges+=`<text x="${tx}" y="${ty}" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="${active?'#fff':'#6E6E73'}">${formula}</text>`;
+    }
+  });
+
+  // Center crosshair divider
+  const centerCross=`
+    <line x1="${cx-rInner*0.9}" y1="${cy}" x2="${cx+rInner*0.9}" y2="${cy}" stroke="${refMode?'#6E6E73':'#48484A'}" stroke-width="1"/>
+    <line x1="${cx}" y1="${cy-rInner*0.9}" x2="${cx}" y2="${cy+rInner*0.9}" stroke="${refMode?'#6E6E73':'#48484A'}" stroke-width="1"/>
+  `;
+
+  // Center labels
+  let centerLabels='';
+  quadAngles.forEach(q=>{
+    const qData=quadrants.find(x=>x.v===q.v);
+    const active=activeVars.has(q.v);
+    const color=active?qData.color:'#A8A8AD';
+    centerLabels+=`<text x="${q.centerLabel.x}" y="${q.centerLabel.y}" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="22" font-weight="800" fill="${color}">${q.v}</text>`;
+    centerLabels+=`<text x="${q.unitLabel.x}" y="${q.unitLabel.y}" text-anchor="middle" font-family="SF Mono,monospace" font-size="8" font-weight="700" fill="${active?color:'#6E6E73'}" opacity="0.85">${qData.unit.toUpperCase()}</text>`;
+  });
+
+  // Inner circle fill
+  const innerFill=`<circle cx="${cx}" cy="${cy}" r="${rInner}" fill="#16171E" stroke="#2E2E2E" stroke-width="1"/>`;
+
+  return `<svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+    ${wedges}
+    ${innerFill}
+    ${centerCross}
+    ${centerLabels}
+  </svg>`;
+}
+
+function updateOhm(k,v){S.calcOhm[k]=v;const el=document.getElementById('main');if(el)el.innerHTML=rCalc();}
+function clearOhm(){S.calcOhm={v:'',i:'',r:'',p:''};R();}
+
+/* ================================================================
+   v7.2 — RESISTOR DECODER (bidirectional)
+================================================================ */
+
+const RES_COLORS=[
+  {name:'Black',hex:'#1a1a1a',textColor:'#fff',digit:0,mult:1},
+  {name:'Brown',hex:'#6F3A10',textColor:'#fff',digit:1,mult:10,tol:1},
+  {name:'Red',hex:'#C8102E',textColor:'#fff',digit:2,mult:100,tol:2},
+  {name:'Orange',hex:'#E85D1A',textColor:'#fff',digit:3,mult:1000},
+  {name:'Yellow',hex:'#F4C430',textColor:'#1a1a1a',digit:4,mult:10000},
+  {name:'Green',hex:'#2E8B3F',textColor:'#fff',digit:5,mult:100000,tol:0.5},
+  {name:'Blue',hex:'#1E5FB5',textColor:'#fff',digit:6,mult:1000000,tol:0.25},
+  {name:'Violet',hex:'#7A3A9A',textColor:'#fff',digit:7,mult:10000000,tol:0.1},
+  {name:'Gray',hex:'#808080',textColor:'#fff',digit:8,mult:100000000,tol:0.05},
+  {name:'White',hex:'#E8E8E8',textColor:'#1a1a1a',digit:9,mult:1000000000},
+  {name:'Gold',hex:'#C8A34A',textColor:'#1a1a1a',digit:null,mult:0.1,tol:5},
+  {name:'Silver',hex:'#B0B0B0',textColor:'#1a1a1a',digit:null,mult:0.01,tol:10}
+];
+
+// Known EOL values from PNL — for spec-match
+function getEOLMatches(ohms){
+  const matches=[];
+  const seen=new Set();
+  // Common EOL values indexed for fast lookup
+  const known=[
+    {val:1000,sources:['Bosch — all zones/NACs (D7412GV4, D9412GV4, FPD-7024)']},
+    {val:2200,sources:['Notifier — Onboard NAC (NFS2-640, NFS-320, NFS2-3030)']},
+    {val:3900,sources:['Fire-Lite — MMF-302 Module IDC']},
+    {val:4700,sources:['Fire-Lite — NAC / zones (MS-9200, MS-9600)','Silent Knight — NAC / IDC (SK-5208, SK-5820XL)']},
+    {val:10000,sources:['Simplex — NAC (4100ES, 4010ES)']},
+    {val:15000,sources:['EST/Edwards — NAC (iO500, iO64)']},
+    {val:47000,sources:['Notifier — FCM-1 / XP6-C Module NAC','Fire-Lite — MMF-300 / MDF-300 Module IDC','EST/Edwards — DACT Abort Circuit']}
+  ];
+  for(const k of known){
+    const tolerance=k.val*0.1; // 10% window for match
+    if(Math.abs(ohms-k.val)<=tolerance){
+      k.sources.forEach(s=>{if(!seen.has(s)){matches.push(s);seen.add(s);}});
+    }
+  }
+  return matches;
+}
+
+function renderResistor(){
+  const mode=S.calcRes.mode;
+  const modeToggle=`
+<div class="res-mode-toggle">
+  <div class="res-mode-bg" style="transform:translateX(${mode==='decode'?'2px':'calc(100% + 2px)'})"></div>
+  <button class="res-mode-btn ${mode==='decode'?'active':''}" onclick="setResMode('decode')">Colors → Value</button>
+  <button class="res-mode-btn ${mode==='encode'?'active':''}" onclick="setResMode('encode')">Value → Colors</button>
+</div>`;
+
+  if(mode==='decode'){
+    return modeToggle+renderResDecode();
+  } else {
+    return modeToggle+renderResEncode();
+  }
+}
+
+function renderResDecode(){
+  const b1=S.calcRes.b1,b2=S.calcRes.b2,b3=S.calcRes.b3,b4=S.calcRes.b4;
+  const b1c=RES_COLORS[b1],b2c=RES_COLORS[b2],b3c=RES_COLORS[b3];
+  const b4c=RES_COLORS.find(c=>c.name.toLowerCase()===b4);
+  const digits=(b1c.digit*10)+b2c.digit;
+  const ohms=digits*b3c.mult;
+  const tol=b4c?b4c.tol:null;
+
+  // Visual resistor
+  const visual=`<div class="res-visual">
+    <div class="res-body">
+      <div class="res-leads res-lead-l"></div>
+      <div class="res-leads res-lead-r"></div>
+      <div class="res-shell">
+        <div class="res-band res-band-1" style="background:${b1c.hex};"></div>
+        <div class="res-band res-band-2" style="background:${b2c.hex};"></div>
+        <div class="res-band res-band-3" style="background:${b3c.hex};"></div>
+        <div class="res-band res-band-4" style="background:${b4c?b4c.hex:'#C8A34A'};"></div>
+      </div>
+    </div>
+  </div>`;
+
+  // Band-picker chips — show current selection for each band position
+  const pickerBand=(label,pos,currentIdx,onlyDigits,onlyTolerance)=>{
+    const c=RES_COLORS[currentIdx];
+    return `<div class="res-band-col">
+      <div class="res-band-label">${label}</div>
+      <div class="res-band-swatch current" style="background:${c.hex};color:${c.textColor};">
+        <div class="res-band-swatch-ico">${onlyTolerance?(c.tol?c.tol+'%':'—'):(c.digit!==null?c.digit:'—')}</div>
+      </div>
+    </div>`;
+  };
+
+  // Full color list for interactive selection
+  const activeBand=S.calcRes._activeBand||'b1';
+  const activeTol=activeBand==='b4';
+  const colorList=`
+  <div class="res-encode-result-label">Tap a color to change ${activeBand==='b1'?'Band 1 (1st digit)':activeBand==='b2'?'Band 2 (2nd digit)':activeBand==='b3'?'Band 3 (multiplier)':'Band 4 (tolerance)'}</div>
+  <div class="res-color-list">
+    ${RES_COLORS.map((c,i)=>{
+      const disabled=activeTol?(c.tol===undefined):(activeBand==='b1' || activeBand==='b2'?c.digit===null:false);
+      const cur=S.calcRes[activeBand];
+      const isSelected=activeTol?(c.name.toLowerCase()===cur):(i===cur);
+      return `<div class="res-color-chip ${isSelected?'selected':''} ${disabled?'disabled':''}" style="background:${c.hex};color:${c.textColor};" ${disabled?'':`onclick="setResBand('${activeBand}','${activeTol?c.name.toLowerCase():i}')"`}>${activeTol?(c.tol||''):(c.digit!==null?c.digit:'')}</div>`;
+    }).join('')}
+  </div>`;
+
+  // EOL spec match
+  const matches=getEOLMatches(ohms);
+  const eolBlock=matches.length>0
+    ? `<div class="res-eol-match">
+        <div class="res-eol-match-label">✓ Matches known EOL value</div>
+        <div class="res-eol-match-list">${matches.map(m=>`• ${m}`).join('<br>')}</div>
+      </div>`
+    : `<div class="res-eol-match"><div class="res-eol-match-none">No known Encore FA EOL match</div></div>`;
+
+  // Result value display
+  const valueStr=fmtOhmVal(ohms);
+  const range=tol!==null?`Tolerance: ±${tol}%  (${fmtOhmVal(ohms*(1-tol/100))} to ${fmtOhmVal(ohms*(1+tol/100))})`:'';
+
+  return `
+${visual}
+<div style="display:flex;gap:6px;margin:4px 0 10px;">
+  ${['b1','b2','b3','b4'].map(bn=>{
+    const isActive=activeBand===bn;
+    const c=bn==='b4'?RES_COLORS.find(cc=>cc.name.toLowerCase()===S.calcRes[bn]):RES_COLORS[S.calcRes[bn]];
+    return `<div onclick="setResActiveBand('${bn}')" style="flex:1;cursor:pointer;padding:8px 4px;border:${isActive?'1.5px solid var(--a)':'0.5px solid var(--bdr2)'};border-radius:9px;background:${isActive?'var(--a2)':'var(--s1)'};text-align:center;">
+      <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.06em;color:${isActive?'var(--a)':'var(--t3)'};text-transform:uppercase;margin-bottom:4px;">Band ${bn.slice(1)}</div>
+      <div style="width:100%;height:16px;background:${c.hex};border-radius:4px;border:0.5px solid var(--bdr2);"></div>
+    </div>`;
+  }).join('')}
+</div>
+${colorList}
+<div class="res-result">
+  <div class="res-result-val">${valueStr}</div>
+  ${range?`<div class="res-result-range">${range}</div>`:''}
+  ${eolBlock}
+</div>`;
+}
+
+function renderResEncode(){
+  const val=parseFloat(S.calcRes.enc);
+  const unit=S.calcRes.encUnit;
+  const mult=unit==='M'?1000000:(unit==='k'?1000:1);
+  const ohms=isNaN(val)?NaN:val*mult;
+
+  const presets=[
+    {v:'1',u:''},{v:'1',u:'k'},{v:'2.2',u:'k'},{v:'3.9',u:'k'},{v:'4.7',u:'k'},{v:'10',u:'k'},{v:'15',u:'k'},{v:'47',u:'k'}
+  ];
+
+  let result='';
+  if(!isNaN(ohms) && ohms>0){
+    const bands=encodeResistorValue(ohms);
+    if(bands){
+      const b1c=RES_COLORS[bands.b1],b2c=RES_COLORS[bands.b2],b3c=RES_COLORS[bands.b3],b4c=RES_COLORS.find(c=>c.name.toLowerCase()==='gold');
+      const visual=`<div class="res-visual">
+        <div class="res-body">
+          <div class="res-leads res-lead-l"></div>
+          <div class="res-leads res-lead-r"></div>
+          <div class="res-shell">
+            <div class="res-band res-band-1" style="background:${b1c.hex};"></div>
+            <div class="res-band res-band-2" style="background:${b2c.hex};"></div>
+            <div class="res-band res-band-3" style="background:${b3c.hex};"></div>
+            <div class="res-band res-band-4" style="background:${b4c.hex};"></div>
+          </div>
+        </div>
+      </div>
+      <div class="res-encode-result-label">4-Band Color Sequence (5% tolerance)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+        ${[{label:'Band 1',color:b1c,code:b1c.digit},{label:'Band 2',color:b2c,code:b2c.digit},{label:'Band 3',color:b3c,code:'×'+formatMult(b3c.mult)},{label:'Band 4',color:b4c,code:'±5%'}].map(b=>
+          `<div style="background:var(--s1);border:0.5px solid var(--bdr2);border-radius:10px;padding:10px 6px;text-align:center;">
+            <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.06em;color:var(--t3);text-transform:uppercase;margin-bottom:6px;">${b.label}</div>
+            <div style="width:100%;height:24px;background:${b.color.hex};border-radius:4px;border:0.5px solid var(--bdr2);margin-bottom:6px;"></div>
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--t1);">${b.color.name}</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:2px;">${b.code}</div>
+          </div>`
+        ).join('')}
+      </div>`;
+      const matches=getEOLMatches(ohms);
+      const eol=matches.length>0
+        ? `<div class="res-result" style="margin-top:12px;"><div class="res-eol-match-label" style="margin-bottom:6px;">✓ This is a known EOL value</div><div class="res-eol-match-list">${matches.map(m=>`• ${m}`).join('<br>')}</div></div>`
+        : '';
+      result=visual+eol;
+    } else {
+      result=`<div class="res-result" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.25);"><div style="font-family:var(--mono);font-size:11px;color:var(--amber);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Value out of 4-band range</div><div style="font-size:12px;color:var(--t2);margin-top:6px;">${fmtOhmVal(ohms)} cannot be represented with standard 4-band coding. Try a value from ~1Ω to 99 GΩ.</div></div>`;
+    }
+  }
+
+  return `
+<div class="res-encode-field">
+  <div class="calc-label" style="margin-bottom:8px;">Resistance Value</div>
+  <div class="res-encode-input-row">
+    <input class="res-encode-input" type="number" step="any" value="${S.calcRes.enc}" placeholder="2.2" oninput="updateResEnc(this.value)"/>
+    <div class="res-encode-unit-group">
+      <button class="res-encode-unit-btn ${unit===''?'active':''}" onclick="setResEncUnit('')">Ω</button>
+      <button class="res-encode-unit-btn ${unit==='k'?'active':''}" onclick="setResEncUnit('k')">kΩ</button>
+      <button class="res-encode-unit-btn ${unit==='M'?'active':''}" onclick="setResEncUnit('M')">MΩ</button>
+    </div>
+  </div>
+  <div class="res-encode-preset-row">
+    ${presets.map(p=>`<button class="res-encode-preset" onclick="setResPreset('${p.v}','${p.u}')">${p.v}${p.u}Ω</button>`).join('')}
+  </div>
+</div>
+${result}`;
+}
+
+function encodeResistorValue(ohms){
+  // 4-band = 2 sig figs + multiplier
+  // Find multiplier that gives us a 2-digit integer 10-99
+  for(const mult of [0.01,0.1,1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000]){
+    const scaled=ohms/mult;
+    if(scaled>=10 && scaled<100){
+      const rounded=Math.round(scaled);
+      const d1=Math.floor(rounded/10);
+      const d2=rounded%10;
+      const multIdx=RES_COLORS.findIndex(c=>c.mult===mult);
+      if(multIdx===-1)continue;
+      return {b1:d1,b2:d2,b3:multIdx};
+    }
+  }
+  // Try single-digit values (e.g., 2.2Ω = 22 * 0.1)
+  for(const mult of [0.01,0.1]){
+    const scaled=ohms/mult;
+    if(scaled>=10 && scaled<100){
+      const rounded=Math.round(scaled);
+      const d1=Math.floor(rounded/10);
+      const d2=rounded%10;
+      const multIdx=RES_COLORS.findIndex(c=>c.mult===mult);
+      if(multIdx===-1)continue;
+      return {b1:d1,b2:d2,b3:multIdx};
+    }
+  }
+  return null;
+}
+
+function formatMult(m){
+  if(m>=1000000)return (m/1000000)+'M';
+  if(m>=1000)return (m/1000)+'k';
+  if(m>=1)return m.toString();
+  return m.toString();
+}
+
+function fmtOhmVal(ohms){
+  if(isNaN(ohms)||ohms===null)return '—';
+  if(ohms>=1000000)return (ohms/1000000).toFixed(2).replace(/\.?0+$/,'')+' MΩ';
+  if(ohms>=1000)return (ohms/1000).toFixed(2).replace(/\.?0+$/,'')+' kΩ';
+  return ohms.toFixed(2).replace(/\.?0+$/,'')+' Ω';
+}
+
+function setResMode(m){S.calcRes.mode=m;haptic(10);R();}
+function setResBand(band,val){
+  if(band==='b4'){S.calcRes.b4=val;}
+  else{S.calcRes[band]=parseInt(val);}
+  haptic(6);R();
+}
+function setResActiveBand(band){S.calcRes._activeBand=band;haptic(6);R();}
+function updateResEnc(v){S.calcRes.enc=v;const el=document.getElementById('main');if(el)el.innerHTML=rCalc();}
+function setResEncUnit(u){S.calcRes.encUnit=u;R();}
+function setResPreset(v,u){S.calcRes.enc=v;S.calcRes.encUnit=u;R();}
 
 let timerInterval=null;
 function rTimer(){
