@@ -1,16 +1,19 @@
-const CACHE = 'fa-tech-assist-v6';
+const CACHE = 'fa-tech-assist-v7';
 const ASSETS = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
-
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE).then(c => {
+      // Use addAll but catch individual failures so a missing icon doesn't block install
+      return Promise.allSettled(ASSETS.map(a => c.add(a)));
+    }).then(() => self.skipWaiting())
   );
 });
-
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
@@ -18,8 +21,8 @@ self.addEventListener('activate', e => {
     ).then(() => self.clients.claim())
   );
 });
-
 self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request).then(res => {
       const clone = res.clone();
