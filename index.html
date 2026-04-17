@@ -765,6 +765,78 @@ body::before{
 .equip-cat-count{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--a2);color:var(--a);white-space:nowrap;}
 .equip-cat-count.coming{background:var(--s3);color:var(--t3);}
 .equip-cat-chev{color:var(--t4);font-size:22px;line-height:1;}
+
+/* ================================================================
+   v7.5 ADDITIONS — Wiring Diagrams viewer
+================================================================ */
+
+/* Sub-category cards (Circuit Types, Device Wiring, Typical Installs) */
+.diag-subcat-card{display:flex;align-items:center;gap:14px;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.15s var(--ease-quick),border-color 0.15s var(--ease-quick);}
+.diag-subcat-card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);}
+.diag-subcat-card.active:active{transform:scale(0.98);border-color:rgba(230,57,70,0.35);}
+.diag-subcat-card.coming{opacity:0.55;cursor:default;}
+.diag-subcat-ico{width:44px;height:44px;border-radius:12px;background:var(--a2);border:0.5px solid rgba(230,57,70,0.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.diag-subcat-card.coming .diag-subcat-ico{background:var(--s2);border-color:var(--bdr);}
+.diag-subcat-info{flex:1;min-width:0;}
+.diag-subcat-nm{font-size:16px;font-weight:700;color:var(--t1);letter-spacing:-0.01em;margin-bottom:3px;}
+.diag-subcat-desc{font-size:12px;color:var(--t3);line-height:1.45;}
+.diag-subcat-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
+.diag-subcat-count{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--a2);color:var(--a);white-space:nowrap;}
+.diag-subcat-count.coming{background:var(--s3);color:var(--t3);}
+
+/* List of diagrams in a sub-category */
+.diag-list{padding:0 16px;}
+.diag-list-item{display:flex;gap:12px;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;align-items:center;transition:transform 0.15s var(--ease-quick),border-color 0.15s var(--ease-quick);}
+.diag-list-item:active{transform:scale(0.98);border-color:rgba(230,57,70,0.3);}
+.diag-list-item-ico{width:36px;height:36px;border-radius:9px;background:var(--s2);border:0.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--a);}
+.diag-list-item-body{flex:1;min-width:0;}
+.diag-list-item-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:2px;letter-spacing:-0.01em;}
+.diag-list-item-sub{font-size:11px;color:var(--t3);line-height:1.4;}
+.diag-list-item-chev{color:var(--t4);font-size:20px;}
+
+/* Diagram viewer */
+.diag-viewer{padding:0 16px 16px;}
+.diag-viewer-head{padding:4px 0 12px;}
+.diag-viewer-title{font-size:20px;font-weight:700;color:var(--t1);letter-spacing:-0.01em;margin-bottom:4px;}
+.diag-viewer-sub{font-size:12px;color:var(--t3);line-height:1.5;}
+.diag-svg-wrap{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:16px;margin-bottom:12px;overflow:hidden;position:relative;}
+.diag-svg-wrap svg{display:block;width:100%;height:auto;max-width:100%;}
+.diag-zoom-hint{position:absolute;bottom:8px;right:12px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;color:var(--t4);text-transform:uppercase;background:rgba(0,0,0,0.3);padding:3px 7px;border-radius:4px;pointer-events:none;}
+
+/* Diagram description section */
+.diag-desc{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:14px 16px;margin-bottom:10px;font-size:13px;color:var(--t2);line-height:1.55;}
+.diag-desc strong{color:var(--t1);}
+.diag-notes-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--t3);text-transform:uppercase;margin:14px 0 6px;padding:0 4px;}
+.diag-note{background:var(--s1);border:0.5px solid var(--bdr2);border-left:2.5px solid var(--a);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:12px;color:var(--t2);line-height:1.5;}
+.diag-note strong{color:var(--t1);}
+
+/* Tags on diagram cards */
+.diag-tag-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;}
+.diag-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.06em;padding:2px 6px;border-radius:4px;background:var(--s3);color:var(--t3);text-transform:uppercase;}
+.diag-tag.class-a{background:rgba(122,157,224,0.12);color:var(--b-lt);}
+.diag-tag.class-b{background:rgba(34,197,94,0.12);color:var(--green);}
+.diag-tag.class-x{background:rgba(230,57,70,0.12);color:var(--a);}
+.diag-tag.nac{background:rgba(245,158,11,0.12);color:var(--amber);}
+.diag-tag.slc{background:rgba(168,85,247,0.12);color:#c084fc;}
+
+/* SVG internal element styling — via CSS variables so theme-aware */
+.diag-svg-wrap svg .diag-bg{fill:var(--s2);}
+.diag-svg-wrap svg .diag-panel-body{fill:var(--s3);stroke:var(--t2);stroke-width:1.5;}
+.diag-svg-wrap svg .diag-panel-label{fill:var(--t1);font-family:-apple-system,sans-serif;font-size:12px;font-weight:700;}
+.diag-svg-wrap svg .diag-terminal-label{fill:var(--t2);font-family:var(--mono);font-size:9px;font-weight:700;}
+.diag-svg-wrap svg .diag-device-body{fill:var(--s3);stroke:var(--t2);stroke-width:1.2;}
+.diag-svg-wrap svg .diag-device-label{fill:var(--t1);font-family:-apple-system,sans-serif;font-size:10px;font-weight:700;}
+.diag-svg-wrap svg .diag-wire{stroke:var(--t2);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.diag-svg-wrap svg .diag-wire-return{stroke:var(--b-lt);stroke-width:1.8;stroke-dasharray:6,3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.diag-svg-wrap svg .diag-wire-alarm{stroke:var(--a);stroke-width:2;fill:none;stroke-linecap:round;}
+.diag-svg-wrap svg .diag-eol-body{fill:var(--green);stroke:var(--green);}
+.diag-svg-wrap svg .diag-eol-label{fill:var(--green);font-family:var(--mono);font-size:10px;font-weight:800;}
+.diag-svg-wrap svg .diag-iso-body{fill:var(--amber);stroke:var(--amber);fill-opacity:0.18;stroke-width:1.5;}
+.diag-svg-wrap svg .diag-iso-label{fill:var(--amber);font-family:var(--mono);font-size:9px;font-weight:700;}
+.diag-svg-wrap svg .diag-polarity{fill:var(--t1);font-family:var(--mono);font-size:10px;font-weight:800;}
+.diag-svg-wrap svg .diag-arrow{fill:var(--t2);stroke:none;}
+.diag-svg-wrap svg .diag-caption{fill:var(--t3);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;}
+.diag-svg-wrap svg .diag-annotation{fill:var(--t3);font-family:-apple-system,sans-serif;font-size:10px;font-style:italic;}
 </style>
 </head>
 <body>
@@ -1011,7 +1083,7 @@ const PNL=[
 const EQUIP_CATEGORIES=[
   {id:'panels',name:'Control Panels',icon:'◫',desc:'Notifier, Simplex, EST, Fire-Lite, Silent Knight, Bosch',status:'active'},
   {id:'power-supplies',name:'Power Supplies',icon:'⚡',desc:'Booster/NAC expanders — EST BPS, Potter PSN, Notifier AMPS, Fire-Lite FCPS',status:'active'},
-  {id:'modules',name:'Addressable Modules',icon:'◉',desc:'Monitor, control, isolator, relay modules',status:'coming',comingIn:'v7.5'},
+  {id:'modules',name:'Addressable Modules',icon:'◉',desc:'Monitor, control, and isolator modules — Notifier, Fire-Lite, EST, System Sensor',status:'active'},
   {id:'amplifiers',name:'Voice Evac Amplifiers',icon:'📢',desc:'Voice evacuation amplifiers and audio controllers',status:'coming',comingIn:'v7.6'}
 ];
 
@@ -1131,6 +1203,688 @@ const POWER_SUPPLIES=[
 ]}
 ]}
 ];
+
+
+// ================================================================
+// v7.5 — Addressable Modules (Monitor, Control, Isolator)
+// Terminal/EOL data verified against manufacturer installation sheets.
+// ================================================================
+
+const MODULES=[
+{brand:'Notifier',models:[
+{name:'FMM-1',count:'3 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'IDC End-of-Line',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'47kΩ EOL at last device on the Style B (Class B) initiating device circuit. Required for supervision. Style D (Class A) does not require EOL.'},
+{label:'SLC Terminals (T1, T2)',val:'SLC+/SLC-',watt:'—',pn:'—',note:'Signaling Line Circuit from panel. Polarity-sensitive. T1 = SLC+, T2 = SLC-.'},
+{label:'IDC Terminals (T3, T4)',val:'IDC+/IDC-',watt:'—',pn:'—',note:'Initiating Device Circuit to dry-contact devices (pull stations, waterflow, heat detectors). Normally open contacts.'},
+{label:'Class A Terminals (T5, T6)',val:'Return pair',watt:'—',pn:'—',note:'Style D (Class A) return conductors. Not used for Style B.'},
+],warn:'FMM-1 IDC EOL is 47kΩ. Max IDC loop resistance 1,500Ω. DO NOT loop wire under terminals — break the wire run to maintain supervision.'},
+{t:'Configure and Address',ico:'🔑',steps:['Set address via two rotary switches on the front of the module (range 1-99 or 1-159 depending on panel)','For panels supporting extended addressing (above 99), carefully remove the stop on the upper rotary switch','Mount to 4-inch square electrical box, min depth 2-1/8 inches','Connect SLC to T1 (+) and T2 (-)','Connect IDC wiring to T3 (+) and T4 (-) with 47kΩ EOL at last device','For Class A, use T3/T4 outgoing and T5/T6 return','Set address BEFORE connecting SLC to avoid duplicate-address errors'],warn:'Two FMM-1s with the same address will cause duplicate-address trouble. Set addresses before SLC connection.'},
+{t:'Gotcha Notes — FMM-1',ico:'⚠️',steps:['FMM-1 replaces older MMX-1 (CLIP-only module) in existing systems','Supports FlashScan or CLIP mode — panel auto-detects','DO NOT mix fire alarm initiating, supervisory, and security devices on the same IDC — separate module per device class','Any number of UL-listed dry-contact devices permitted on one IDC','Must mount to 4" square box with 2-1/8" min depth','Rebadged as Fire-Lite MMF-300 (identical hardware, Honeywell parent brand)','Common IDC uses: pull stations, waterflow switches, tamper switches, 24V heat detectors, supervisory switches'],warn:null}
+]},
+{name:'FMM-101',count:'2 tasks',tasks:[
+{t:'EOL & Connection Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'IDC End-of-Line',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'Same 47kΩ EOL as FMM-1. Style B (Class B) only — FMM-101 is a miniature module, does not support Class A.'},
+{label:'SLC Leads (red, black)',val:'Flying leads',watt:'—',pn:'—',note:'Red = SLC+, Black = SLC-. Polarity-sensitive. Minimum wire length 6 inches from module body.'},
+{label:'IDC Leads (violet, yellow)',val:'Flying leads',watt:'—',pn:'—',note:'Violet = IDC+, Yellow = IDC-. Connect to normally-open initiating contacts.'},
+],warn:'FMM-101 has flying leads, not terminals. Cannot be replaced in-place with FMM-1 (different mounting).'},
+{t:'Gotcha Notes — FMM-101',ico:'⚠️',steps:['FMM-101 is the miniature version of FMM-1 — fits behind a pull station in a single-gang box','Flying leads (wire tails) instead of terminal strip','Same 47kΩ EOL and address range as FMM-1','Replaces older MMX-101 in existing systems','Support FlashScan or CLIP mode','Common use: hidden behind pull stations where space is tight','Rebadged as Fire-Lite MMF-301 (identical)'],warn:null}
+]},
+{name:'FZM-1',count:'3 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'2-Wire Smoke Detector Zone EOL',val:'3.9kΩ',watt:'½W',pn:'REL-3.9K',note:'FZM-1 is a 2-wire smoke detector zone interface — 3.9kΩ EOL at last detector on the zone. NOT 47kΩ like dry-contact monitor modules.'},
+{label:'SLC Terminals (T1, T2)',val:'SLC+/SLC-',watt:'—',pn:'—',note:'Signaling Line Circuit from panel.'},
+{label:'Zone Terminals (T3, T4)',val:'Zone+/Zone-',watt:'—',pn:'—',note:'Powers and monitors the 2-wire smoke detector zone. 18-28V DC.'},
+{label:'External Power (T3, T4)',val:'90mA max',watt:'—',pn:'—',note:'Module draws up to 90mA external supply for the smoke detector zone. Ripple voltage 0.1 VRMS max.'},
+],warn:'FZM-1 uses 3.9kΩ EOL — NOT 47kΩ. Common mistake when replacing FMM-1 with FZM-1: using the wrong EOL value.'},
+{t:'Configure for 2-Wire Smokes',ico:'🔑',steps:['FZM-1 zone power must be externally switched for smoke detector reset','Verify 2-wire smokes are UL-compatible with FZM-1 per Notifier device compatibility doc','Set rotary address switches','Mount to 4" square electrical box','Wire SLC to T1/T2','Wire smoke zone to T3/T4 with 3.9kΩ EOL at last detector','Panel must issue reset command to clear latched smoke alarms'],warn:'Smoke zone power must be externally switched for reset to work. If reset fails, check external switching.'},
+{t:'Gotcha Notes — FZM-1',ico:'⚠️',steps:['FZM-1 interfaces 2-wire conventional smoke detectors to an addressable panel','Replaces older MMX-2 in existing systems','EOL is 3.9kΩ — different from standard dry-contact monitor modules (47kΩ)','Check detector compatibility list before adding detectors','Do not mix smoke detectors with dry-contact devices on the same zone','Rebadged as Fire-Lite MMF-302'],warn:null}
+]},
+{name:'FCM-1',count:'3 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output EOL (Class B)',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'Install 47kΩ EOL at last notification appliance on Class B NAC. Do not loop wire back to T8/T9.'},
+{label:'NAC Output EOL (Class A)',val:'Internal',watt:'—',pn:'—',note:'In Class A configuration, FCM-1 has an internal 47kΩ EOL at terminals T8/T9 — DO NOT install external 47kΩ. Return wiring to T5/T6.'},
+{label:'SLC Terminals (T1, T2)',val:'SLC+/SLC-',watt:'—',pn:'—',note:'Signaling Line Circuit from panel.'},
+{label:'External 24VDC Supply (T6, T7)',val:'NAC power in',watt:'—',pn:'—',note:'24VDC power source for the NAC (from FACP NAC output or booster supply). Panel monitors via jumper J1.'},
+{label:'NAC Output (T10, T11)',val:'24VDC reverse polarity',watt:'—',pn:'—',note:'Output to notification appliances. Reverse polarity in alarm. DO NOT loop wire under terminals — break wire run for supervision.'},
+{label:'NAC Current Rating',val:'3A (B) / 2A (A)',watt:'—',pn:'—',note:'Class B max 3A per circuit, Class A max 2A per circuit.'},
+],warn:'FCM-1 Class A has INTERNAL EOL at T8/T9 — do NOT install external. Class B needs EXTERNAL 47kΩ at last device. Jumper J1 must be REMOVED for audio applications or when power supply monitoring is not required.'},
+{t:'Configure and Install',ico:'🔑',steps:['Set rotary address switches per job drawings','Mount to 4-inch square electrical box, min depth 2-1/8 inches','Use CB500 Module Barrier if mixing power-limited and non-power-limited wiring in same box','Connect SLC to T1/T2','Connect external 24VDC supply to T6/T7 (from FACP NAC or booster)','Connect NAC output to T10/T11 with appropriate EOL','For Class B: external 47kΩ at last device','For Class A: return T10/T11 to T8/T9 (internal EOL); do not install external 47kΩ','Remove jumper J1 for audio or when power supervision not needed','For 70.7V audio: use CB500 barrier, terminals 3-9 become non-power-limited'],warn:'Multiple FCM-1s serving different notification zones: 24VDC reverse polarity NAC output wiring between modules must be within 20 feet in conduit and mechanically protected.'},
+{t:'Gotcha Notes — FCM-1',ico:'⚠️',steps:['FCM-1 is the most-installed Notifier control module — used for NAC and speaker switching','Replaces CMX-2 in existing systems','Two separate EOL configurations (internal for Class A, external for Class B) — a common mistake when switching between classes','Do NOT loop wire under T10/T11 — break the wire run for proper supervision','All relay contacts ship in standby (open) state but may have transferred during shipping — communicate with panel before connecting loads','Rebadged as Fire-Lite CMF-300','Audio configuration: twisted pair required, 70.7V max, use AA-30/AA-100/AA-120 amplifiers only','FCM-1-REL is the releasing variant — redundant-protocol armed/confirm, for clean agent or pre-action sprinkler release'],warn:null}
+]}
+]},
+{brand:'Fire-Lite',models:[
+{name:'MMF-300',count:'2 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'IDC End-of-Line',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'Same 47kΩ EOL as Notifier FMM-1 — identical hardware, Honeywell parent brand. Style B uses 47kΩ at last device.'},
+{label:'SLC Terminals (T1, T2)',val:'SLC+/SLC-',watt:'—',pn:'—',note:'Signaling Line Circuit from panel.'},
+{label:'IDC Terminals (T3, T4)',val:'IDC+/IDC-',watt:'—',pn:'—',note:'Initiating Device Circuit. Dry-contact NO devices. Max IDC loop resistance 1,500Ω.'},
+{label:'Class A Terminals (T5, T6)',val:'Return pair',watt:'—',pn:'—',note:'Style D (Class A) return. Not used for Style B.'},
+],warn:'MMF-300 = identical hardware to Notifier FMM-1. 47kΩ EOL for Class B IDC.'},
+{t:'Gotcha Notes — MMF-300',ico:'⚠️',steps:['MMF-300 is functionally identical to Notifier FMM-1','Replaces older M300 module in existing systems','Compatible with Fire-Lite panels: MS-9200UDLS, MS-9600UDLS, ES-50X, ES-200X','Cross-replace with FMM-1 only if panel compatibility confirmed','MMF-301 = miniature version (flying leads)','MMF-302 = 2-wire smoke zone interface (3.9kΩ EOL, not 47kΩ)','MDF-300 = dual monitor module (takes 2 consecutive addresses)'],warn:null}
+]},
+{name:'MMF-302',count:'2 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'2-Wire Smoke Zone EOL',val:'3.9kΩ',watt:'½W',pn:'REL-3.9K',note:'2-wire smoke detector zone interface. 3.9kΩ EOL at last smoke detector. NOT 47kΩ like standard monitor modules.'},
+{label:'SLC Terminals',val:'SLC+/SLC-',watt:'—',pn:'—',note:'Signaling Line Circuit from panel.'},
+{label:'Zone Power/Monitor',val:'18-28VDC',watt:'—',pn:'—',note:'Powers and supervises the 2-wire smoke zone. External power must be switchable for reset.'},
+],warn:'MMF-302 uses 3.9kΩ EOL — NOT 47kΩ. Do not confuse with MMF-300 which uses 47kΩ.'},
+{t:'Gotcha Notes — MMF-302',ico:'⚠️',steps:['MMF-302 is functionally identical to Notifier FZM-1','Replaces older M302 module','Use for legacy 2-wire smokes in upgrade/retrofit scenarios','Check detector compatibility with module','Smoke zone power must be externally switchable for smoke detector reset','Not interchangeable with MMF-300 — different EOL, different purpose'],warn:null}
+]},
+{name:'CMF-300',count:'2 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output EOL (Class B)',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'Class B: external 47kΩ EOL at last notification appliance. Same as Notifier FCM-1.'},
+{label:'NAC Output EOL (Class A)',val:'Internal',watt:'—',pn:'—',note:'Class A: internal 47kΩ at T8/T9, NO external EOL. Return wiring to terminal pair.'},
+{label:'NAC Current Rating',val:'3A (B) / 2A (A)',watt:'—',pn:'—',note:'Same current ratings as FCM-1.'},
+{label:'External 24VDC Supply',val:'T6/T7',watt:'—',pn:'—',note:'24VDC source for NAC output. From FACP NAC or booster.'},
+],warn:'CMF-300 = identical hardware to Notifier FCM-1. Class A has INTERNAL EOL; Class B needs external 47kΩ. Same J1 jumper removal rule for audio.'},
+{t:'Gotcha Notes — CMF-300',ico:'⚠️',steps:['CMF-300 is functionally identical to Notifier FCM-1','Drop-in cross-replacement with FCM-1 in Fire-Lite systems','Replaces older C304 in existing systems','Same audio supervision caveats (twisted pair, 70.7V max, AA-series amps)','Same multi-module zone wiring constraints (20ft conduit between modules for cross-zone NAC)','Rotary address switches like monitor modules'],warn:null}
+]}
+]},
+{brand:'EST / Edwards',models:[
+{name:'SIGA-CT1',count:'3 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'IDC End-of-Line',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'Class B normally-open dry-contact input. 47kΩ EOL at last device. Personality code 1 (default) configures for this use.'},
+{label:'SLC Terminals',val:'Signature SLC',watt:'—',pn:'—',note:'Connects to Signature Loop Controller. Powered from SLC (15.2-19.95 VDC).'},
+{label:'IDC Input',val:'Dry contact NO',watt:'—',pn:'—',note:'Single Class B normally-open initiating device circuit. Maximum one device type per personality code.'},
+{label:'Personality Code',val:'1 (factory)',watt:'—',pn:'—',note:'Personality code downloaded from Signature Loop Controller. Code 1 = alarm, supervisory, or monitor dry contact.'},
+],warn:'SIGA-CT1 uses 47kΩ EOL — same as Notifier/Fire-Lite. Personality code determines module behavior — wrong code = module does not respond as expected.'},
+{t:'Configure and Install',ico:'🔑',steps:['Mount in standard 1-gang box, 4-inch square box, or European 100mm box','Terminal blocks accept #14, 16, or 18 AWG (16/18 AWG preferred)','Strip 1/4" of wire — exposing more may cause ground fault, less may cause faulty connection','Connect SLC to Signature loop terminals','Connect IDC to dry contact input','Install 47kΩ EOL at last device','Download personality code from Signature Loop Controller during system configuration','Verify green LED (polling) and red LED (alarm) status'],warn:'Exposing more than 1/4" of wire may cause ground fault. Strip to exactly 1/4" (6.4mm).'},
+{t:'Gotcha Notes — SIGA-CT1',ico:'⚠️',steps:['SIGA-CT1 addresses auto-assign via Signature loop or can be set manually via SIGA-PRO Service Tool','Accepts personality codes 1-3 for different input types','Code 1 = alarm/supervisory/monitor dry contact (most common)','Code 3 = trouble monitor (used for waterflow trouble, ATP trouble, etc.)','SIGA-CT2 = dual input version (two separate Class B IDCs)','Ground fault detection at device level is a Signature advantage over Notifier/Fire-Lite','Install Bi-Polar Transient Protector (P/N 235196P) if surge protection required'],warn:null}
+]},
+{name:'SIGA-CC1',count:'3 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output EOL (Class B, Code 5)',val:'15kΩ',watt:'½W',pn:'REL-15K',note:'Personality code 5: Class B audible/visible signal power riser selector. 15kΩ EOL at last appliance — matches EST/Edwards panel NAC spec.'},
+{label:'Telephone Output (Code 6)',val:'Supervised',watt:'—',pn:'—',note:'Personality code 6: firefighter telephone riser selector. Module generates its own ring-tone signal.'},
+{label:'SLC Terminals',val:'Signature SLC',watt:'—',pn:'—',note:'Signature loop connection. Powered from SLC.'},
+{label:'Riser Input',val:'24VDC or 25/70VRMS audio',watt:'—',pn:'—',note:'Power input from signal riser or audio amplifier. Module selects this onto its output when activated.'},
+{label:'Riser Output',val:'To NAC or speakers',watt:'—',pn:'—',note:'Switched output to notification appliances. Polarity reverses in alarm for NAC use.'},
+],warn:'SIGA-CC1 personality code determines NAC vs telephone function. Code 5 = signal power (15kΩ EOL). Code 6 = telephone (no traditional EOL, three-state supervision).'},
+{t:'Configure and Install',ico:'🔑',steps:['Mount in 2-1/2" deep 2-gang box, 4-inch square 1-1/2" deep box, or 100mm European box','Terminal blocks accept #18 to #12 AWG (#16/#18 preferred)','Strip 1/4" of wire','Connect SLC to Signature loop','Connect 24VDC (or audio amplifier output) to riser input terminals','Connect output to notification appliances','Install 15kΩ EOL at last appliance (for code 5)','Download personality code 5 or 6 from Signature Loop Controller','Install Bi-Polar Transient Protector if required per system design'],warn:'Riser input and SLC are both power-limited. If input source is non-power-limited, maintain 1/4" spacing or use FPL/FPLP/FPLR wire.'},
+{t:'Gotcha Notes — SIGA-CC1',ico:'⚠️',steps:['SIGA-CC1 vs SIGA-CC2: CC1 = single riser, CC2 = dual riser (factory code 7)','Short-circuit protection: if output is shorted, control panel inhibits activation to prevent shorting the riser','Telephone mode (code 6): module generates ring-tone internally — no separate ring-tone circuit needed','Personality code is downloaded from Signature loop — must be correctly assigned or module behaves incorrectly','Ground-fault detection at device level','SIGA-MCC1 = marine/retrofit variant of CC1','UIO motherboards (SIGA-UIO2, SIGA-UIO6) allow grouping multiple modules with shared risers — common in NAC booster panels'],warn:null}
+]},
+{name:'SIGA-MM1',count:'2 tasks',tasks:[
+{t:'EOL & Terminal Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'Monitor Module Type',val:'Supervisory',watt:'—',pn:'—',note:'SIGA-MM1 is a monitor module specifically for supervisory or trouble dry-contact monitoring. Maps to non-alarm signal types at the panel.'},
+{label:'EOL Value',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'Same 47kΩ EOL as SIGA-CT1 for Class B operation.'},
+{label:'SLC Terminals',val:'Signature SLC',watt:'—',pn:'—',note:'Signature loop power and communication.'},
+],warn:'SIGA-MM1 is for supervisory/trouble monitoring — not alarm initiation. Assign appropriate panel device type.'},
+{t:'Gotcha Notes — SIGA-MM1',ico:'⚠️',steps:['SIGA-MM1 use case: waterflow trouble, tamper, valve supervisory, panel trouble contact','Not for alarm initiation — use SIGA-CT1 for alarm dry contacts','Panel device type determines how the activation is logged and annunciated','Common error: wiring a waterflow alarm to SIGA-MM1 instead of SIGA-CT1 — system then reports supervisory when it should report alarm'],warn:null}
+]}
+]},
+{brand:'System Sensor / Isolators',models:[
+{name:'ISO-X (Notifier)',count:'2 tasks',tasks:[
+{t:'Function Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'Module Type',val:'Fault Isolator',watt:'—',pn:'—',note:'Short-circuit isolator — detects a short on the SLC and opens the circuit to preserve loop operation on both sides. Required for NFPA Class X circuits.'},
+{label:'EOL',val:'N/A',watt:'—',pn:'—',note:'Isolators do not use EOL resistors — they are fault-handling devices, not initiating devices.'},
+{label:'SLC In/Out',val:'4 terminals',watt:'—',pn:'—',note:'Four SLC terminals: IN+/IN- from upstream, OUT+/OUT- to downstream. Polarity must be maintained.'},
+{label:'Trip Threshold',val:'Auto',watt:'—',pn:'—',note:'Automatically trips at a short-circuit current threshold set by the panel/loop characteristics. Auto-resets when the fault clears.'},
+],warn:'ISO-X has no EOL. Trips automatically on SLC short. Polarity matters — reversed wiring can cause loop communication failure.'},
+{t:'Gotcha Notes — ISO-X',ico:'⚠️',steps:['ISO-X = single-point fault isolator on Notifier SLC','ISO-6 = six-section isolator module (provides six equivalent circuits)','Required for NFPA Class X — short-circuit isolation between devices','Placement: typically every 20 devices or at branch points, per design','LED indicates isolator state (normal, tripped)','Isolator bases available for detectors (built-in isolation)','Fault isolates the shorted segment while the rest of the loop continues to operate','SIGA-IB on EST Signature is functionally similar','Isolators do NOT need EOL because they do not initiate or supervise — they only isolate'],warn:null}
+]}
+]}
+];
+
+
+// ================================================================
+// v7.5 — Wiring Diagrams Library
+// SVG diagrams drawn from scratch using factual circuit topology.
+// Not tracings or reproductions of copyrighted manufacturer diagrams.
+// ================================================================
+
+const DIAGRAM_SUBCATS=[
+  {id:'circuit-types',name:'Circuit Types',icon:'⎓',desc:'Class A, B, X pathways; SLC, NAC, IDC circuit topologies',status:'active'},
+  {id:'device-wiring',name:'Device Wiring',icon:'⚏',desc:'Individual device and module terminal connections',status:'coming',comingIn:'v7.5.1'},
+  {id:'typical-installs',name:'Typical Installations',icon:'⎌',desc:'Common whole-circuit scenarios: waterflow, elevator recall, duct detector',status:'coming',comingIn:'v7.5.2'}
+];
+
+const DIAGRAMS={
+'circuit-types':[
+{id:'class-b-slc',title:'Class B SLC — Addressable Loop',subtitle:'Style 4 signaling line circuit, no redundancy, most common',tags:['Class B','SLC','Style 4'],
+ svg:`<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="340" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="30" y="130" width="110" height="90" rx="6"/>
+  <text class="diag-panel-label" x="85" y="165" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="183" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">SLC Card</text>
+  <text class="diag-terminal-label" x="145" y="162" text-anchor="start">SLC+</text>
+  <text class="diag-terminal-label" x="145" y="200" text-anchor="start">SLC-</text>
+  <!-- Devices on loop (5 addressable devices) -->
+  <g>
+    <!-- Device 1 -->
+    <circle class="diag-device-body" cx="230" cy="175" r="16"/>
+    <text class="diag-device-label" x="230" y="179" text-anchor="middle">1</text>
+    <!-- Device 2 -->
+    <circle class="diag-device-body" cx="330" cy="175" r="16"/>
+    <text class="diag-device-label" x="330" y="179" text-anchor="middle">2</text>
+    <!-- Device 3 -->
+    <circle class="diag-device-body" cx="430" cy="175" r="16"/>
+    <text class="diag-device-label" x="430" y="179" text-anchor="middle">3</text>
+    <!-- Device 4 -->
+    <circle class="diag-device-body" cx="530" cy="175" r="16"/>
+    <text class="diag-device-label" x="530" y="179" text-anchor="middle">4</text>
+    <!-- Device 5 (last) -->
+    <circle class="diag-device-body" cx="630" cy="175" r="16"/>
+    <text class="diag-device-label" x="630" y="179" text-anchor="middle">5</text>
+  </g>
+  <!-- SLC+ wire (top) -->
+  <path class="diag-wire" d="M 140 158 L 200 158 L 200 166 M 246 166 L 300 166 L 300 166 M 346 166 L 400 166 M 446 166 L 500 166 M 546 166 L 600 166 M 646 166 L 700 166"/>
+  <!-- SLC- wire (bottom) -->
+  <path class="diag-wire" d="M 140 196 L 200 196 L 200 188 M 246 184 L 300 184 M 346 184 L 400 184 M 446 184 L 500 184 M 546 184 L 600 184 M 646 184 L 700 184"/>
+  <!-- Polarity markers at panel -->
+  <text class="diag-polarity" x="170" y="152" fill="var(--green)">+</text>
+  <text class="diag-polarity" x="170" y="210" fill="var(--red)">−</text>
+  <!-- End of line indicator (SLC is electronically supervised, no EOL) -->
+  <g transform="translate(700,175)">
+    <rect x="0" y="-18" width="50" height="36" rx="6" fill="var(--s3)" stroke="var(--t3)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text class="diag-caption" x="25" y="5" text-anchor="middle">NO EOL</text>
+  </g>
+  <!-- Annotations -->
+  <text class="diag-annotation" x="400" y="240" text-anchor="middle">Addressable devices on a supervised loop — panel polls each by address</text>
+  <text class="diag-caption" x="400" y="280" text-anchor="middle">FAULT BEHAVIOR: Single open past any device — devices downstream of open lose communication</text>
+  <text class="diag-caption" x="400" y="300" text-anchor="middle">No redundant return path (that's what Class A adds)</text>
+</svg>`,
+ description:'<strong>Class B SLC</strong> is the most common addressable loop configuration. A single pair of wires leaves the panel, passes through each addressable device in sequence, and terminates at the last device. The SLC is electronically supervised via the digital communication protocol — no EOL resistor is required.',
+ notes:[
+   '<strong>Fault behavior:</strong> A single open past any device causes all downstream devices to lose communication with the panel. Devices upstream of the fault continue to function.',
+   '<strong>No EOL resistor</strong> — the SLC is supervised by the digital protocol between panel and devices, not by a fixed resistance.',
+   '<strong>Polarity matters.</strong> SLC+ and SLC- must be maintained consistently across every device. Reversed polarity at a device = that device will not communicate.',
+   '<strong>T-tapping is allowed</strong> on most addressable protocols but not recommended — it makes troubleshooting harder and can affect loop capacitance limits.'
+ ]
+},
+{id:'class-a-slc',title:'Class A SLC — Fault-Tolerant Loop',subtitle:'Style 6/7 with redundant return path to panel',tags:['Class A','SLC','Style 6'],
+ svg:`<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="380" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="30" y="150" width="110" height="120" rx="6"/>
+  <text class="diag-panel-label" x="85" y="190" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="208" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">SLC Card</text>
+  <text class="diag-terminal-label" x="145" y="175" text-anchor="start">OUT+</text>
+  <text class="diag-terminal-label" x="145" y="195" text-anchor="start">OUT-</text>
+  <text class="diag-terminal-label" x="145" y="240" text-anchor="start">RET+</text>
+  <text class="diag-terminal-label" x="145" y="260" text-anchor="start">RET-</text>
+  <!-- 5 Devices -->
+  <g>
+    <circle class="diag-device-body" cx="230" cy="195" r="16"/>
+    <text class="diag-device-label" x="230" y="199" text-anchor="middle">1</text>
+    <circle class="diag-device-body" cx="330" cy="195" r="16"/>
+    <text class="diag-device-label" x="330" y="199" text-anchor="middle">2</text>
+    <circle class="diag-device-body" cx="430" cy="195" r="16"/>
+    <text class="diag-device-label" x="430" y="199" text-anchor="middle">3</text>
+    <circle class="diag-device-body" cx="530" cy="195" r="16"/>
+    <text class="diag-device-label" x="530" y="199" text-anchor="middle">4</text>
+    <circle class="diag-device-body" cx="630" cy="195" r="16"/>
+    <text class="diag-device-label" x="630" y="199" text-anchor="middle">5</text>
+  </g>
+  <!-- Outgoing SLC+ (top) -->
+  <path class="diag-wire" d="M 140 172 L 200 172 L 200 185 M 246 186 L 300 186 M 346 186 L 400 186 M 446 186 L 500 186 M 546 186 L 600 186 M 646 186 L 690 186"/>
+  <!-- Outgoing SLC- -->
+  <path class="diag-wire" d="M 140 192 L 180 192 L 180 205 M 246 204 L 300 204 M 346 204 L 400 204 M 446 204 L 500 204 M 546 204 L 600 204 M 646 204 L 690 204"/>
+  <!-- Return path (dashed blue) — from last device back to panel via separate route -->
+  <path class="diag-wire-return" d="M 690 186 Q 720 186 720 130 L 720 80 Q 720 60 700 60 L 90 60 Q 60 60 60 80 L 60 240 Q 60 250 80 250 L 140 250"/>
+  <path class="diag-wire-return" d="M 690 204 Q 730 204 730 140 L 730 70 Q 730 50 700 50 L 80 50 Q 50 50 50 80 L 50 250 Q 50 260 80 260 L 140 260"/>
+  <!-- Polarity markers -->
+  <text class="diag-polarity" x="170" y="165" fill="var(--green)">+</text>
+  <text class="diag-polarity" x="170" y="220" fill="var(--red)">−</text>
+  <!-- Return label -->
+  <text class="diag-caption" x="400" y="45" text-anchor="middle" fill="var(--b-lt)">← REDUNDANT RETURN PATH (separate conductors)</text>
+  <!-- Annotations -->
+  <text class="diag-annotation" x="400" y="295" text-anchor="middle">Same loop + return conductors back to panel — isolates single-fault events</text>
+  <text class="diag-caption" x="400" y="325" text-anchor="middle">FAULT BEHAVIOR: Single open — all devices continue operating via return path</text>
+  <text class="diag-caption" x="400" y="345" text-anchor="middle">Single ground fault — operational capability maintained, trouble signal annunciates</text>
+</svg>`,
+ description:'<strong>Class A SLC</strong> adds a redundant return path from the last device back to the panel via a separate pair of conductors. If any single wire breaks or shorts, all devices continue to operate because signals can travel from either direction. Required in critical facilities (hospitals, high-rises, mission-critical).',
+ notes:[
+   '<strong>Fault tolerance:</strong> A single open or ground fault does not disable the loop. The panel annunciates trouble but communication continues.',
+   '<strong>Wire separately.</strong> Return conductors must take a physically different path from the outgoing pair to provide real redundancy. Running both pairs in the same conduit defeats the purpose.',
+   '<strong>Does NOT protect against shorts</strong> between the outgoing and return pairs at the same physical point. For short-circuit protection between devices, use Class X (Class A + isolators).',
+   '<strong>Terminal labeling</strong> varies by manufacturer: OUT+/OUT-/RET+/RET- on some, A/B on others, with color-coding often provided.'
+ ]
+},
+{id:'class-x-slc',title:'Class X SLC — Isolators on Redundant Loop',subtitle:'Class A loop with fault isolators for short-circuit protection',tags:['Class X','SLC','Isolator'],
+ svg:`<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="380" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="30" y="150" width="110" height="120" rx="6"/>
+  <text class="diag-panel-label" x="85" y="190" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="208" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">SLC Card</text>
+  <!-- Isolator 1 -->
+  <rect class="diag-iso-body" x="180" y="180" width="36" height="30" rx="4"/>
+  <text class="diag-iso-label" x="198" y="199" text-anchor="middle">ISO</text>
+  <!-- Devices segment 1 -->
+  <circle class="diag-device-body" cx="260" cy="195" r="14"/>
+  <text class="diag-device-label" x="260" y="199" text-anchor="middle">1</text>
+  <circle class="diag-device-body" cx="310" cy="195" r="14"/>
+  <text class="diag-device-label" x="310" y="199" text-anchor="middle">2</text>
+  <!-- Isolator 2 -->
+  <rect class="diag-iso-body" x="355" y="180" width="36" height="30" rx="4"/>
+  <text class="diag-iso-label" x="373" y="199" text-anchor="middle">ISO</text>
+  <!-- Devices segment 2 -->
+  <circle class="diag-device-body" cx="435" cy="195" r="14"/>
+  <text class="diag-device-label" x="435" y="199" text-anchor="middle">3</text>
+  <circle class="diag-device-body" cx="485" cy="195" r="14"/>
+  <text class="diag-device-label" x="485" y="199" text-anchor="middle">4</text>
+  <!-- Isolator 3 -->
+  <rect class="diag-iso-body" x="530" y="180" width="36" height="30" rx="4"/>
+  <text class="diag-iso-label" x="548" y="199" text-anchor="middle">ISO</text>
+  <!-- Devices segment 3 -->
+  <circle class="diag-device-body" cx="610" cy="195" r="14"/>
+  <text class="diag-device-label" x="610" y="199" text-anchor="middle">5</text>
+  <circle class="diag-device-body" cx="660" cy="195" r="14"/>
+  <text class="diag-device-label" x="660" y="199" text-anchor="middle">6</text>
+  <!-- SLC wires (simplified single line) -->
+  <path class="diag-wire" d="M 140 195 L 180 195 M 216 195 L 246 195 M 274 195 L 296 195 M 324 195 L 355 195 M 391 195 L 421 195 M 449 195 L 471 195 M 499 195 L 530 195 M 566 195 L 596 195 M 624 195 L 646 195"/>
+  <!-- Return path -->
+  <path class="diag-wire-return" d="M 660 195 Q 720 195 720 80 L 720 60 Q 720 50 700 50 L 80 50 Q 50 50 50 80 L 50 260 Q 50 270 80 270 L 140 270"/>
+  <text class="diag-caption" x="400" y="45" text-anchor="middle" fill="var(--b-lt)">← REDUNDANT RETURN (Class A base)</text>
+  <!-- Simulated short indicator between devices 3 and 4 -->
+  <g opacity="0.9">
+    <line x1="450" y1="228" x2="470" y2="240" stroke="var(--red)" stroke-width="2"/>
+    <line x1="450" y1="240" x2="470" y2="228" stroke="var(--red)" stroke-width="2"/>
+    <text class="diag-caption" x="460" y="260" text-anchor="middle" fill="var(--red)">SHORT</text>
+  </g>
+  <text class="diag-annotation" x="400" y="310" text-anchor="middle">Isolators detect and open short circuits — only segment 2 drops, rest of loop continues</text>
+  <text class="diag-caption" x="400" y="340" text-anchor="middle">FAULT BEHAVIOR: Short between devices 3 &amp; 4 — isolators open, devices 1,2,5,6 remain online</text>
+  <text class="diag-caption" x="400" y="358" text-anchor="middle">Required for mission-critical applications where any single fault must not disable multiple devices</text>
+</svg>`,
+ description:'<strong>Class X</strong> is Class A plus fault isolators placed between device segments. If a short circuit occurs on any segment, the isolators detect it and open the SLC on both sides, isolating the fault to that segment only. Devices on other segments continue to operate normally.',
+ notes:[
+   '<strong>Isolator placement:</strong> Typical design places isolators every ~20 devices or at branch points. Check the fire alarm designer\'s drawings for exact placement.',
+   '<strong>Auto-reset.</strong> Most isolators automatically close the circuit back when the short is cleared. Watch for trouble signals clearing on their own after a suspected short.',
+   '<strong>Isolator bases:</strong> Detectors with built-in isolator bases (e.g., Notifier B210LP + ISO-X base) simplify design — every detector provides isolation.',
+   '<strong>Cost/complexity trade-off:</strong> Class X adds isolators to every segment, which increases component count and installation cost. Usually specified by the AHJ or engineer, not selected by field techs.'
+ ]
+},
+{id:'class-b-nac',title:'Class B NAC — Notification Appliance Circuit',subtitle:'Horns, strobes, speakers on a single-direction loop with EOL',tags:['Class B','NAC','Style Y'],
+ svg:`<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="340" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="30" y="130" width="110" height="90" rx="6"/>
+  <text class="diag-panel-label" x="85" y="165" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="183" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">NAC Output</text>
+  <text class="diag-terminal-label" x="145" y="162" text-anchor="start">NAC+</text>
+  <text class="diag-terminal-label" x="145" y="200" text-anchor="start">NAC-</text>
+  <!-- Notification appliances (horn/strobe) -->
+  <g>
+    <!-- Appliance 1 -->
+    <rect class="diag-device-body" x="210" y="160" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="229" y="179" text-anchor="middle">H/S</text>
+    <!-- Appliance 2 -->
+    <rect class="diag-device-body" x="310" y="160" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="329" y="179" text-anchor="middle">H/S</text>
+    <!-- Appliance 3 -->
+    <rect class="diag-device-body" x="410" y="160" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="429" y="179" text-anchor="middle">H/S</text>
+    <!-- Appliance 4 -->
+    <rect class="diag-device-body" x="510" y="160" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="529" y="179" text-anchor="middle">H/S</text>
+    <!-- Appliance 5 -->
+    <rect class="diag-device-body" x="610" y="160" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="629" y="179" text-anchor="middle">H/S</text>
+  </g>
+  <!-- NAC+ wire (top) -->
+  <path class="diag-wire" d="M 140 158 L 200 158 L 200 165 M 248 165 L 300 165 M 348 165 L 400 165 M 448 165 L 500 165 M 548 165 L 600 165 M 648 165 L 700 165"/>
+  <!-- NAC- wire (bottom) -->
+  <path class="diag-wire" d="M 140 196 L 200 196 L 200 185 M 248 185 L 300 185 M 348 185 L 400 185 M 448 185 L 500 185 M 548 185 L 600 185 M 648 185 L 700 185"/>
+  <!-- Polarity (shown in normal — reverses in alarm) -->
+  <text class="diag-polarity" x="170" y="152" fill="var(--red)">−</text>
+  <text class="diag-polarity" x="170" y="210" fill="var(--green)">+</text>
+  <text class="diag-caption" x="170" y="228" text-anchor="middle" fill="var(--t4)">NORMAL</text>
+  <!-- EOL resistor at end of run -->
+  <g transform="translate(705,175)">
+    <rect class="diag-eol-body" x="0" y="-10" width="40" height="20" rx="4" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="20" y="4" text-anchor="middle">EOL</text>
+    <text class="diag-eol-label" x="20" y="30" text-anchor="middle" style="font-size:9px">check spec</text>
+  </g>
+  <!-- Annotations -->
+  <text class="diag-annotation" x="400" y="240" text-anchor="middle">NAC supervision via EOL resistor — panel sees current through EOL when normal</text>
+  <text class="diag-caption" x="400" y="275" text-anchor="middle">EOL VALUES: Notifier 2.2kΩ (onboard NAC) · Fire-Lite/SK 4.7kΩ · Simplex 10kΩ · EST 15kΩ · Bosch 1kΩ</text>
+  <text class="diag-caption" x="400" y="295" text-anchor="middle">IN ALARM: Panel reverses polarity — horns/strobes activate (they're polarity-sensitive)</text>
+  <text class="diag-caption" x="400" y="315" text-anchor="middle">FAULT BEHAVIOR: Open past any device = appliances downstream silent in alarm</text>
+</svg>`,
+ description:'<strong>Class B NAC</strong> is the most common notification appliance circuit configuration. 24VDC power from the panel runs through each appliance (horn, strobe, speaker) and terminates at an EOL resistor. In normal state, a small supervision current flows through the EOL. In alarm, the panel reverses polarity to activate the polarity-sensitive appliances.',
+ notes:[
+   '<strong>EOL value is brand-specific</strong> and MUST match the panel spec: Notifier onboard NAC uses 2.2kΩ, Fire-Lite/Silent Knight uses 4.7kΩ, Simplex uses 10kΩ, EST/Edwards uses 15kΩ, Bosch uses 1kΩ. Wrong value = NAC TROUBLE.',
+   '<strong>Polarity reversal.</strong> In normal supervision, polarity is "backwards" so appliances don\'t activate. When the panel goes into alarm, it reverses the polarity and the appliances fire. This is why polarity matters — reversed wiring at one appliance = that appliance doesn\'t sound in alarm.',
+   '<strong>Open fault behavior:</strong> A single open past any appliance silences all downstream appliances in alarm. Panel shows NAC TROUBLE.',
+   '<strong>Current limits:</strong> Most panel onboard NACs are rated 1.5–3A. If current draw exceeds limit, use a booster power supply (NAC expander).'
+ ]
+},
+{id:'class-a-nac',title:'Class A NAC — Fault-Tolerant Notification',subtitle:'Redundant return path — all appliances keep working on a single open',tags:['Class A','NAC','Style Z'],
+ svg:`<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="380" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="30" y="150" width="110" height="120" rx="6"/>
+  <text class="diag-panel-label" x="85" y="190" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="208" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">NAC Output</text>
+  <text class="diag-terminal-label" x="145" y="175" text-anchor="start">OUT+</text>
+  <text class="diag-terminal-label" x="145" y="195" text-anchor="start">OUT-</text>
+  <text class="diag-terminal-label" x="145" y="240" text-anchor="start">RET+</text>
+  <text class="diag-terminal-label" x="145" y="260" text-anchor="start">RET-</text>
+  <!-- 4 H/S appliances -->
+  <g>
+    <rect class="diag-device-body" x="225" y="180" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="244" y="199" text-anchor="middle">H/S</text>
+    <rect class="diag-device-body" x="335" y="180" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="354" y="199" text-anchor="middle">H/S</text>
+    <rect class="diag-device-body" x="445" y="180" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="464" y="199" text-anchor="middle">H/S</text>
+    <rect class="diag-device-body" x="555" y="180" width="38" height="30" rx="4"/>
+    <text class="diag-device-label" x="574" y="199" text-anchor="middle">H/S</text>
+  </g>
+  <!-- Outgoing NAC+ -->
+  <path class="diag-wire" d="M 140 172 L 200 172 L 200 185 M 263 185 L 315 185 M 373 185 L 425 185 M 483 185 L 535 185 M 593 185 L 650 185"/>
+  <!-- Outgoing NAC- -->
+  <path class="diag-wire" d="M 140 192 L 180 192 L 180 205 M 263 205 L 315 205 M 373 205 L 425 205 M 483 205 L 535 205 M 593 205 L 650 205"/>
+  <!-- Return path (dashed blue) -->
+  <path class="diag-wire-return" d="M 650 185 Q 700 185 700 120 L 700 70 Q 700 55 680 55 L 85 55 Q 55 55 55 80 L 55 250 Q 55 260 75 260 L 140 260"/>
+  <path class="diag-wire-return" d="M 650 205 Q 710 205 710 125 L 710 75 Q 710 45 680 45 L 80 45 Q 45 45 45 75 L 45 255 Q 45 270 75 270 L 140 240"/>
+  <text class="diag-caption" x="400" y="40" text-anchor="middle" fill="var(--b-lt)">← REDUNDANT RETURN (no EOL needed — panel supervises via return path)</text>
+  <text class="diag-annotation" x="400" y="300" text-anchor="middle">Both conductor pairs supervised via return — no EOL resistor required</text>
+  <text class="diag-caption" x="400" y="330" text-anchor="middle">FAULT BEHAVIOR: Single open at any point — all appliances continue to sound in alarm</text>
+  <text class="diag-caption" x="400" y="350" text-anchor="middle">Higher wiring cost but required in critical life-safety applications</text>
+</svg>`,
+ description:'<strong>Class A NAC</strong> (Style Z) uses a redundant return path from the last notification appliance back to the panel. No EOL resistor is needed — the return path itself provides supervision. In a single-fault condition (one open or one short), all appliances continue to operate in alarm.',
+ notes:[
+   '<strong>No EOL resistor.</strong> Class A NAC supervises via the return path, so no fixed resistor is required. If you see an EOL on a Class A NAC, it was likely wired as Class B and later converted incorrectly.',
+   '<strong>Return conductors</strong> must take a physically different path from outgoing to provide real fault tolerance. Don\'t run both pairs in the same conduit.',
+   '<strong>Appliance count limits</strong> are the same as Class B for current draw — Class A does not add capacity, only redundancy.',
+   '<strong>Panel configuration:</strong> Most panels require a specific programming option or DIP switch to operate a NAC as Class A vs Class B. Verify panel is set for Class A if wiring is Class A.'
+ ]
+},
+{id:'conventional-idc',title:'Conventional IDC — Zone Input Circuit',subtitle:'Class B initiating device circuit: pull stations, heat detectors, waterflow',tags:['Class B','IDC','Conventional'],
+ svg:`<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="340" rx="8"/>
+  <!-- Panel (conventional zone input) -->
+  <rect class="diag-panel-body" x="30" y="130" width="110" height="90" rx="6"/>
+  <text class="diag-panel-label" x="85" y="165" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="183" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">Zone Input</text>
+  <text class="diag-terminal-label" x="145" y="162" text-anchor="start">ZONE+</text>
+  <text class="diag-terminal-label" x="145" y="200" text-anchor="start">ZONE-</text>
+  <!-- Pull station -->
+  <g transform="translate(210,155)">
+    <rect class="diag-device-body" x="0" y="0" width="46" height="40" rx="4"/>
+    <text class="diag-device-label" x="23" y="23" text-anchor="middle" style="font-size:9px">PULL</text>
+    <text class="diag-device-label" x="23" y="34" text-anchor="middle" style="font-size:8px;font-weight:400">N.O.</text>
+  </g>
+  <!-- Heat detector 1 -->
+  <g transform="translate(320,165)">
+    <circle class="diag-device-body" cx="15" cy="15" r="15"/>
+    <text class="diag-device-label" x="15" y="19" text-anchor="middle" style="font-size:9px">H</text>
+  </g>
+  <!-- Heat detector 2 -->
+  <g transform="translate(410,165)">
+    <circle class="diag-device-body" cx="15" cy="15" r="15"/>
+    <text class="diag-device-label" x="15" y="19" text-anchor="middle" style="font-size:9px">H</text>
+  </g>
+  <!-- Waterflow switch -->
+  <g transform="translate(500,155)">
+    <rect class="diag-device-body" x="0" y="0" width="46" height="40" rx="4"/>
+    <text class="diag-device-label" x="23" y="23" text-anchor="middle" style="font-size:9px">WF</text>
+    <text class="diag-device-label" x="23" y="34" text-anchor="middle" style="font-size:8px;font-weight:400">N.O.</text>
+  </g>
+  <!-- Tamper -->
+  <g transform="translate(600,155)">
+    <rect class="diag-device-body" x="0" y="0" width="46" height="40" rx="4"/>
+    <text class="diag-device-label" x="23" y="23" text-anchor="middle" style="font-size:9px">TAMP</text>
+    <text class="diag-device-label" x="23" y="34" text-anchor="middle" style="font-size:8px;font-weight:400">N.O.</text>
+  </g>
+  <!-- Zone+ wire -->
+  <path class="diag-wire" d="M 140 158 L 200 158 L 200 165 M 256 165 L 310 165 M 350 170 L 400 170 M 440 170 L 490 170 M 546 165 L 590 165 M 646 165 L 700 165"/>
+  <!-- Zone- wire -->
+  <path class="diag-wire" d="M 140 196 L 200 196 L 200 185 M 256 185 L 310 185 M 350 180 L 400 180 M 440 180 L 490 180 M 546 185 L 590 185 M 646 185 L 700 185"/>
+  <!-- EOL at end -->
+  <g transform="translate(705,175)">
+    <rect class="diag-eol-body" x="0" y="-10" width="50" height="20" rx="4" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="25" y="4" text-anchor="middle">EOL</text>
+    <text class="diag-eol-label" x="25" y="30" text-anchor="middle" style="font-size:9px">per panel</text>
+  </g>
+  <!-- Annotations -->
+  <text class="diag-annotation" x="400" y="240" text-anchor="middle">All normally-open dry contacts wired in parallel — any one closing causes zone alarm</text>
+  <text class="diag-caption" x="400" y="270" text-anchor="middle">IDC EOL VALUES: Notifier 2.2kΩ · Fire-Lite/SK 4.7kΩ · EST 15kΩ · Bosch 1kΩ · Simplex 10kΩ</text>
+  <text class="diag-caption" x="400" y="290" text-anchor="middle">DO NOT MIX device types that require different supervision (fire + security/supervisory on same zone)</text>
+  <text class="diag-caption" x="400" y="310" text-anchor="middle">Zone reports activation only — no specific device identification (that\'s what addressable SLC provides)</text>
+</svg>`,
+ description:'<strong>Conventional IDC</strong> (Initiating Device Circuit) monitors one or more normally-open dry contacts on a zone input. When any device activates (pull station pulled, heat detector trips, waterflow switch closes), the circuit resistance changes and the panel detects the activation. All devices on a zone report as a single alarm — no individual device identification.',
+ notes:[
+   '<strong>EOL matches panel spec</strong> — same values as NAC circuits: Notifier 2.2kΩ, Fire-Lite/SK 4.7kΩ, EST 15kΩ, Simplex 10kΩ, Bosch 1kΩ. Verify against panel documentation.',
+   '<strong>Never mix device classes</strong> on a single IDC. Fire alarm initiating, supervisory (tamper, trouble), and security devices should always be on separate zones — they require different AHJ responses.',
+   '<strong>Contact type matters:</strong> Most fire alarm IDCs expect normally-open contacts that close on alarm. Check each device spec before wiring.',
+   '<strong>Upgrading to addressable:</strong> An entire conventional IDC zone can be replaced by a single addressable monitor module (FMM-1, MMF-300, SIGA-CT1) that supervises the same dry contacts — gaining per-device identification. EOL on the monitor module\'s IDC side may differ from the panel zone EOL.'
+ ]
+},
+{id:'nac-with-booster',title:'NAC with Booster Power Supply',subtitle:'FACP trigger → BPS → downstream appliances — TWO different EOLs',tags:['NAC','Booster','Class B'],
+ svg:`<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="420" rx="8"/>
+  <!-- FACP on left -->
+  <rect class="diag-panel-body" x="20" y="140" width="110" height="90" rx="6"/>
+  <text class="diag-panel-label" x="75" y="175" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="75" y="192" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">NAC Out</text>
+  <text class="diag-terminal-label" x="135" y="172" text-anchor="start">NAC+</text>
+  <text class="diag-terminal-label" x="135" y="210" text-anchor="start">NAC-</text>
+  <!-- BPS in middle -->
+  <rect class="diag-panel-body" x="310" y="100" width="160" height="180" rx="6" fill="var(--s3)"/>
+  <text class="diag-panel-label" x="390" y="130" text-anchor="middle">BPS / NAC Booster</text>
+  <text class="diag-panel-label" x="390" y="148" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">(e.g., EST BPS10A)</text>
+  <!-- BPS trigger input -->
+  <text class="diag-terminal-label" x="305" y="175" text-anchor="end">TRIG+</text>
+  <text class="diag-terminal-label" x="305" y="200" text-anchor="end">TRIG-</text>
+  <!-- BPS outputs -->
+  <text class="diag-terminal-label" x="475" y="175" text-anchor="start">OUT1+</text>
+  <text class="diag-terminal-label" x="475" y="200" text-anchor="start">OUT1-</text>
+  <text class="diag-terminal-label" x="475" y="245" text-anchor="start">OUT2+</text>
+  <text class="diag-terminal-label" x="475" y="270" text-anchor="start">OUT2-</text>
+  <!-- Wire: FACP to BPS trigger -->
+  <path class="diag-wire" d="M 130 168 L 220 168 L 220 169 M 270 169 L 310 169"/>
+  <path class="diag-wire" d="M 130 206 L 220 206 L 220 194 M 270 194 L 310 194"/>
+  <!-- Trigger EOL on trigger line (MUST MATCH FACU spec) -->
+  <g transform="translate(225,180)">
+    <rect class="diag-eol-body" x="-20" y="-9" width="40" height="20" rx="4" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="0" y="5" text-anchor="middle">EOL</text>
+    <text class="diag-eol-label" x="0" y="30" text-anchor="middle" style="font-size:8px">MATCH FACU</text>
+    <text class="diag-eol-label" x="0" y="43" text-anchor="middle" style="font-size:8px">(e.g., 2.2kΩ)</text>
+  </g>
+  <!-- Appliances on output 1 -->
+  <rect class="diag-device-body" x="520" y="160" width="34" height="26" rx="4"/>
+  <text class="diag-device-label" x="537" y="176" text-anchor="middle" style="font-size:9px">H/S</text>
+  <rect class="diag-device-body" x="600" y="160" width="34" height="26" rx="4"/>
+  <text class="diag-device-label" x="617" y="176" text-anchor="middle" style="font-size:9px">H/S</text>
+  <rect class="diag-device-body" x="680" y="160" width="34" height="26" rx="4"/>
+  <text class="diag-device-label" x="697" y="176" text-anchor="middle" style="font-size:9px">H/S</text>
+  <!-- Output 1 wires -->
+  <path class="diag-wire" d="M 470 170 L 520 170 M 554 170 L 600 170 M 634 170 L 680 170 M 714 170 L 745 170"/>
+  <path class="diag-wire" d="M 470 195 L 515 195 L 515 180 M 554 180 L 600 180 L 600 180 M 634 180 L 680 180 M 714 180 L 745 180"/>
+  <!-- Output 1 EOL -->
+  <g transform="translate(748,175)">
+    <rect class="diag-eol-body" x="0" y="-9" width="40" height="18" rx="4" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="20" y="5" text-anchor="middle">EOL</text>
+    <text class="diag-eol-label" x="20" y="28" text-anchor="middle" style="font-size:8px">15kΩ (BPS)</text>
+  </g>
+  <!-- Appliances on output 2 -->
+  <rect class="diag-device-body" x="520" y="230" width="34" height="26" rx="4"/>
+  <text class="diag-device-label" x="537" y="246" text-anchor="middle" style="font-size:9px">H/S</text>
+  <rect class="diag-device-body" x="600" y="230" width="34" height="26" rx="4"/>
+  <text class="diag-device-label" x="617" y="246" text-anchor="middle" style="font-size:9px">H/S</text>
+  <!-- Output 2 wires -->
+  <path class="diag-wire" d="M 470 240 L 520 240 M 554 240 L 600 240 M 634 240 L 680 240"/>
+  <path class="diag-wire" d="M 470 265 L 515 265 L 515 250 M 554 250 L 600 250 M 634 250 L 680 250"/>
+  <!-- Output 2 EOL -->
+  <g transform="translate(683,245)">
+    <rect class="diag-eol-body" x="0" y="-9" width="40" height="18" rx="4" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="20" y="5" text-anchor="middle">EOL</text>
+    <text class="diag-eol-label" x="20" y="28" text-anchor="middle" style="font-size:8px">15kΩ (BPS)</text>
+  </g>
+  <!-- 120V AC power to BPS -->
+  <path class="diag-wire" d="M 390 280 L 390 320" stroke-dasharray="5,3"/>
+  <text class="diag-caption" x="390" y="340" text-anchor="middle" fill="var(--amber)">120VAC DEDICATED CIRCUIT</text>
+  <!-- BIG WARNING -->
+  <rect x="40" y="370" width="720" height="35" rx="6" fill="rgba(230,57,70,0.1)" stroke="var(--a)" stroke-width="1"/>
+  <text class="diag-caption" x="400" y="392" text-anchor="middle" fill="var(--a)" style="font-size:11px;font-weight:800">⚠ TOP CALLBACK SOURCE: TRIGGER EOL ≠ OUTPUT EOL. TRIGGER matches FACU panel spec. OUTPUT matches BPS spec.</text>
+</svg>`,
+ description:'<strong>BPS (Booster Power Supply)</strong> expands NAC capacity for large buildings. The FACP triggers the BPS via a NAC trigger input, and the BPS provides its own 24VDC power to downstream appliances. <strong>Two different EOL values are required</strong> — one on the trigger input (matching the parent FACP), and one on each output (matching the BPS spec).',
+ notes:[
+   '<strong>TRIGGER EOL matches the FACP panel spec</strong> — NOT the BPS spec. If the BPS is triggered by a Notifier NFS2-640 onboard NAC, the trigger EOL is 2.2kΩ. If triggered by a Fire-Lite panel, 4.7kΩ. This is the #1 callback source on BPS installs.',
+   '<strong>OUTPUT EOL matches the BPS spec</strong> — typically 15kΩ for EST BPS, 4.7kΩ for Fire-Lite FCPS, 3.9kΩ for Notifier AMPS-24. Verify in the BPS installation manual.',
+   '<strong>Module-triggered BPS (advanced):</strong> If the trigger source is an addressable monitor module (e.g., MMF-300) instead of a panel onboard NAC, the trigger EOL matches that module\'s spec (usually 47kΩ), not the FACP\'s 2.2kΩ.',
+   '<strong>BPS power:</strong> Dedicated 120VAC circuit + standby batteries. Trouble on BPS reports back to FACP via the trigger circuit reversal.',
+   '<strong>Brand-specific gotcha:</strong> EST BPS10A = 15kΩ output, Potter PSN-1000 = 4.7kΩ output (with Reference EOL terminals), Fire-Lite FCPS-24FS8 = 4.7kΩ output. See Power Supplies reference for full details.'
+ ]
+},
+{id:'addressable-slc-loop',title:'Addressable SLC — Module Layout',subtitle:'Mixed addressable devices and conventional-interface modules on one loop',tags:['SLC','Addressable','Modules'],
+ svg:`<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="420" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="30" y="170" width="110" height="90" rx="6"/>
+  <text class="diag-panel-label" x="85" y="205" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="85" y="223" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">SLC Loop 1</text>
+  <!-- Loop wire -->
+  <path class="diag-wire" d="M 140 215 L 750 215"/>
+  <!-- Addressable smoke detectors -->
+  <g>
+    <circle class="diag-device-body" cx="195" cy="215" r="13"/>
+    <text class="diag-device-label" x="195" y="219" text-anchor="middle" style="font-size:9px">S1</text>
+    <text class="diag-caption" x="195" y="250" text-anchor="middle" style="font-size:8px">Smoke</text>
+    <circle class="diag-device-body" cx="250" cy="215" r="13"/>
+    <text class="diag-device-label" x="250" y="219" text-anchor="middle" style="font-size:9px">S2</text>
+    <text class="diag-caption" x="250" y="250" text-anchor="middle" style="font-size:8px">Smoke</text>
+  </g>
+  <!-- Monitor module for pull station -->
+  <g transform="translate(300,195)">
+    <rect class="diag-device-body" x="0" y="0" width="30" height="40" rx="4"/>
+    <text class="diag-device-label" x="15" y="15" text-anchor="middle" style="font-size:8px">FMM</text>
+    <text class="diag-device-label" x="15" y="27" text-anchor="middle" style="font-size:7px">1</text>
+    <text class="diag-caption" x="15" y="57" text-anchor="middle" style="font-size:8px">Monitor</text>
+  </g>
+  <!-- Pull station connected to FMM-1 -->
+  <path class="diag-wire" d="M 330 215 L 355 215 L 355 270 L 385 270"/>
+  <rect class="diag-device-body" x="385" y="258" width="36" height="26" rx="3"/>
+  <text class="diag-device-label" x="403" y="273" text-anchor="middle" style="font-size:8px">PULL</text>
+  <!-- 47k EOL on FMM-1 IDC -->
+  <g transform="translate(425,263)">
+    <rect class="diag-eol-body" x="0" y="-8" width="30" height="16" rx="3" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="15" y="4" text-anchor="middle" style="font-size:8px">47kΩ</text>
+  </g>
+  <!-- Control module -->
+  <g transform="translate(490,195)">
+    <rect class="diag-device-body" x="0" y="0" width="32" height="40" rx="4"/>
+    <text class="diag-device-label" x="16" y="15" text-anchor="middle" style="font-size:8px">FCM</text>
+    <text class="diag-device-label" x="16" y="27" text-anchor="middle" style="font-size:7px">1</text>
+    <text class="diag-caption" x="16" y="57" text-anchor="middle" style="font-size:8px">Control</text>
+  </g>
+  <!-- Output to strobe -->
+  <path class="diag-wire" d="M 522 215 L 545 215 L 545 150 L 580 150"/>
+  <rect class="diag-device-body" x="580" y="138" width="36" height="26" rx="3"/>
+  <text class="diag-device-label" x="598" y="153" text-anchor="middle" style="font-size:8px">H/S</text>
+  <!-- EOL on FCM-1 output (47kΩ) -->
+  <g transform="translate(620,143)">
+    <rect class="diag-eol-body" x="0" y="-8" width="30" height="16" rx="3" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="15" y="4" text-anchor="middle" style="font-size:8px">47kΩ</text>
+  </g>
+  <!-- Zone interface module FZM-1 -->
+  <g transform="translate(680,195)">
+    <rect class="diag-device-body" x="0" y="0" width="32" height="40" rx="4"/>
+    <text class="diag-device-label" x="16" y="15" text-anchor="middle" style="font-size:8px">FZM</text>
+    <text class="diag-device-label" x="16" y="27" text-anchor="middle" style="font-size:7px">1</text>
+    <text class="diag-caption" x="16" y="57" text-anchor="middle" style="font-size:8px">2-wire</text>
+  </g>
+  <!-- 2-wire smokes on FZM-1 zone -->
+  <path class="diag-wire" d="M 712 215 L 735 215 L 735 300 L 540 300"/>
+  <circle class="diag-device-body" cx="530" cy="300" r="10"/>
+  <text class="diag-device-label" x="530" y="304" text-anchor="middle" style="font-size:8px">S</text>
+  <circle class="diag-device-body" cx="465" cy="300" r="10"/>
+  <text class="diag-device-label" x="465" y="304" text-anchor="middle" style="font-size:8px">S</text>
+  <!-- 3.9kΩ EOL on FZM zone -->
+  <g transform="translate(415,295)">
+    <rect class="diag-eol-body" x="0" y="-8" width="38" height="16" rx="3" fill-opacity="0.25"/>
+    <text class="diag-eol-label" x="19" y="4" text-anchor="middle" style="font-size:8px">3.9kΩ</text>
+  </g>
+  <!-- Annotations -->
+  <text class="diag-caption" x="400" y="360" text-anchor="middle">EACH MODULE HAS ITS OWN EOL on its secondary circuit</text>
+  <text class="diag-caption" x="400" y="380" text-anchor="middle">MONITOR MODULE IDC = 47kΩ · CONTROL MODULE NAC = 47kΩ · ZONE INTERFACE (FZM-1) 2-wire smoke = 3.9kΩ</text>
+  <text class="diag-caption" x="400" y="400" text-anchor="middle">The SLC loop itself has NO EOL — supervision is digital</text>
+</svg>`,
+ description:'<strong>Addressable SLC with mixed module types</strong>. The SLC loop carries addressable smoke detectors, monitor modules (FMM-1 for dry contacts), control modules (FCM-1 for NAC output), and zone interface modules (FZM-1 for legacy 2-wire smokes). Each module type brings its own EOL requirements on its secondary circuit — but the SLC itself has no EOL.',
+ notes:[
+   '<strong>Three different EOL values on one loop.</strong> Monitor module IDC = 47kΩ. Control module NAC output = 47kΩ. Zone interface for 2-wire smokes = 3.9kΩ. Know which secondary circuit you\'re wiring.',
+   '<strong>Address uniqueness:</strong> Every addressable device and module needs a unique address on the loop. Duplicates = duplicate-address trouble. Set address BEFORE connecting SLC.',
+   '<strong>Loop capacity:</strong> Notifier NFS2-640 supports 159 addressable points per loop (devices + modules combined). Check panel spec for exact capacity.',
+   '<strong>Legacy integration:</strong> FZM-1 and FCM-1 are how you bring conventional devices into an addressable system — common in retrofits where existing 2-wire smokes or conventional appliances need to be preserved.'
+ ]
+},
+{id:'slc-with-isolators',title:'SLC with Fault Isolators — Class X Operation',subtitle:'Isolators between segments — short on one segment doesn\'t drop the rest',tags:['Class X','SLC','Isolator'],
+ svg:`<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <rect class="diag-bg" x="0" y="0" width="800" height="400" rx="8"/>
+  <!-- Panel -->
+  <rect class="diag-panel-body" x="20" y="170" width="100" height="90" rx="6"/>
+  <text class="diag-panel-label" x="70" y="205" text-anchor="middle">FACP</text>
+  <text class="diag-panel-label" x="70" y="222" text-anchor="middle" style="font-size:10px;font-weight:400;fill:var(--t3)">SLC Loop</text>
+  <!-- Three loop segments with isolators between -->
+  <!-- Segment 1 wire -->
+  <path class="diag-wire" d="M 120 215 L 165 215"/>
+  <!-- Isolator 1 -->
+  <rect class="diag-iso-body" x="165" y="195" width="38" height="40" rx="5"/>
+  <text class="diag-iso-label" x="184" y="213" text-anchor="middle">ISO</text>
+  <text class="diag-iso-label" x="184" y="225" text-anchor="middle">X</text>
+  <!-- Segment 1 devices -->
+  <path class="diag-wire" d="M 203 215 L 248 215"/>
+  <circle class="diag-device-body" cx="250" cy="215" r="13"/>
+  <text class="diag-device-label" x="250" y="219" text-anchor="middle" style="font-size:9px">S1</text>
+  <path class="diag-wire" d="M 263 215 L 298 215"/>
+  <circle class="diag-device-body" cx="300" cy="215" r="13"/>
+  <text class="diag-device-label" x="300" y="219" text-anchor="middle" style="font-size:9px">S2</text>
+  <path class="diag-wire" d="M 313 215 L 345 215"/>
+  <!-- Isolator 2 -->
+  <rect class="diag-iso-body" x="345" y="195" width="38" height="40" rx="5"/>
+  <text class="diag-iso-label" x="364" y="213" text-anchor="middle">ISO</text>
+  <text class="diag-iso-label" x="364" y="225" text-anchor="middle">X</text>
+  <!-- Segment 2 devices (with simulated short) -->
+  <path class="diag-wire" d="M 383 215 L 430 215"/>
+  <circle class="diag-device-body" cx="432" cy="215" r="13"/>
+  <text class="diag-device-label" x="432" y="219" text-anchor="middle" style="font-size:9px">S3</text>
+  <path class="diag-wire" d="M 445 215 L 478 215"/>
+  <circle class="diag-device-body" cx="480" cy="215" r="13"/>
+  <text class="diag-device-label" x="480" y="219" text-anchor="middle" style="font-size:9px">S4</text>
+  <path class="diag-wire" d="M 493 215 L 525 215"/>
+  <!-- SHORT between S3 and S4 -->
+  <g>
+    <line x1="450" y1="250" x2="470" y2="260" stroke="var(--red)" stroke-width="2.5"/>
+    <line x1="450" y1="260" x2="470" y2="250" stroke="var(--red)" stroke-width="2.5"/>
+    <text class="diag-caption" x="460" y="280" text-anchor="middle" fill="var(--red)">SHORT</text>
+  </g>
+  <!-- Isolator 3 -->
+  <rect class="diag-iso-body" x="525" y="195" width="38" height="40" rx="5"/>
+  <text class="diag-iso-label" x="544" y="213" text-anchor="middle">ISO</text>
+  <text class="diag-iso-label" x="544" y="225" text-anchor="middle">X</text>
+  <!-- Segment 3 devices -->
+  <path class="diag-wire" d="M 563 215 L 608 215"/>
+  <circle class="diag-device-body" cx="610" cy="215" r="13"/>
+  <text class="diag-device-label" x="610" y="219" text-anchor="middle" style="font-size:9px">S5</text>
+  <path class="diag-wire" d="M 623 215 L 658 215"/>
+  <circle class="diag-device-body" cx="660" cy="215" r="13"/>
+  <text class="diag-device-label" x="660" y="219" text-anchor="middle" style="font-size:9px">S6</text>
+  <!-- Segment indicators (color-coded) -->
+  <text class="diag-caption" x="265" y="170" text-anchor="middle" fill="var(--green)">SEGMENT 1 · ONLINE</text>
+  <text class="diag-caption" x="450" y="170" text-anchor="middle" fill="var(--red)">SEGMENT 2 · ISOLATED</text>
+  <text class="diag-caption" x="620" y="170" text-anchor="middle" fill="var(--green)">SEGMENT 3 · ONLINE</text>
+  <!-- When-it-works box -->
+  <rect x="40" y="310" width="720" height="70" rx="6" fill="rgba(34,197,94,0.08)" stroke="var(--green)" stroke-width="0.5"/>
+  <text class="diag-caption" x="400" y="335" text-anchor="middle" fill="var(--green)" style="font-size:11px;font-weight:800">✓ ISOLATORS DID THEIR JOB</text>
+  <text class="diag-caption" x="400" y="355" text-anchor="middle">ISO-X between segments 1-2 and 2-3 detected the short on segment 2</text>
+  <text class="diag-caption" x="400" y="370" text-anchor="middle">Both isolators opened automatically, isolating the fault — segments 1 and 3 continue normal operation</text>
+</svg>`,
+ description:'<strong>Class X SLC with fault isolators</strong> between device segments. When a short circuit occurs on any segment, the isolators on both sides detect the short and open the SLC path, containing the fault to that segment only. Devices on other segments continue to operate and communicate with the panel normally.',
+ notes:[
+   '<strong>Automatic operation.</strong> Isolators trip automatically when current exceeds the short-circuit threshold. They also automatically reset when the short is cleared — so intermittent shorts can cause "flickering" trouble signals.',
+   '<strong>Segment design.</strong> Typical spec: one isolator every ~20 devices, or at the boundary between floors/wings/fire compartments. Follow the fire alarm engineer\'s design — isolator placement matters for fault tolerance guarantees.',
+   '<strong>Isolator bases vs modules.</strong> ISO-X is a standalone module. Some detectors have isolator bases (built-in isolation per device) — more expensive but more granular fault tolerance.',
+   '<strong>No EOL on isolators.</strong> Isolators don\'t use EOL resistors — they\'re fault-handling devices, not initiating devices. The SLC itself is digitally supervised, not resistor-supervised.',
+   '<strong>EST Signature equivalent.</strong> SIGA-IB (isolator base) and SIGA-ISOL provide the same function on EST panels. Placement rules are similar.'
+ ]
+}
+],
+'device-wiring':[], // populated in v7.5.1 (next session)
+'typical-installs':[] // populated in v7.5.2
+};
 
 
 const CID=[
@@ -1309,6 +2063,7 @@ let S={
   dtree:null,dhist:[],dcur:null,
   pb:null,pm:null,pt:null,
   equipCat:null,
+  diagCat:null,diagId:null,
   cidInput:'',cidQual:'E',
   theme:localStorage.getItem('fa_theme')||'dark',
   notes:loadNotes(),
@@ -1401,7 +2156,7 @@ function rHome(){return `<div>
   <div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Document all impairment durations in job notes.</div></div>
   <div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it.</div></div>
 </div>
-<div class="version-tag">FA Tech Assist · Encore Fire Protection · v7.4</div>
+<div class="version-tag">FA Tech Assist · Encore Fire Protection · v7.5</div>
 </div>`;}
 
 function rReference(){
@@ -1409,6 +2164,7 @@ function rReference(){
   if(S.refSub==='panels')return rPanels();
   if(S.refSub==='cid')return rCIDTab();
   if(S.refSub==='nfpa')return rNFPA();
+  if(S.refSub==='diagrams')return rDiagrams();
   return rRefHub();
 }
 
@@ -1417,6 +2173,7 @@ function rRefHub(){return `<div>
 <div class="card-list">
   <div class="hub-card" onclick="setRef('codes')"><div class="hub-ico">⌕</div><div class="hub-info"><div class="hub-title">Error Code Lookup</div><div class="hub-desc">Search by code, symptom, or brand — smart assist included</div></div><span class="hub-badge">${EC.length} codes</span><div class="hub-chev">›</div></div>
   <div class="hub-card" onclick="setRef('panels')"><div class="hub-ico">◫</div><div class="hub-info"><div class="hub-title">Equipment Reference</div><div class="hub-desc">Panels, power supplies, modules, amplifiers — EOL, programming, gotchas</div></div><span class="hub-badge">4 categories</span><div class="hub-chev">›</div></div>
+  <div class="hub-card" onclick="setRef('diagrams')"><div class="hub-ico">⎓</div><div class="hub-info"><div class="hub-title">Wiring Diagrams</div><div class="hub-desc">Circuit types, device wiring, typical installations — SVG reference library</div></div><span class="hub-badge">NEW</span><div class="hub-chev">›</div></div>
   <div class="hub-card" onclick="setRef('cid')"><div class="hub-ico">#</div><div class="hub-info"><div class="hub-title">Contact ID Decoder</div><div class="hub-desc">Decode monitoring signals instantly — E/R qualifier toggle</div></div><span class="hub-badge">${CID.length} codes</span><div class="hub-chev">›</div></div>
   <div class="hub-card" onclick="setRef('nfpa')"><div class="hub-ico">📋</div><div class="hub-info"><div class="hub-title">NFPA 72 Quick Ref</div><div class="hub-desc">Key code requirements — batteries, detectors, inspection intervals, impairment</div></div><span class="hub-badge">NEW</span><div class="hub-chev">›</div></div>
 </div>
@@ -1520,7 +2277,7 @@ ${EQUIP_CATEGORIES.map(cat=>{
   if(S.pm!==null&&S.pb!==null)return rTaskList();
 
   // Brand list for the selected category
-  const data=S.equipCat==='power-supplies'?POWER_SUPPLIES:PNL;
+  const data=S.equipCat==='power-supplies'?POWER_SUPPLIES:S.equipCat==='modules'?MODULES:PNL;
   const catMeta=EQUIP_CATEGORIES.find(c=>c.id===S.equipCat);
   const catName=catMeta?catMeta.name:'Equipment';
   return `<div>
@@ -1530,9 +2287,9 @@ ${EQUIP_CATEGORIES.map(cat=>{
 <div class="sp"></div></div>`;
 }
 
-function rTaskList(){const DATA=S.equipCat==='power-supplies'?POWER_SUPPLIES:PNL;const catMeta=EQUIP_CATEGORIES.find(c=>c.id===S.equipCat);const backLabel=catMeta?catMeta.name:'Equipment';const b=DATA[S.pb];const m=b.models[S.pm];return `<div><button class="back-btn" onclick="sMod(null,null)">‹ ${backLabel}</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:22px">${m.name}</div><div class="pg-sub">${b.brand}</div></div><div class="task-list-wrap">${m.tasks.map((t,i)=>`<div class="task-r" onclick="sTask(${i})"><div class="task-r-ico ${t.ico===EOL_ICON?'task-r-eol':t.ico==='⚠️'?'task-r-warn':'task-r-ora'}">${t.ico}</div><div style="flex:1"><div class="task-nm">${t.t}</div>${t.eol?`<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:2px;letter-spacing:0.06em">EOL QUICK REF</div>`:''}</div><span style="color:var(--t4)">›</span></div>`).join('')}</div><div class="sp"></div></div>`;}
+function rTaskList(){const DATA=S.equipCat==='power-supplies'?POWER_SUPPLIES:S.equipCat==='modules'?MODULES:PNL;const catMeta=EQUIP_CATEGORIES.find(c=>c.id===S.equipCat);const backLabel=catMeta?catMeta.name:'Equipment';const b=DATA[S.pb];const m=b.models[S.pm];return `<div><button class="back-btn" onclick="sMod(null,null)">‹ ${backLabel}</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:22px">${m.name}</div><div class="pg-sub">${b.brand}</div></div><div class="task-list-wrap">${m.tasks.map((t,i)=>`<div class="task-r" onclick="sTask(${i})"><div class="task-r-ico ${t.ico===EOL_ICON?'task-r-eol':t.ico==='⚠️'?'task-r-warn':'task-r-ora'}">${t.ico}</div><div style="flex:1"><div class="task-nm">${t.t}</div>${t.eol?`<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:2px;letter-spacing:0.06em">EOL QUICK REF</div>`:''}</div><span style="color:var(--t4)">›</span></div>`).join('')}</div><div class="sp"></div></div>`;}
 
-function rTaskDetail(){const DATA=S.equipCat==='power-supplies'?POWER_SUPPLIES:PNL;const b=DATA[S.pb];const m=b.models[S.pm];const t=m.tasks[S.pt];
+function rTaskDetail(){const DATA=S.equipCat==='power-supplies'?POWER_SUPPLIES:S.equipCat==='modules'?MODULES:PNL;const b=DATA[S.pb];const m=b.models[S.pm];const t=m.tasks[S.pt];
 if(t.eol){return `<div><button class="back-btn" onclick="sTask(null)">‹ ${m.name}</button><div class="pg-head" style="padding-top:4px"><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:9px;background:rgba(34,197,94,0.15);border:0.5px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">${EOL_ICON}</div><div><div class="pg-title" style="font-size:20px">${t.t}</div><div class="pg-sub">${m.name} · ${b.brand}</div></div></div></div>${t.warn?`<div style="padding:14px 16px 0"><div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div></div>`:''}<div style="padding:14px 16px">${t.rows.map(r=>`<div style="background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 16px;margin-bottom:10px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px"><div style="font-size:13px;font-weight:600;color:var(--t2)">${r.label}</div><div style="font-family:ui-monospace,monospace;font-size:18px;font-weight:800;color:${r.val==='SELECTABLE'?'var(--amber)':r.val==='N/A'?'var(--t4)':'var(--green)'};flex-shrink:0">${r.val}</div></div>${r.watt!=='—'?`<div style="font-size:11px;color:var(--t3);margin-bottom:6px">${r.watt}${r.pn!=='—'?` · P/N: ${r.pn}`:''}</div>`:''} <div style="font-size:13px;color:var(--t2);line-height:1.5;border-top:0.5px solid var(--bdr);padding-top:8px;margin-top:2px">${r.note}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
 return `<div><button class="back-btn" onclick="sTask(null)">‹ ${m.name}</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:20px">${t.t}</div><div class="pg-sub">${m.name} · ${b.brand}</div></div><div style="padding:0 16px 16px">${t.warn?`<div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div>`:''}${t.steps.map((s,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${s}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
 
@@ -1591,6 +2348,94 @@ function rNFPADetail(){
   ${item.note?`<div class="nfpa-detail-note">${item.note}</div>`:`<div class="nfpa-detail-note" style="color:var(--t3)">No additional detail available for this item.</div>`}
 </div>
 </div>`;}
+
+/* ================================================================
+   v7.5 — Wiring Diagrams rendering
+================================================================ */
+
+function rDiagrams(){
+  if(S.diagId!==null && S.diagCat!==null)return rDiagramDetail();
+  if(S.diagCat!==null)return rDiagramList();
+  // Hub — show three sub-category cards
+  return `<div>
+<button class="back-btn" onclick="setRef(null)">‹ Reference</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">Wiring Diagrams</div><div class="pg-sub">SVG reference library — circuit types, device wiring, and typical installations</div></div>
+<div style="padding:0 16px;">
+${DIAGRAM_SUBCATS.map(sc=>{
+  const active=sc.status==='active';
+  const count=active?(DIAGRAMS[sc.id]?.length||0)+' diagrams':'Coming '+sc.comingIn;
+  return `<div class="diag-subcat-card ${active?'active':'coming'}" ${active?`onclick="setDiagCat('${sc.id}')"`:''}>
+    <div class="diag-subcat-ico">${sc.icon}</div>
+    <div class="diag-subcat-info">
+      <div class="diag-subcat-nm">${sc.name}</div>
+      <div class="diag-subcat-desc">${sc.desc}</div>
+    </div>
+    <div class="diag-subcat-meta">
+      <span class="diag-subcat-count ${active?'':'coming'}">${count}</span>
+      ${active?'<span class="equip-cat-chev">›</span>':''}
+    </div>
+  </div>`;
+}).join('')}
+</div>
+<div class="sp"></div></div>`;
+}
+
+function rDiagramList(){
+  const sc=DIAGRAM_SUBCATS.find(s=>s.id===S.diagCat);
+  const items=DIAGRAMS[S.diagCat]||[];
+  return `<div>
+<button class="back-btn" onclick="setDiagCat(null)">‹ Wiring Diagrams</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">${sc.name}</div><div class="pg-sub">${sc.desc}</div></div>
+<div class="diag-list">
+${items.map(d=>`<div class="diag-list-item" onclick="setDiagId('${d.id}')">
+  <div class="diag-list-item-ico">${sc.icon}</div>
+  <div class="diag-list-item-body">
+    <div class="diag-list-item-title">${d.title}</div>
+    <div class="diag-list-item-sub">${d.subtitle}</div>
+    ${d.tags&&d.tags.length?`<div class="diag-tag-row">${d.tags.map(t=>`<span class="diag-tag ${diagTagClass(t)}">${t}</span>`).join('')}</div>`:''}
+  </div>
+  <div class="diag-list-item-chev">›</div>
+</div>`).join('')}
+</div>
+<div class="sp"></div></div>`;
+}
+
+function diagTagClass(tag){
+  const t=tag.toLowerCase();
+  if(t.includes('class a'))return 'class-a';
+  if(t.includes('class b'))return 'class-b';
+  if(t.includes('class x'))return 'class-x';
+  if(t.includes('nac'))return 'nac';
+  if(t.includes('slc'))return 'slc';
+  return '';
+}
+
+function rDiagramDetail(){
+  const items=DIAGRAMS[S.diagCat]||[];
+  const d=items.find(x=>x.id===S.diagId);
+  if(!d){
+    return `<div><button class="back-btn" onclick="setDiagId(null)">‹ Back</button><div style="padding:20px;color:var(--t3)">Diagram not found.</div></div>`;
+  }
+  const sc=DIAGRAM_SUBCATS.find(s=>s.id===S.diagCat);
+  return `<div>
+<button class="back-btn" onclick="setDiagId(null)">‹ ${sc.name}</button>
+<div class="diag-viewer">
+  <div class="diag-viewer-head">
+    <div class="diag-viewer-title">${d.title}</div>
+    <div class="diag-viewer-sub">${d.subtitle}</div>
+    ${d.tags&&d.tags.length?`<div class="diag-tag-row" style="margin-top:8px">${d.tags.map(t=>`<span class="diag-tag ${diagTagClass(t)}">${t}</span>`).join('')}</div>`:''}
+  </div>
+  <div class="diag-svg-wrap">
+    ${d.svg}
+  </div>
+  <div class="diag-desc">${d.description}</div>
+  ${d.notes&&d.notes.length?`<div class="diag-notes-label">Key notes</div>${d.notes.map(n=>`<div class="diag-note">${n}</div>`).join('')}`:''}
+</div>
+<div class="sp"></div></div>`;
+}
+
+function setDiagCat(cat){S.diagCat=cat;S.diagId=null;R();}
+function setDiagId(id){S.diagId=id;R();}
 
 function rCalc(){
   const tab=S.calcTab;
@@ -2829,7 +3674,7 @@ function rNoteDetail(){const n=S.notes[S.noteIdx];const tagMap={finding:'f',acti
 function rAddEntry(){const tags=[{k:'finding',l:'Finding',c:'f'},{k:'action',l:'Action Taken',c:'a'},{k:'parts',l:'Parts Needed',c:'p'},{k:'callback',l:'Callback Required',c:'c'}];return `<div class="form-wrap"><label class="fl">Note</label><textarea class="fta" id="et" placeholder="What did you find or do?" oninput="sNT(this.value)">${S.newText}</textarea><label class="fl">Tag</label><div class="tag-btns">${tags.map(t=>`<button class="tag-btn ${S.newTag===t.k?`sel-${t.c}`:''}" onclick="sTag('${t.k}')">${t.l}</button>`).join('')}</div><button class="sbmt" onclick="saveE()">Add Entry</button><button class="cncl" onclick="togE()">Cancel</button></div>`;}
 
 function gTab(t){S.tab=t;S.scode=null;if(t!=='diagnose'){S.dtree=null;S.dcur=null;S.dhist=[];}if(t!=='reference'){S.refSub=null;}if(t!=='tools'){/* keep tool state */}if(t!=='notes'){S.noteIdx=null;S.addEntry=false;S.makingSession=false;}R();}
-function setRef(sub){S.refSub=sub;S.scode=null;S.pb=null;S.pm=null;S.pt=null;S.equipCat=null;R();}
+function setRef(sub){S.refSub=sub;S.scode=null;S.pb=null;S.pm=null;S.pt=null;S.equipCat=null;S.diagCat=null;S.diagId=null;R();}
 function setEquipCat(cat){S.equipCat=cat;S.pb=null;S.pm=null;S.pt=null;R();}
 function setTool(sub){S.toolSub=sub;R();}
 function setCalcTab(t){S.calcTab=t;R();}
@@ -3084,7 +3929,8 @@ function renderQuickSearch(q){
   try{
     const searchSets=[
       {cat:'panels',data:typeof PNL!=='undefined'?PNL:[]},
-      {cat:'power-supplies',data:typeof POWER_SUPPLIES!=='undefined'?POWER_SUPPLIES:[]}
+      {cat:'power-supplies',data:typeof POWER_SUPPLIES!=='undefined'?POWER_SUPPLIES:[]},
+      {cat:'modules',data:typeof MODULES!=='undefined'?MODULES:[]}
     ];
     for(const set of searchSets){
       for(const b of set.data){
@@ -3216,7 +4062,7 @@ function openQmRef(cat,pb,pm,pt){
   S.tab='reference';S.refSub='panels';S.equipCat=cat;
   S.pb=pb;S.pm=pm;S.pt=pt;
   try{
-    const DATA=cat==='power-supplies'?POWER_SUPPLIES:PNL;
+    const DATA=cat==='power-supplies'?POWER_SUPPLIES:cat==='modules'?MODULES:PNL;
     const b=DATA[pb],m=b.models[pm],t=m.tasks[pt];
     addRecent('ref',cat+'-'+pb+'-'+pm+'-'+pt,t.t,b.brand+' · '+m.name);
   }catch(e){}
