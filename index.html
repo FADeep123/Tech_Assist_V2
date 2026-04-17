@@ -725,6 +725,46 @@ body::before{
 .ref-image-wrap{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:12px;margin-top:10px;}
 .ref-image-wrap svg{display:block;width:100%;height:auto;margin:0 auto;}
 .ref-image-caption{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--t3);text-transform:uppercase;text-align:center;margin-top:10px;}
+
+/* ================================================================
+   v7.3 ADDITIONS — Battery Date Decoder
+================================================================ */
+
+.batt-brand-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 0 8px;}
+.batt-brand-row::-webkit-scrollbar{display:none;}
+.batt-brand-pill{flex:0 0 auto;padding:8px 12px;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:9px;color:var(--t2);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.06em;cursor:pointer;text-transform:uppercase;white-space:nowrap;transition:all 0.15s var(--ease-quick);}
+.batt-brand-pill.on{background:var(--a2);border-color:rgba(230,57,70,0.35);color:var(--a);}
+.batt-brand-pill:active{transform:scale(0.96);}
+
+.batt-format-card{background:var(--s1);border:0.5px solid var(--bdr2);border-radius:12px;padding:14px 16px;margin-bottom:14px;position:relative;overflow:hidden;}
+.batt-format-card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);}
+.batt-format-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;padding-bottom:8px;border-bottom:0.5px solid var(--bdr);}
+.batt-format-brand{font-size:15px;font-weight:700;color:var(--t1);letter-spacing:-0.01em;}
+.batt-format-series{font-family:var(--mono);font-size:10px;color:var(--t3);font-weight:600;letter-spacing:0.04em;}
+.batt-format-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12px;}
+.batt-format-label{color:var(--t3);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+.batt-format-val{color:var(--t1);font-family:var(--mono);font-size:13px;font-weight:700;}
+.batt-format-val.batt-format-example{color:var(--a);}
+.batt-format-desc{margin-top:10px;padding-top:10px;border-top:0.5px solid var(--bdr);font-size:12px;color:var(--t2);line-height:1.55;}
+
+.batt-code-input{font-family:var(--mono)!important;font-size:20px!important;font-weight:700;letter-spacing:0.08em!important;text-transform:uppercase;text-align:center;}
+
+/* ================================================================
+   v7.4 ADDITIONS — Equipment Category picker
+================================================================ */
+.equip-cat-card{display:flex;align-items:center;gap:14px;background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.15s var(--ease-quick),border-color 0.15s var(--ease-quick);}
+.equip-cat-card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);}
+.equip-cat-card.active:active{transform:scale(0.98);border-color:rgba(230,57,70,0.35);}
+.equip-cat-card.coming{opacity:0.55;cursor:default;}
+.equip-cat-ico{width:44px;height:44px;border-radius:12px;background:var(--a2);border:0.5px solid rgba(230,57,70,0.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.equip-cat-card.coming .equip-cat-ico{background:var(--s2);border-color:var(--bdr);}
+.equip-cat-info{flex:1;min-width:0;}
+.equip-cat-nm{font-size:16px;font-weight:700;color:var(--t1);letter-spacing:-0.01em;margin-bottom:3px;}
+.equip-cat-desc{font-size:12px;color:var(--t3);line-height:1.45;}
+.equip-cat-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
+.equip-cat-count{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--a2);color:var(--a);white-space:nowrap;}
+.equip-cat-count.coming{background:var(--s3);color:var(--t3);}
+.equip-cat-chev{color:var(--t4);font-size:22px;line-height:1;}
 </style>
 </head>
 <body>
@@ -964,6 +1004,135 @@ const PNL=[
 ];
 
 
+// ================================================================
+// v7.4 — Equipment Categories + Power Supplies
+// ================================================================
+
+const EQUIP_CATEGORIES=[
+  {id:'panels',name:'Control Panels',icon:'◫',desc:'Notifier, Simplex, EST, Fire-Lite, Silent Knight, Bosch',status:'active'},
+  {id:'power-supplies',name:'Power Supplies',icon:'⚡',desc:'Booster/NAC expanders — EST BPS, Potter PSN, Notifier AMPS, Fire-Lite FCPS',status:'active'},
+  {id:'modules',name:'Addressable Modules',icon:'◉',desc:'Monitor, control, isolator, relay modules',status:'coming',comingIn:'v7.5'},
+  {id:'amplifiers',name:'Voice Evac Amplifiers',icon:'📢',desc:'Voice evacuation amplifiers and audio controllers',status:'coming',comingIn:'v7.6'}
+];
+
+const POWER_SUPPLIES=[
+{brand:'EST / Edwards',models:[
+{name:'BPS6A',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits (4 × Class B or 2 × Class A)',val:'15kΩ',watt:'½W',pn:'REL-15K',note:'EST BPS NAC outputs use 15kΩ EOL — same as EST/Edwards iO500/iO64 panel NACs. Each of 4 outputs rated up to 3A continuous, 6.5A total system.'},
+{label:'Trigger Input (from FACU NAC)',val:'MATCH FACU',watt:'½W',pn:'—',note:'CRITICAL: The trigger input EOL must match the parent panel NAC EOL, NOT the BPS 15kΩ output spec. If FACU is a Notifier 2.2kΩ NAC, trigger EOL = 2.2kΩ. This is a top-3 callback source on BPS installs.'},
+{label:'Auxiliary Power Output',val:'N/A',watt:'—',pn:'—',note:'24VDC aux output is not supervised when used as continuous power — no EOL required.'},
+],warn:'Two different EOLs: Outputs = 15kΩ (BPS spec). Trigger input = match parent FACU. Do not mix these up.'},
+{t:'Configure DIP Switches',ico:'🔑',steps:['Locate DIP switch banks SW1 (8-pos) and SW2 (8-pos) on board','SW1-1, SW1-2, SW1-3 set operating mode: Signal Master, Follower, or Auxiliary Power','SW1-4 controls sync — ON enables strobe synchronization (required for multi-appliance circuits)','SW1-5 selects Class A vs Class B wiring per output','SW2 positions handle AC delay and individual NAC settings','Document all DIP positions before changing — photograph for records'],warn:'All switches ship in OFF position. Configure mode BEFORE applying power.'},
+{t:'Gotcha Notes — BPS6A',ico:'⚠️',steps:['BPS6A = 6.5A total system capacity across 4 NAC outputs (3A per output max, but total cannot exceed 6.5A)','BPS10A is the 10A version — drop-in for larger jobs, same wiring and DIP layout','Trigger input EOL must match parent FACU — this is THE most common mistake','When replacing an older BPS6 (no "A"), the new BPS6A has different trouble relay wiring — verify with installation manual','Battery charger supports up to 10AH batteries (larger than internal space — external enclosure needed for 18AH+)','AC loss delays 3 hours before reporting trouble — normal per UL 864'],warn:null}
+]},
+{name:'BPS10A',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits (4 × Class B or 2 × Class A)',val:'15kΩ',watt:'½W',pn:'REL-15K',note:'Same as BPS6A — 15kΩ EOL on NAC outputs. BPS10A provides 10A total system capacity (3A per output, 10A total).'},
+{label:'Trigger Input (from FACU NAC)',val:'MATCH FACU',watt:'½W',pn:'—',note:'Trigger input EOL matches parent panel NAC EOL. If FACU is Notifier = 2.2kΩ, if Fire-Lite = 4.7kΩ, if Simplex = 10kΩ, etc.'},
+{label:'Auxiliary Power Output',val:'N/A',watt:'—',pn:'—',note:'24VDC aux output unsupervised — no EOL.'},
+],warn:'Two EOL values: outputs = 15kΩ, trigger input = match FACU. Verify parent panel EOL before terminating trigger.'},
+{t:'Configure DIP Switches',ico:'🔑',steps:['Same DIP layout as BPS6A — SW1 and SW2 banks','SW1-1/2/3: operating mode','SW1-4: synchronization enable','SW1-5: Class A vs Class B per output','SW2: AC delay and per-NAC settings','Reference BPS10A manual table 3-1 for full DIP decode'],warn:'Document existing DIP positions before changing anything.'},
+{t:'Gotcha Notes — BPS10A',ico:'⚠️',steps:['BPS10A replaced BPS6A as the standard Edwards booster — most current installs are BPS10A','Compatible with EST3, iO64, iO500 addressable panels','4 NAC outputs can be field-configured as 2 Class A circuits for redundant wiring','Fault on BPS does NOT impede FACU NAC operation — BPS trouble only affects BPS outputs','Internal battery space: 10AH max. External enclosure needed for higher AH','UL 864 compliance requires specific DIP settings — review UL notes before configuring'],warn:null}
+]},
+{name:'APS6A',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'15kΩ',watt:'½W',pn:'REL-15K',note:'APS Series uses 15kΩ EOL on NAC-configured outputs, per APS Technical Reference Manual. APS is the successor product line to BPS.'},
+{label:'Trigger Input (from FACU)',val:'MATCH FACU',watt:'½W',pn:'—',note:'Trigger EOL matches parent panel. Critical for proper trouble reporting back to FACU.'},
+{label:'Aux Current Load',val:'N/A',watt:'—',pn:'—',note:'Aux outputs unsupervised unless specifically configured via SW2-7.'},
+],warn:'APS Series outputs programmed as NAC require 15kΩ EOL. Match trigger to parent FACU.'},
+{t:'Configure Signature Modules',ico:'🔑',steps:['APS Series uses Signature Series control modules (CC1(S), CT1) mounted inside the APS enclosure','Install Signature module per installation sheet','Program module on Signature controller (main FACU)','Wire CC1(S) per APS wiring diagram (refer to manual figure 34)','When SW2-6 is ON, CC1(S) immediately signals NAC and power faults; AC faults delayed 3 hours','3-TAMP tamper switch used for security applications — requires SIGA-SEC2 module'],warn:'Signature modules require proper programming on main FACU before APS will operate correctly.'},
+{t:'Gotcha Notes — APS6A',ico:'⚠️',steps:['APS replaced BPS as EST\'s current booster platform','Requires Signature Series compatibility on main FACU','APS includes built-in Signature communication — no separate SIGA module needed for the booster itself, but control modules still use Signature','NAC open test: remove EOL at last device — trouble LED must light','NAC short test: short across each NAC output individually — individual LED lights','Ground fault test: short one leg to chassis ground — both ground fault AND trouble fault LEDs light','For device compatibility list, reference P/N 3100656'],warn:null}
+]},
+{name:'APS10A',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'15kΩ',watt:'½W',pn:'REL-15K',note:'Same 15kΩ EOL as APS6A on NAC outputs. APS10A = 10A total system capacity.'},
+{label:'Trigger Input (from FACU)',val:'MATCH FACU',watt:'½W',pn:'—',note:'Match parent FACU NAC EOL value.'},
+{label:'Aux Current Load',val:'N/A',watt:'—',pn:'—',note:'Unsupervised aux outputs — no EOL.'},
+],warn:'Outputs = 15kΩ. Trigger = match FACU.'},
+{t:'Configure Signature Modules',ico:'🔑',steps:['Same as APS6A — Signature Series CC1(S) or CT1 modules','Program modules on main FACU Signature controller','Wire per APS10A wiring diagram','Set SW2 DIP positions for AC fault delay and aux output behavior','Install 3-TAMP if security monitoring is used','Set jumpers per installation sheet before applying power'],warn:'All Signature module programming must be completed on main FACU.'},
+{t:'Gotcha Notes — APS10A',ico:'⚠️',steps:['APS10A = 10A total system capacity, same as BPS10A','Replaces BPS10A as the current EST booster','Max 55AH battery charging supported, 18AH fits internal','Tests: remove EOL (open test), short output (short test), ground one leg to chassis (ground fault test)','As of Dec 2018, APS access control applications are no longer UL 294 listed — repair/replacement only','DIP switches ship in OFF position — configure mode first'],warn:null}
+]}
+]},
+{brand:'Potter',models:[
+{name:'PSN-1000',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits (6 × Class B or 3 × Class A)',val:'4.7kΩ',watt:'½W',pn:'REL-4.7K',note:'Potter PSN-1000 NAC outputs use 4.7kΩ EOL. 10A total system, 3A per output (can run continuous without derating).'},
+{label:'P-Link Communication Bus',val:'N/A',watt:'—',pn:'—',note:'P-Link is an RS-485 data bus — supervised electronically, no EOL resistor needed. Max 6,500ft from panel.'},
+{label:'Reference EOL Terminals',val:'BUILT-IN',watt:'—',pn:'—',note:'PSN has Reference EOL terminals on the board — saves time hunting for EOL during troubleshooting. Reference EOL stays in the panel instead of at last device.'},
+{label:'Trigger Input',val:'4.7kΩ or per panel',watt:'½W',pn:'—',note:'When driven by Potter fire panel via NAC trigger, 4.7kΩ. When driven by other-brand FACU, match that FACU EOL spec.'},
+],warn:'4.7kΩ is Potter standard for both NAC outputs and trigger input from Potter FACU. Reference EOL terminals on the PSN itself are a time-saver for troubleshooting.'},
+{t:'Configure Operating Mode',ico:'🔑',steps:['Connect PSN-1000 to Potter FACU via P-Link bus (4-wire: data + power)','Dip switch settings select address on P-Link bus (each PSN must have unique address)','Each NAC output can be independently configured: continuous, ANSI Temporal 3, Door Holder power, or one of 4 sync patterns','Configuration is done through main Potter panel programming — NOT on the PSN itself','2 programmable dry-contact inputs (Class B supervised)','Operates on 120 or 220 VAC, regulated 24VDC output'],warn:'P-Link address must be unique per PSN on the same bus. Duplicates cause communication failure.'},
+{t:'Gotcha Notes — PSN-1000',ico:'⚠️',steps:['Quadrasync technology allows 4 different strobe brands to sync together — great for retrofit jobs','6 Class B outputs OR 3 Class A outputs — field-selectable','Each output independently programmable from main panel','Up to 55AH battery charging, 18AH internal housing','P-Link max 6,500ft between devices — greater distances need FIB-1000 fiber interface','Reference EOL terminals on board — a troubleshooting shortcut, not a replacement for field EOLs','PSN-1000E is the same device with expanded features (more on that model)'],warn:null}
+]},
+{name:'PSN-1000E',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'4.7kΩ',watt:'½W',pn:'REL-4.7K',note:'Same 4.7kΩ EOL as PSN-1000. The "E" variant adds expanded capabilities but EOL spec is identical.'},
+{label:'P-Link Communication Bus',val:'N/A',watt:'—',pn:'—',note:'RS-485 bus, supervised electronically. 6,500ft maximum.'},
+{label:'Reference EOL Terminals',val:'BUILT-IN',watt:'—',pn:'—',note:'Reference EOL terminals available — same as PSN-1000.'},
+{label:'Trigger Input',val:'4.7kΩ or per panel',watt:'½W',pn:'—',note:'Match FACU NAC EOL.'},
+],warn:'Same 4.7kΩ EOL spec as PSN-1000. The E adds feature capacity, not different EOL.'},
+{t:'Configure Operating Mode',ico:'🔑',steps:['Same P-Link setup as PSN-1000','PSN-1000E adds extended features: additional synchronization patterns, more aux power options','Program via main Potter panel — Config, NAC settings, trigger assignments all done on FACU','Ensure P-Link address is unique','Verify compatible panel firmware — older Potter FACU may need firmware update for full PSN-1000E features'],warn:'Check Potter panel firmware version before installing PSN-1000E — older firmware may not support all E features.'},
+{t:'Gotcha Notes — PSN-1000E',ico:'⚠️',steps:['PSN-1000E is drop-in for PSN-1000 — same wiring, same EOL, expanded features','Compatible with all current Potter addressable panels (PFC-4064, 4410RC, etc.)','Quadrasync supports sync across System Sensor, Wheelock, Gentex, Amseco strobes','P-Link max distance same as PSN-1000 (6,500ft between devices)','If replacing older PSN-1000, verify main Potter panel firmware is current to access E features','Battery specs same as PSN-1000 — 55AH charging, 18AH internal'],warn:null}
+]}
+]},
+{brand:'Gamewell-FCI',models:[
+{name:'XPIQ',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'3.9kΩ',watt:'½W',pn:'REL-3.9K',note:'XPIQ (Extended Panel Intelligent Quad) NAC outputs use 3.9kΩ EOL. Compatible with Gamewell-FCI E3 Series, ILI-MB series panels.'},
+{label:'Trigger Input (from FACU)',val:'MATCH FACU',watt:'½W',pn:'—',note:'Match parent Gamewell-FCI panel NAC EOL. Most E3 Series uses 3.9kΩ — verify on specific panel.'},
+{label:'Communication Loop (if addressable)',val:'N/A',watt:'—',pn:'—',note:'Addressable SLC — supervised electronically.'},
+],warn:'Gamewell-FCI XPIQ uses 3.9kΩ — different from Notifier/Honeywell parent brand. Do not mix EOLs by assumption.'},
+{t:'Wire and Configure',ico:'🔑',steps:['Mount XPIQ near NAC appliances (closer reduces voltage drop on long runs)','Connect 24VDC aux supply from FACU or dedicated circuit','Wire trigger input from FACU NAC output — install 3.9kΩ EOL at XPIQ trigger terminals','Wire up to 4 NAC outputs to downstream appliances — 3.9kΩ EOL at last device on each circuit','Configure sync pattern and NAC class via onboard DIP switches','Verify normal operation with panel test'],warn:'Trigger input EOL must match FACU spec — do not default to 3.9kΩ without verifying.'},
+{t:'Gotcha Notes — XPIQ',ico:'⚠️',steps:['XPIQ is Gamewell-FCI current NAC expander — legacy Gamewell panels used different boosters','E3 Series compatible — verify panel revision before installing','Up to 4 Class B or 2 Class A NAC outputs','Battery charger supports 18AH internal batteries','Sync patterns: Gentex, System Sensor, Wheelock, Amseco','Older Gamewell FCI-4100 and FCI-7100 used different boosters — XPIQ is NOT a drop-in replacement for those'],warn:null}
+]},
+{name:'AMPS-24 (Gamewell)',count:'2 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'3.9kΩ',watt:'½W',pn:'REL-3.9K',note:'Gamewell-branded AMPS-24 uses same 3.9kΩ EOL as Notifier AMPS-24 — the product is identical hardware under two brand names (Honeywell corporate parent).'},
+{label:'Trigger Input',val:'MATCH FACU',watt:'½W',pn:'—',note:'Trigger input EOL matches parent FACU spec. Gamewell-FCI panels typically use 3.9kΩ — verify on your specific panel.'},
+],warn:'Gamewell AMPS-24 is identical to Notifier AMPS-24 under Honeywell umbrella. EOL spec 3.9kΩ on NACs.'},
+{t:'Gotcha Notes — Gamewell AMPS-24',ico:'⚠️',steps:['Same hardware as Notifier AMPS-24 — just rebadged for Gamewell channel','Labels and documentation may say Gamewell-FCI but internal boards and DIP switches are identical to Notifier version','If replacing with Notifier-labeled AMPS-24, installation is interchangeable — but verify part number match for warranty','Configuration via onboard DIP — not panel-programmed','Standard NAC booster behavior — no P-Link or addressable communication'],warn:null}
+]}
+]},
+{brand:'Notifier',models:[
+{name:'AMPS-24',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'3.9kΩ',watt:'½W',pn:'REL-3.9K',note:'Notifier AMPS-24 NAC outputs use 3.9kΩ EOL. 6A total system, up to 4 Class B outputs.'},
+{label:'Trigger Input (from FACU)',val:'MATCH FACU',watt:'½W',pn:'—',note:'Trigger input matches parent Notifier panel. Notifier onboard NAC = 2.2kΩ, so if AMPS is triggered from onboard NAC of NFS2-640/NFS-320, trigger EOL = 2.2kΩ. If triggered from an FCM-1 module, trigger = 47kΩ.'},
+{label:'AUX Output',val:'N/A',watt:'—',pn:'—',note:'Unsupervised 24VDC aux — no EOL.'},
+],warn:'Most common Notifier AMPS-24 mistake: using 3.9kΩ on trigger input when the Notifier FACU actually requires 2.2kΩ (onboard) or 47kΩ (FCM-1 module). Trigger EOL must match the source, not the AMPS spec.'},
+{t:'Configure and Install',ico:'🔑',steps:['Mount AMPS-24 within NFPA-required distance of appliances to minimize voltage drop','Wire 120VAC primary power per NEC requirements','Wire trigger input from FACU NAC output — install EOL matching FACU spec at AMPS trigger terminals','Wire each NAC output to downstream appliances with 3.9kΩ EOL at last device','Set DIP switches for class (A or B), sync pattern, AC delay','Install backup batteries (up to 18AH internal)'],warn:'Notifier FACU trigger EOL ≠ AMPS output EOL. Two different values on the same AMPS. Document both.'},
+{t:'Gotcha Notes — AMPS-24',ico:'⚠️',steps:['Notifier AMPS-24 is listed for use with NFS2-640, NFS-320, NFS2-3030, NFS-50/50C, NFS-320C','Rebadged as Gamewell AMPS-24 — same hardware','Default AC loss reporting delay = 3 hours per UL 864','Battery charger tests batteries every 50–60 seconds — matches EST behavior','Ground fault detection operates continuously — do NOT disconnect ground fault circuit as a workaround','AMPS-24E adds expanded features — covered separately'],warn:null}
+]},
+{name:'AMPS-24E',count:'2 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits',val:'3.9kΩ',watt:'½W',pn:'REL-3.9K',note:'Same 3.9kΩ NAC EOL as AMPS-24. The "E" variant adds expanded capacity and features.'},
+{label:'Trigger Input',val:'MATCH FACU',watt:'½W',pn:'—',note:'Trigger input EOL matches parent Notifier panel. Typically 2.2kΩ (onboard NAC) or 47kΩ (FCM-1 module).'},
+],warn:'Same EOL rules as AMPS-24. Trigger matches FACU.'},
+{t:'Gotcha Notes — AMPS-24E',ico:'⚠️',steps:['AMPS-24E is the expanded version of AMPS-24 — more outputs or higher capacity depending on revision','EOL specs identical to AMPS-24 (3.9kΩ outputs, match-FACU trigger)','Drop-in upgrade for AMPS-24 on most installations','Verify compatibility with FACU firmware revision — older Notifier firmware may need update','Same AC delay, battery charger, and ground fault behavior as AMPS-24'],warn:null}
+]}
+]},
+{brand:'Fire-Lite',models:[
+{name:'FCPS-24FS8',count:'3 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits (4 × Class B)',val:'4.7kΩ',watt:'½W',pn:'REL-4.7K',note:'Fire-Lite FCPS-24FS8 NAC outputs use 4.7kΩ EOL. Same spec as Fire-Lite panel NACs (MS-9200, MS-9600). FS8 = 8A total system.'},
+{label:'Trigger Input (from FACU)',val:'4.7kΩ',watt:'½W',pn:'REL-4.7K',note:'When triggered by Fire-Lite FACU NAC output, trigger EOL = 4.7kΩ (same as parent panel). If triggered by a different-brand FACU, match that brand EOL.'},
+{label:'Module IDC (if triggered from MMF-300)',val:'47kΩ',watt:'½W',pn:'REL-47K',note:'When triggered by Fire-Lite MMF-300 monitor module IDC, trigger EOL = 47kΩ. Common source of confusion when triggering from addressable modules.'},
+],warn:'Fire-Lite trigger EOL is usually 4.7kΩ when triggered from panel onboard NAC, but 47kΩ when triggered from MMF-300 module. Verify your trigger source.'},
+{t:'Configure and Install',ico:'🔑',steps:['Mount FCPS-24FS8 — common in smaller commercial installs due to compact footprint','Connect 120VAC primary power','Wire trigger input from Fire-Lite FACU NAC — install 4.7kΩ EOL at FCPS trigger terminals','Wire 4 NAC outputs to downstream appliances — 4.7kΩ EOL at last device on each','Set DIP switches for sync pattern (System Sensor, Wheelock, Gentex, Amseco)','Configure Class A/B per output','Install 18AH batteries in internal compartment'],warn:'If trigger source is an MMF-300 or other 47kΩ module, trigger EOL changes accordingly.'},
+{t:'Gotcha Notes — FCPS-24FS8',ico:'⚠️',steps:['FCPS-24FS8 = 8A total system, FCPS-24FS6 = 6A version (same wiring, different capacity)','Very common in small-to-mid commercial — compact and cost-effective','Compatible with Fire-Lite panels: MS-9200UDLS, MS-9600UDLS, MS-25, ES-50X, ES-200X','Can be used with non-Fire-Lite panels if trigger EOL is matched to that FACU','Default AC loss delay 3 hours per UL','Battery charger is straightforward — no special programming, DIP-configured','If retrofitting for a non-Fire-Lite panel, document the trigger EOL used in job notes'],warn:null}
+]},
+{name:'FCPS-24FS6',count:'2 tasks',tasks:[
+{t:'EOL Resistor Reference',ico:EOL_ICON,eol:true,rows:[
+{label:'NAC Output Circuits (4 × Class B)',val:'4.7kΩ',watt:'½W',pn:'REL-4.7K',note:'Same 4.7kΩ NAC EOL as FCPS-24FS8. FS6 variant = 6A total system.'},
+{label:'Trigger Input',val:'4.7kΩ or match FACU',watt:'½W',pn:'—',note:'When triggered by Fire-Lite panel NAC, 4.7kΩ. When triggered by MMF-300 module, 47kΩ. When triggered by another brand, match that brand.'},
+],warn:'Same EOL rules as FCPS-24FS8. Smaller capacity only.'},
+{t:'Gotcha Notes — FCPS-24FS6',ico:'⚠️',steps:['FCPS-24FS6 = 6A total system — for smaller installs where 8A is overkill','Otherwise identical to FCPS-24FS8: same wiring, DIP switches, sync patterns, EOL spec','Drop-in upgrade to FCPS-24FS8 if capacity needs grow','Same Fire-Lite FACU compatibility','Typical cost advantage over FS8 for small commercial jobs'],warn:null}
+]}
+]}
+];
+
+
 const CID=[
 {code:'110',name:'Fire Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'General fire alarm condition. A fire zone has activated. Monitoring will dispatch fire department.'},
 {code:'111',name:'Smoke Alarm',cat:'fire',sev:'high',dispatch:true,restore:true,nfpa:true,desc:'Smoke detector has activated on the specified zone.'},
@@ -1132,12 +1301,14 @@ let S={
   calcEOL:{brand:'Notifier NFS2-640 Onboard NAC',reading:''},
   calcOhm:{v:'',i:'',r:'',p:''},
   calcRes:{mode:'decode',b1:2,b2:2,b3:2,b4:'gold',enc:'2.2',encUnit:'k'},
+  calcBattDate:{brand:'power-sonic',code:''},
   timer:{active:false,start:null,site:'',type:'test',elapsed:0},
   nfpaSearch:'',
   nfpaDetail:null,
   sq:'',sbrand:'All',scode:null,
   dtree:null,dhist:[],dcur:null,
   pb:null,pm:null,pt:null,
+  equipCat:null,
   cidInput:'',cidQual:'E',
   theme:localStorage.getItem('fa_theme')||'dark',
   notes:loadNotes(),
@@ -1230,7 +1401,7 @@ function rHome(){return `<div>
   <div class="qref qref-red"><div class="qref-label qref-label-red">⚠ AHJ Notification</div><div class="qref-body">Battery Trouble or AC Loss over 8 hours typically requires AHJ notification. Document all impairment durations in job notes.</div></div>
   <div class="qref qref-ora"><div class="qref-label qref-label-ora">Before You Start</div><div class="qref-body">Always notify the monitoring company before testing, walking, or resetting any panel. Get a confirmation number and document it.</div></div>
 </div>
-<div class="version-tag">FA Tech Assist · Encore Fire Protection · v7.2</div>
+<div class="version-tag">FA Tech Assist · Encore Fire Protection · v7.4</div>
 </div>`;}
 
 function rReference(){
@@ -1245,7 +1416,7 @@ function rRefHub(){return `<div>
 <div class="pg-head"><div class="pg-title">Reference</div><div class="pg-sub">All field reference material</div></div>
 <div class="card-list">
   <div class="hub-card" onclick="setRef('codes')"><div class="hub-ico">⌕</div><div class="hub-info"><div class="hub-title">Error Code Lookup</div><div class="hub-desc">Search by code, symptom, or brand — smart assist included</div></div><span class="hub-badge">${EC.length} codes</span><div class="hub-chev">›</div></div>
-  <div class="hub-card" onclick="setRef('panels')"><div class="hub-ico">◫</div><div class="hub-info"><div class="hub-title">Panel Reference</div><div class="hub-desc">Programming steps, EOL values, gotcha notes</div></div><span class="hub-badge">${PNL.length} brands</span><div class="hub-chev">›</div></div>
+  <div class="hub-card" onclick="setRef('panels')"><div class="hub-ico">◫</div><div class="hub-info"><div class="hub-title">Equipment Reference</div><div class="hub-desc">Panels, power supplies, modules, amplifiers — EOL, programming, gotchas</div></div><span class="hub-badge">4 categories</span><div class="hub-chev">›</div></div>
   <div class="hub-card" onclick="setRef('cid')"><div class="hub-ico">#</div><div class="hub-info"><div class="hub-title">Contact ID Decoder</div><div class="hub-desc">Decode monitoring signals instantly — E/R qualifier toggle</div></div><span class="hub-badge">${CID.length} codes</span><div class="hub-chev">›</div></div>
   <div class="hub-card" onclick="setRef('nfpa')"><div class="hub-ico">📋</div><div class="hub-info"><div class="hub-title">NFPA 72 Quick Ref</div><div class="hub-desc">Key code requirements — batteries, detectors, inspection intervals, impairment</div></div><span class="hub-badge">NEW</span><div class="hub-chev">›</div></div>
 </div>
@@ -1266,7 +1437,7 @@ function rToolHub(){
     <div class="hub-ico">⚡</div>
     <div class="hub-info">
       <div class="hub-title">Electrical Calculators</div>
-      <div class="hub-desc">NAC load · Battery · Voltage drop · EOL check · Ohm's Law · Resistor decoder</div>
+      <div class="hub-desc">NAC load · Battery · Battery date decoder · Voltage drop · EOL · Ohm's Law · Resistor</div>
     </div>
     <div class="hub-chev">›</div>
   </div>
@@ -1317,17 +1488,51 @@ ${det}
 function rCodeDetail(id){const c=EC.find(x=>x.id===id);if(!c)return '';return `<div class="detail"><button class="back-btn" onclick="sSC(null)">‹ Back</button><div class="dhead"><div style="margin-bottom:8px"><span class="rbadge ${sev2badge(c.sev)}" style="font-size:11px;padding:3px 8px">${c.sev}</span>${c.nfpa?`<span class="rbadge" style="background:rgba(255,69,0,0.15);color:var(--a);font-size:11px;padding:3px 8px;margin-left:6px">AHJ NOTIFY</span>`:''}</div><div class="dtitle">${c.code}</div><div class="dsub">${c.brand} · ${c.models}</div></div><div class="dsec"><div class="dsec-t">Description</div><div class="dsec-body">${c.desc}</div></div><div class="div-line"></div><div class="dsec"><div class="dsec-t">Common Causes</div>${c.causes.map(x=>`<div class="cause-row"><div class="cause-dot"></div><div class="dsec-body">${x}</div></div>`).join('')}</div><div class="div-line"></div><div class="dsec"><div class="dsec-t">Recommended Steps</div>${c.steps.map((x,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${x}</div></div>`).join('')}</div>${c.related.length?`<div class="div-line"></div><div class="dsec"><div class="dsec-t">Related Codes</div><div class="rel-codes">${c.related.map(r=>`<span class="rel-code">${r}</span>`).join('')}</div></div>`:''}${c.nfpa?`<div class="dsec"><div class="nfpa-box"><div class="nfpa-t">NFPA 72 — This condition may require AHJ notification depending on outage duration and local authority requirements. Document the impairment start time.</div></div></div>`:''} <div class="sp"></div></div>`;}
 
 function rPanels(){
-  if(S.pt!==null&&S.pb!==null&&S.pm!==null)return rTaskDetail();
-  if(S.pm!==null&&S.pb!==null)return rTaskList();
-  return `<div>
+  // v7.4: Category picker → Brand list → Model list → Task list → Task detail
+  if(S.equipCat===null){
+    // Show category picker
+    return `<div>
 <button class="back-btn" onclick="setRef(null)">‹ Reference</button>
-<div class="pg-head" style="padding-top:4px"><div class="pg-title">Panel Reference</div><div class="pg-sub">Programming steps, EOL values and gotcha notes</div></div>
-<div class="brands-list">${PNL.map((b,bi)=>`<div class="brand-block"><div class="brand-hdr"><div class="brand-ico">⚙</div><div><div class="brand-nm">${b.brand}</div><div class="brand-ct">${b.models.length} model${b.models.length!==1?'s':''} available</div></div></div>${b.models.map((m,mi)=>`<div class="model-r" onclick="sMod(${bi},${mi})"><div><div class="model-nm">${m.name}</div><div class="model-sub">${m.count}</div></div><span style="color:var(--t4)">›</span></div>`).join('')}</div>`).join('')}</div>
-<div class="sp"></div></div>`;}
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">Equipment Reference</div><div class="pg-sub">Select a category to browse brands, models, and EOL references</div></div>
+<div style="padding:0 16px;">
+${EQUIP_CATEGORIES.map(cat=>{
+  const isActive=cat.status==='active';
+  const countText=cat.id==='panels'?`${PNL.length} brands`:cat.id==='power-supplies'?`${POWER_SUPPLIES.length} brands`:'Coming '+cat.comingIn;
+  return `<div class="equip-cat-card ${isActive?'active':'coming'}" ${isActive?`onclick="setEquipCat('${cat.id}')"`:''}>
+    <div class="equip-cat-ico">${cat.icon}</div>
+    <div class="equip-cat-info">
+      <div class="equip-cat-nm">${cat.name}</div>
+      <div class="equip-cat-desc">${cat.desc}</div>
+    </div>
+    <div class="equip-cat-meta">
+      <span class="equip-cat-count ${isActive?'':'coming'}">${countText}</span>
+      ${isActive?'<span class="equip-cat-chev">›</span>':''}
+    </div>
+  </div>`;
+}).join('')}
+</div>
+<div class="sp"></div></div>`;
+  }
 
-function rTaskList(){const b=PNL[S.pb];const m=b.models[S.pm];return `<div><button class="back-btn" onclick="sMod(null,null)">‹ All Panels</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:22px">${m.name}</div><div class="pg-sub">${b.brand}</div></div><div class="task-list-wrap">${m.tasks.map((t,i)=>`<div class="task-r" onclick="sTask(${i})"><div class="task-r-ico ${t.ico===EOL_ICON?'task-r-eol':t.ico==='⚠️'?'task-r-warn':'task-r-ora'}">${t.ico}</div><div style="flex:1"><div class="task-nm">${t.t}</div>${t.eol?`<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:2px;letter-spacing:0.06em">EOL QUICK REF</div>`:''}</div><span style="color:var(--t4)">›</span></div>`).join('')}</div><div class="sp"></div></div>`;}
+  // Task detail (deepest level)
+  if(S.pt!==null&&S.pb!==null&&S.pm!==null)return rTaskDetail();
+  // Task list
+  if(S.pm!==null&&S.pb!==null)return rTaskList();
 
-function rTaskDetail(){const b=PNL[S.pb];const m=b.models[S.pm];const t=m.tasks[S.pt];
+  // Brand list for the selected category
+  const data=S.equipCat==='power-supplies'?POWER_SUPPLIES:PNL;
+  const catMeta=EQUIP_CATEGORIES.find(c=>c.id===S.equipCat);
+  const catName=catMeta?catMeta.name:'Equipment';
+  return `<div>
+<button class="back-btn" onclick="setEquipCat(null)">‹ Equipment</button>
+<div class="pg-head" style="padding-top:4px"><div class="pg-title">${catName}</div><div class="pg-sub">${catMeta?catMeta.desc:''}</div></div>
+<div class="brands-list">${data.map((b,bi)=>`<div class="brand-block"><div class="brand-hdr"><div class="brand-ico">⚙</div><div><div class="brand-nm">${b.brand}</div><div class="brand-ct">${b.models.length} model${b.models.length!==1?'s':''} available</div></div></div>${b.models.map((m,mi)=>`<div class="model-r" onclick="sMod(${bi},${mi})"><div><div class="model-nm">${m.name}</div><div class="model-sub">${m.count}</div></div><span style="color:var(--t4)">›</span></div>`).join('')}</div>`).join('')}</div>
+<div class="sp"></div></div>`;
+}
+
+function rTaskList(){const DATA=S.equipCat==='power-supplies'?POWER_SUPPLIES:PNL;const catMeta=EQUIP_CATEGORIES.find(c=>c.id===S.equipCat);const backLabel=catMeta?catMeta.name:'Equipment';const b=DATA[S.pb];const m=b.models[S.pm];return `<div><button class="back-btn" onclick="sMod(null,null)">‹ ${backLabel}</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:22px">${m.name}</div><div class="pg-sub">${b.brand}</div></div><div class="task-list-wrap">${m.tasks.map((t,i)=>`<div class="task-r" onclick="sTask(${i})"><div class="task-r-ico ${t.ico===EOL_ICON?'task-r-eol':t.ico==='⚠️'?'task-r-warn':'task-r-ora'}">${t.ico}</div><div style="flex:1"><div class="task-nm">${t.t}</div>${t.eol?`<div style="font-size:10px;color:var(--green);font-weight:700;margin-top:2px;letter-spacing:0.06em">EOL QUICK REF</div>`:''}</div><span style="color:var(--t4)">›</span></div>`).join('')}</div><div class="sp"></div></div>`;}
+
+function rTaskDetail(){const DATA=S.equipCat==='power-supplies'?POWER_SUPPLIES:PNL;const b=DATA[S.pb];const m=b.models[S.pm];const t=m.tasks[S.pt];
 if(t.eol){return `<div><button class="back-btn" onclick="sTask(null)">‹ ${m.name}</button><div class="pg-head" style="padding-top:4px"><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:9px;background:rgba(34,197,94,0.15);border:0.5px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">${EOL_ICON}</div><div><div class="pg-title" style="font-size:20px">${t.t}</div><div class="pg-sub">${m.name} · ${b.brand}</div></div></div></div>${t.warn?`<div style="padding:14px 16px 0"><div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div></div>`:''}<div style="padding:14px 16px">${t.rows.map(r=>`<div style="background:var(--s1);border:0.5px solid var(--bdr2);border-radius:14px;padding:14px 16px;margin-bottom:10px"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px"><div style="font-size:13px;font-weight:600;color:var(--t2)">${r.label}</div><div style="font-family:ui-monospace,monospace;font-size:18px;font-weight:800;color:${r.val==='SELECTABLE'?'var(--amber)':r.val==='N/A'?'var(--t4)':'var(--green)'};flex-shrink:0">${r.val}</div></div>${r.watt!=='—'?`<div style="font-size:11px;color:var(--t3);margin-bottom:6px">${r.watt}${r.pn!=='—'?` · P/N: ${r.pn}`:''}</div>`:''} <div style="font-size:13px;color:var(--t2);line-height:1.5;border-top:0.5px solid var(--bdr);padding-top:8px;margin-top:2px">${r.note}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
 return `<div><button class="back-btn" onclick="sTask(null)">‹ ${m.name}</button><div class="pg-head" style="padding-top:4px"><div class="pg-title" style="font-size:20px">${t.t}</div><div class="pg-sub">${m.name} · ${b.brand}</div></div><div style="padding:0 16px 16px">${t.warn?`<div class="warn-box"><div class="warn-txt">⚠ ${t.warn}</div></div>`:''}${t.steps.map((s,i)=>`<div class="step-row"><div class="step-n">${i+1}</div><div class="step-t">${s}</div></div>`).join('')}</div><div class="sp"></div></div>`;}
 
@@ -1416,7 +1621,7 @@ function rCalc(){
     <div class="calc-result-row"><span class="calc-result-row-label">Voltage drop</span><span class="calc-result-row-val">${vDrop.toFixed(2)} V</span></div>
     <div class="calc-result-row"><span class="calc-result-row-label">Voltage at end of run</span><span class="calc-result-row-val ${vEnd<21?'calc-result-val-fail':''}"><b>${vEnd.toFixed(1)} V</b></span></div>
   </div>
-  <div class="calc-result-note">${!ok&&totalCurrent>limit?'Current draw exceeds 1.5A circuit limit. Consider splitting the circuit or using heavier gauge wire.':!ok&&vEnd<21?'Voltage too low at end of run. Use heavier gauge wire or shorten the run.':warn?'Voltage is marginal at end of run. Verify device minimum operating voltage.':'NAC circuit is within typical operating limits. Verify against your specific panel specifications.'}</div>
+  <div class="calc-result-note">${!ok&&totalCurrent>limit?'Current draw exceeds 1.5A circuit limit per NFPA 72 §23.8 and panel listing. Consider splitting the circuit or using heavier gauge wire.':!ok&&vEnd<21?'Voltage too low at end of run per NFPA 72 §23.5.2 and device listing. Use heavier gauge wire or shorten the run.':warn?'Voltage is marginal at end of run. Verify device minimum operating voltage per listing and NFPA 72 §23.5.2.':'NAC circuit is within typical operating limits per NFPA 72 §23.8. Verify against your specific panel listing.'}</div>
 </div>`;
   } else if(tab==='battery'){
     const stand=parseFloat(S.calcBatt.standby)||0,alm=parseFloat(S.calcBatt.alarm)||0,almMin=parseFloat(S.calcBatt.alarmMin)||5,batt=parseFloat(S.calcBatt.battAH)||0;
@@ -1433,14 +1638,14 @@ function rCalc(){
 <div class="calc-field"><label class="calc-label">Installed Battery Rating (AH)</label><input class="calc-input" type="number" value="${S.calcBatt.battAH}" oninput="updateCalc('battery','battAH',this.value)" placeholder="18" /></div>
 <div class="calc-result ${cls}">
   <div class="calc-result-val ${vcls}">${required.toFixed(1)} AH</div>
-  <div class="calc-result-label ${lcls}">Required per NFPA 72 (24hr standby + ${almMin} min alarm + 20% margin)</div>
+  <div class="calc-result-label ${lcls}">Required per NFPA 72 10.6.7.2.1 (24hr standby + ${almMin} min alarm + 20% margin)</div>
   <div class="calc-result-rows">
     <div class="calc-result-row"><span class="calc-result-row-label">Required battery AH</span><span class="calc-result-row-val">${required.toFixed(2)} AH</span></div>
     <div class="calc-result-row"><span class="calc-result-row-label">Installed battery AH</span><span class="calc-result-row-val">${batt} AH</span></div>
     <div class="calc-result-row"><span class="calc-result-row-label">Margin</span><span class="calc-result-row-val ${margin<0?'calc-result-val-fail':''}">${margin>=0?'+':''}${margin.toFixed(2)} AH</span></div>
     <div class="calc-result-row"><span class="calc-result-row-label">NFPA 72 compliant</span><span class="calc-result-row-val">${ok?'✓ Yes':'✗ No'}</span></div>
   </div>
-  <div class="calc-result-note">${ok?`Battery is sufficient. Margin of ${margin.toFixed(2)} AH above required.`:`Battery is UNDERSIZED. Need ${(required-batt).toFixed(2)} more AH. Replace with larger battery. Common sizes: 7, 12, 18, 26, 33 AH.`}</div>
+  <div class="calc-result-note">${ok?`Battery is sufficient per NFPA 72 §10.6.7.2.1 (secondary power duration). Margin of ${margin.toFixed(2)} AH above required. Verify against current adopted edition and local AHJ requirements.`:`Battery is UNDERSIZED per NFPA 72 §10.6.7.2.1. Need ${(required-batt).toFixed(2)} more AH. Replace with larger battery. Common sizes: 7, 12, 18, 26, 33 AH.`}</div>
 </div>`;
   } else if(tab==='voltdrop'){
     const g=S.calcVolt.gauge,len=parseFloat(S.calcVolt.length)||0,cur=parseFloat(S.calcVolt.current)||0;
@@ -1465,7 +1670,7 @@ function rCalc(){
     <div class="calc-result-row"><span class="calc-result-row-label">Voltage at end of run</span><span class="calc-result-row-val">${vEnd.toFixed(1)} V</span></div>
     <div class="calc-result-row"><span class="calc-result-row-label">Minimum device voltage (typical)</span><span class="calc-result-row-val">21.0 V</span></div>
   </div>
-  <div class="calc-result-note">${!ok?'Voltage is too low at the end of the run. Use a heavier gauge wire or shorten the run. Most devices require at least 21V DC minimum.':warn?'Voltage is marginal. Check the minimum operating voltage for your specific devices.':'Voltage is adequate at end of run.'}</div>
+  <div class="calc-result-note">${!ok?'Voltage is too low at end of run per NFPA 72 §23.5.2 (signaling line circuit voltage) and device listing. Use a heavier gauge wire or shorten the run. Most notification appliances require at least 21V DC minimum per listing.':warn?'Voltage is marginal. Verify against minimum operating voltage for your specific devices per NFPA 72 §23.5.2 and product listing.':'Voltage is adequate at end of run per NFPA 72 §23.5.2 and device listing requirements.'}</div>
 </div>`;
   } else if(tab==='eol'){
     const EOL_VALS={
@@ -1503,6 +1708,8 @@ ${resultCard}`;
     calcHTML=renderOhmsLaw();
   } else if(tab==='resistor'){
     calcHTML=renderResistor();
+  } else if(tab==='battdate'){
+    calcHTML=renderBattDate();
   }
   return `<div>
 <button class="back-btn" onclick="setTool(null)">‹ Tools</button>
@@ -1510,6 +1717,7 @@ ${resultCard}`;
 <div class="calc-tabs-row">
   <button class="calc-tab ${tab==='nac'?'on':''}" onclick="setCalcTab('nac')">NAC Load</button>
   <button class="calc-tab ${tab==='battery'?'on':''}" onclick="setCalcTab('battery')">Battery</button>
+  <button class="calc-tab ${tab==='battdate'?'on':''}" onclick="setCalcTab('battdate')">Batt Date</button>
   <button class="calc-tab ${tab==='voltdrop'?'on':''}" onclick="setCalcTab('voltdrop')">Volt Drop</button>
   <button class="calc-tab ${tab==='eol'?'on':''}" onclick="setCalcTab('eol')">EOL Check</button>
   <button class="calc-tab ${tab==='ohms'?'on':''}" onclick="setCalcTab('ohms')">Ohm's Law</button>
@@ -2044,6 +2252,506 @@ function updateResEnc(v){S.calcRes.enc=v;const el=document.getElementById('main'
 function setResEncUnit(u){S.calcRes.encUnit=u;R();}
 function setResPreset(v,u){S.calcRes.enc=v;S.calcRes.encUnit=u;R();}
 
+/* ================================================================
+   v7.3 — BATTERY DATE CODE DECODER
+   Brand-specific decoders for the most common SLA batteries in FA panels.
+   Honest confidence levels — some formats are inherently ambiguous.
+================================================================ */
+
+const BATT_BRANDS=[
+  {
+    id:'power-sonic',
+    name:'Power-Sonic',
+    series:'PS Series (fire/security)',
+    format:'MMDDYY or MMDDY + plant letter',
+    example:'012521H',
+    desc:'Etched 5–6 digit numeric code, often followed by a plant letter (e.g., H, J, K). First 2 digits = month, next 2 = day, last 1–2 = year. 5-digit codes use 1-digit year (ambiguous decade).',
+    decoder:'powerSonic'
+  },
+  {
+    id:'yuasa-np',
+    name:'Yuasa NP',
+    series:'NP, NPH, NPL, NPC, RE, REL',
+    format:'YMDD + plant letters',
+    example:'3O15',
+    desc:'First digit = year (last digit of year), second char = month (1-9 for Jan-Sep, O=Oct, N=Nov, D=Dec), next 2 digits = day. Letters after = plant code. Year is ambiguous decade (e.g., "3" could be 2013 or 2023).',
+    decoder:'yuasaNP'
+  },
+  {
+    id:'csb',
+    name:'CSB',
+    series:'GP, HR, UPS, TPL series',
+    format:'YYMM or WWYY',
+    example:'2301',
+    desc:'Usually stamped on top. Two common formats: YYMM (year-month) or WWYY (week-year). CSB changed formats over the years — context helps disambiguate.',
+    decoder:'csb'
+  },
+  {
+    id:'bb-battery',
+    name:'BB Battery',
+    series:'BP, HR, EVP series',
+    format:'YYWW or YMWW',
+    example:'2315',
+    desc:'Taiwanese SLA. Usually YYWW format (year + week of year). Some older codes use month-week format.',
+    decoder:'bbBattery'
+  },
+  {
+    id:'vision',
+    name:'Vision / YHI',
+    series:'CP, 6FM series',
+    format:'Letter + number + number(s)',
+    example:'AH27',
+    desc:'First letter = year (A=2001/2011/2021...), second letter = month (A=Jan through L=Dec), remaining digits = day of month. Example: AH27 = August 27 in an A-decade year.',
+    decoder:'vision'
+  },
+  {
+    id:'werker-upg',
+    name:'Werker / UPG / Universal',
+    series:'WKA, UB, UPG series',
+    format:'MMDDYY',
+    example:'030122',
+    desc:'Most commonly stamped as 6-digit MMDDYY. Some batches use different formats — verify against the box label if available.',
+    decoder:'werker'
+  },
+  {
+    id:'enersys-genesis',
+    name:'Enersys / Genesis / Hawker',
+    series:'NP, Cyclon, Genesis',
+    format:'Letter + digits (varies)',
+    example:'M0823',
+    desc:'First letter = year (A=1997 cycling every 26 years). Remaining digits typically encode month+day or week. Enersys formats vary significantly by product line and year — if the remaining digits don\'t parse as MMDD, consult the product datasheet. Low confidence by default.',
+    decoder:'enersys'
+  }
+];
+
+function renderBattDate(){
+  const brandId=S.calcBattDate.brand;
+  const brand=BATT_BRANDS.find(b=>b.id===brandId)||BATT_BRANDS[0];
+  const code=(S.calcBattDate.code||'').trim().toUpperCase();
+
+  let resultBlock='';
+  if(code.length>=3){
+    const result=decodeBatteryDate(brand.decoder,code);
+    resultBlock=renderBattDateResult(result);
+  } else {
+    resultBlock=`<div class="calc-info"><div class="calc-info-txt">Enter the date code stamped on the battery (minimum 3 characters).</div></div>`;
+  }
+
+  // Brand selector pills (scrollable row)
+  const brandPills=BATT_BRANDS.map(b=>`
+    <button class="batt-brand-pill ${b.id===brandId?'on':''}" onclick="setBattDateBrand('${b.id}')">${b.name}</button>
+  `).join('');
+
+  return `
+<div class="calc-sec-label">Battery Brand</div>
+<div class="batt-brand-row">${brandPills}</div>
+
+<div class="batt-format-card">
+  <div class="batt-format-head">
+    <div class="batt-format-brand">${brand.name}</div>
+    <div class="batt-format-series">${brand.series}</div>
+  </div>
+  <div class="batt-format-row">
+    <span class="batt-format-label">Format</span>
+    <span class="batt-format-val">${brand.format}</span>
+  </div>
+  <div class="batt-format-row">
+    <span class="batt-format-label">Example</span>
+    <span class="batt-format-val batt-format-example">${brand.example}</span>
+  </div>
+  <div class="batt-format-desc">${brand.desc}</div>
+</div>
+
+<div class="calc-sec-label">Enter Code From Battery</div>
+<div class="calc-field">
+  <input class="calc-input batt-code-input" type="text" value="${escapeAttr(S.calcBattDate.code||'')}" oninput="updateBattDateCode(this.value)" placeholder="${brand.example}" autocapitalize="characters" autocomplete="off" spellcheck="false"/>
+</div>
+
+${resultBlock}
+
+<div class="calc-info" style="margin-top:12px;">
+  <div class="calc-info-txt" style="font-size:12px;line-height:1.6;">
+    <strong style="color:var(--amber);">Field tip:</strong> Per NFPA 72 §10.6.10, SLA batteries should typically be replaced every 4–5 years regardless of test result. Date codes confirm manufacture date, not in-service date — if install date is known (sticker on battery), use that. When in doubt, replace.
+  </div>
+</div>
+`;
+}
+
+function renderBattDateResult(r){
+  if(!r || !r.date){
+    return `<div class="calc-result calc-result-fail">
+      <div class="calc-result-val calc-result-val-fail" style="font-size:16px;">Cannot Decode</div>
+      <div class="calc-result-note" style="padding-top:0;border-top:none;">${r&&r.reason?r.reason:'Code does not match expected format for this brand. Verify brand selection, or check the box label for manufacture date.'}</div>
+    </div>`;
+  }
+
+  const now=new Date();
+  const ageMonths=(now.getFullYear()-r.date.getFullYear())*12 + (now.getMonth()-r.date.getMonth());
+  const ageYears=(ageMonths/12).toFixed(1);
+  const ageDisplay=ageMonths<24?`${ageMonths} months`:`${ageYears} years`;
+
+  // Severity by age: <3yr green, 3-4yr yellow, 4-5yr orange, >5yr red
+  let cls, vcls, status, note;
+  if(ageMonths < 36){
+    cls='calc-result-ok'; vcls='calc-result-val-ok';
+    status='Within Service Life';
+    note=`Battery is ${ageDisplay} old. Under the typical 4–5 year replacement window per NFPA 72 §10.6.10 and most panel manufacturer recommendations.`;
+  } else if(ageMonths < 48){
+    cls='calc-result-warn'; vcls='calc-result-val-warn';
+    status='Approaching Replacement';
+    note=`Battery is ${ageDisplay} old. Approaching the typical 4–5 year replacement window. Perform full load test and consider proactive replacement.`;
+  } else if(ageMonths < 60){
+    cls='calc-result-warn'; vcls='calc-result-val-warn';
+    status='Due for Replacement';
+    note=`Battery is ${ageDisplay} old. At the typical 4–5 year replacement threshold per NFPA 72 §10.6.10. Replace unless documented recent load test passes with adequate margin.`;
+  } else {
+    cls='calc-result-fail'; vcls='calc-result-val-fail';
+    status='Past Service Life — Replace';
+    note=`Battery is ${ageDisplay} old. Past typical 4–5 year service life. Replace immediately and document in inspection record per NFPA 72 §10.6.10.`;
+  }
+
+  // Format the decoded date
+  const MM=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateStr=`${MM[r.date.getMonth()]} ${r.date.getDate()!==undefined?r.date.getDate():''}${r.date.getDate()?', ':''}${r.date.getFullYear()}`.trim();
+
+  // Confidence badge
+  let confBadge='';
+  if(r.confidence==='high'){
+    confBadge=`<span style="display:inline-block;padding:2px 7px;border-radius:4px;background:rgba(34,197,94,0.15);border:0.5px solid rgba(34,197,94,0.3);color:var(--green);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;">HIGH CONFIDENCE</span>`;
+  } else if(r.confidence==='medium'){
+    confBadge=`<span style="display:inline-block;padding:2px 7px;border-radius:4px;background:rgba(245,158,11,0.15);border:0.5px solid rgba(245,158,11,0.3);color:var(--amber);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;">DECADE AMBIGUOUS</span>`;
+  } else {
+    confBadge=`<span style="display:inline-block;padding:2px 7px;border-radius:4px;background:rgba(239,68,68,0.15);border:0.5px solid rgba(239,68,68,0.3);color:var(--red);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.08em;">LOW CONFIDENCE</span>`;
+  }
+
+  return `<div class="calc-result ${cls}">
+  <div style="margin-bottom:8px;">${confBadge}</div>
+  <div class="calc-result-val ${vcls}" style="font-family:var(--mono);font-size:22px;">${dateStr}</div>
+  <div class="calc-result-label" style="color:var(--t2);margin-top:4px;">${status} · ${ageDisplay} old</div>
+  <div class="calc-result-rows">
+    ${r.breakdown.map(step=>`<div class="calc-result-row"><span class="calc-result-row-label">${step.label}</span><span class="calc-result-row-val" style="font-family:var(--mono);">${step.val}</span></div>`).join('')}
+  </div>
+  <div class="calc-result-note">${note}${r.alternatives&&r.alternatives.length>0?`<br><br><strong style="color:var(--t1);">Alternative interpretations:</strong><br>${r.alternatives.join('<br>')}`:''}</div>
+</div>`;
+}
+
+function decodeBatteryDate(decoder,code){
+  try{
+    switch(decoder){
+      case 'powerSonic': return decodePowerSonic(code);
+      case 'yuasaNP': return decodeYuasaNP(code);
+      case 'csb': return decodeCSB(code);
+      case 'bbBattery': return decodeBBBattery(code);
+      case 'vision': return decodeVision(code);
+      case 'werker': return decodeWerker(code);
+      case 'enersys': return decodeEnersys(code);
+      default: return {reason:'Unknown brand decoder'};
+    }
+  } catch(e){
+    return {reason:'Error parsing code: '+e.message};
+  }
+}
+
+// Power-Sonic: MMDDYY (6 digits) or MMDDY (5 digits) with optional trailing letter
+function decodePowerSonic(code){
+  const cleaned=code.replace(/[^0-9]/g,'');
+  const yearNow=new Date().getFullYear();
+
+  if(cleaned.length===6){
+    const mm=parseInt(cleaned.substr(0,2));
+    const dd=parseInt(cleaned.substr(2,2));
+    const yy=parseInt(cleaned.substr(4,2));
+    if(mm<1||mm>12) return {reason:'Month out of range (must be 01-12). Is the format MMDDYY?'};
+    if(dd<1||dd>31) return {reason:'Day out of range. Verify format.'};
+    // YY assumption: 00-69 = 2000s, 70-99 = 1900s
+    const year=yy<70?2000+yy:1900+yy;
+    const date=new Date(year,mm-1,dd);
+    return {
+      date,
+      confidence:'high',
+      breakdown:[
+        {label:'Format',val:'MMDDYY'},
+        {label:'Month',val:String(mm).padStart(2,'0')},
+        {label:'Day',val:String(dd).padStart(2,'0')},
+        {label:'Year',val:year}
+      ]
+    };
+  }
+  if(cleaned.length===5){
+    const mm=parseInt(cleaned.substr(0,2));
+    const dd=parseInt(cleaned.substr(2,2));
+    const y=parseInt(cleaned.substr(4,1));
+    if(mm<1||mm>12) return {reason:'Month out of range. Is the format MMDDY?'};
+    // Single-digit year is ambiguous by decade
+    const currentDecade=Math.floor(yearNow/10)*10;
+    const year=currentDecade+y;
+    // Prefer decade where year is in the past
+    const yearAlt=currentDecade-10+y;
+    const date=new Date(year,mm-1,dd);
+    const dateAlt=new Date(yearAlt,mm-1,dd);
+    const alternatives=year>yearNow?[`If current-decade (${year}) is invalid, may be ${yearAlt} (older battery) — check for case wear and stock age`]:[`Could also be ${yearAlt} (previous decade) — verify with inventory records`];
+    return {
+      date: year>yearNow?dateAlt:date,
+      confidence:'medium',
+      breakdown:[
+        {label:'Format',val:'MMDDY (1-digit year)'},
+        {label:'Month',val:String(mm).padStart(2,'0')},
+        {label:'Day',val:String(dd).padStart(2,'0')},
+        {label:'Year digit',val:y+' → '+(year>yearNow?yearAlt:year)}
+      ],
+      alternatives
+    };
+  }
+  return {reason:`Power-Sonic codes are 5 or 6 digits (got ${cleaned.length}). Strip any trailing plant letter and retry. Example: 012521H → 012521.`};
+}
+
+// Yuasa NP: YMDD + letters. Y=last year digit, M=1-9/O/N/D, DD=day
+function decodeYuasaNP(code){
+  const yearNow=new Date().getFullYear();
+  if(code.length<4) return {reason:'Yuasa codes need at least 4 characters (YMDD). Example: 3O15 = Oct 15 of year ending in 3.'};
+
+  const y=code[0];
+  const m=code[1];
+  const ddStr=code.substr(2,2);
+  const dd=parseInt(ddStr);
+  if(!/[0-9]/.test(y)) return {reason:'First character should be a digit (last digit of year).'};
+  if(!/[1-9OND]/.test(m)) return {reason:'Second character should be 1-9, O, N, or D (month).'};
+  if(isNaN(dd)||dd<1||dd>31) return {reason:'Characters 3-4 should be day (01-31).'};
+
+  const monthMap={'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'O':10,'N':11,'D':12};
+  const mm=monthMap[m];
+  const yDigit=parseInt(y);
+  const currentDecade=Math.floor(yearNow/10)*10;
+  const year=currentDecade+yDigit;
+  const yearAlt=currentDecade-10+yDigit;
+
+  const useYear=year>yearNow?yearAlt:year;
+  const alternatives=year>yearNow
+    ? [`Could be ${year} (next decade) if this is a very new battery — unlikely`]
+    : [`Could also be ${yearAlt} (previous decade) — verify with inventory records or case condition`];
+
+  const MM=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return {
+    date:new Date(useYear,mm-1,dd),
+    confidence:'medium',
+    breakdown:[
+      {label:'Format',val:'YMDD + plant letters'},
+      {label:'Year digit',val:y+' → '+useYear},
+      {label:'Month',val:m+' → '+MM[mm]},
+      {label:'Day',val:String(dd).padStart(2,'0')}
+    ],
+    alternatives
+  };
+}
+
+// CSB: YYMM (most common) or WWYY
+function decodeCSB(code){
+  const cleaned=code.replace(/[^0-9]/g,'');
+  const yearNow=new Date().getFullYear();
+
+  if(cleaned.length!==4) return {reason:'CSB codes are typically 4 digits (YYMM or WWYY). Got '+cleaned.length+'.'};
+
+  // Try YYMM first
+  const yy=parseInt(cleaned.substr(0,2));
+  const mm=parseInt(cleaned.substr(2,2));
+  const ww=parseInt(cleaned.substr(0,2));
+  const yyAlt=parseInt(cleaned.substr(2,2));
+
+  // YYMM check: mm must be 01-12
+  const yymmValid=(mm>=1 && mm<=12);
+  // WWYY check: ww must be 01-53
+  const wwyyValid=(ww>=1 && ww<=53);
+
+  if(yymmValid && !wwyyValid){
+    const year=yy<70?2000+yy:1900+yy;
+    return {
+      date:new Date(year,mm-1,15),
+      confidence:'high',
+      breakdown:[
+        {label:'Format',val:'YYMM'},
+        {label:'Year',val:year},
+        {label:'Month',val:String(mm).padStart(2,'0')}
+      ]
+    };
+  }
+  if(wwyyValid && !yymmValid){
+    const year=yyAlt<70?2000+yyAlt:1900+yyAlt;
+    // Approximate week to date
+    const janFirst=new Date(year,0,1);
+    const date=new Date(year,0,1+(ww-1)*7);
+    return {
+      date,
+      confidence:'medium',
+      breakdown:[
+        {label:'Format',val:'WWYY'},
+        {label:'Week',val:String(ww).padStart(2,'0')},
+        {label:'Year',val:year}
+      ]
+    };
+  }
+  // Both valid — ambiguous
+  if(yymmValid && wwyyValid){
+    const year=yy<70?2000+yy:1900+yy;
+    const yearAlt=yyAlt<70?2000+yyAlt:1900+yyAlt;
+    return {
+      date:new Date(year,mm-1,15),
+      confidence:'low',
+      breakdown:[
+        {label:'Format',val:'Ambiguous (YYMM or WWYY)'},
+        {label:'Assumed',val:`YYMM → ${year}-${String(mm).padStart(2,'0')}`}
+      ],
+      alternatives:[
+        `As WWYY: week ${ww} of ${yearAlt}`,
+        `Check neighboring batteries or inventory records to disambiguate`
+      ]
+    };
+  }
+  return {reason:'Code does not match YYMM or WWYY format. Verify brand selection.'};
+}
+
+// BB Battery: YYWW
+function decodeBBBattery(code){
+  const cleaned=code.replace(/[^0-9]/g,'');
+  if(cleaned.length<4) return {reason:'BB Battery codes need at least 4 digits (YYWW).'};
+
+  const yy=parseInt(cleaned.substr(0,2));
+  const ww=parseInt(cleaned.substr(2,2));
+  if(ww<1||ww>53) return {reason:'Week value out of range (01-53). Verify format.'};
+
+  const year=yy<70?2000+yy:1900+yy;
+  const date=new Date(year,0,1+(ww-1)*7);
+  return {
+    date,
+    confidence:'high',
+    breakdown:[
+      {label:'Format',val:'YYWW'},
+      {label:'Year',val:year},
+      {label:'Week',val:String(ww).padStart(2,'0')}
+    ]
+  };
+}
+
+// Vision: Letter + letter + digits
+function decodeVision(code){
+  if(code.length<3) return {reason:'Vision codes need at least 3 characters (e.g., AH27).'};
+  const yearNow=new Date().getFullYear();
+
+  const yearLetter=code[0];
+  const monthLetter=code[1];
+  const dayStr=code.substr(2).replace(/[^0-9]/g,'');
+  const dd=parseInt(dayStr);
+  if(!/[A-Z]/.test(yearLetter)) return {reason:'First character should be a letter (year code).'};
+  if(!/[A-L]/.test(monthLetter)) return {reason:'Second character should be A-L (month).'};
+  if(isNaN(dd)||dd<1||dd>31) return {reason:'Remaining characters should be the day (01-31).'};
+
+  // Year letter cycles A-Z per decade
+  const yearIdx=yearLetter.charCodeAt(0)-65; // A=0
+  const currentDecade=Math.floor(yearNow/10)*10;
+  // A could mean 2001, 2011, 2021 etc. Pick most recent past.
+  let year=currentDecade+yearIdx;
+  if(year>yearNow) year-=10;
+  if(year<yearNow-20) year+=10; // if too old, bump up
+  const yearAlt=year-10;
+
+  const mm=monthLetter.charCodeAt(0)-64; // A=1
+  const MM=['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return {
+    date:new Date(year,mm-1,dd),
+    confidence:'medium',
+    breakdown:[
+      {label:'Format',val:'Letter+Letter+Day'},
+      {label:'Year letter',val:yearLetter+' → '+year},
+      {label:'Month letter',val:monthLetter+' → '+MM[mm]},
+      {label:'Day',val:String(dd).padStart(2,'0')}
+    ],
+    alternatives:[`Could also be ${yearAlt} (previous decade) — Vision year letters cycle`]
+  };
+}
+
+// Werker / UPG / Universal: MMDDYY
+function decodeWerker(code){
+  const cleaned=code.replace(/[^0-9]/g,'');
+  if(cleaned.length!==6) return {reason:'Werker/UPG codes are typically 6 digits (MMDDYY). Got '+cleaned.length+'.'};
+
+  const mm=parseInt(cleaned.substr(0,2));
+  const dd=parseInt(cleaned.substr(2,2));
+  const yy=parseInt(cleaned.substr(4,2));
+  if(mm<1||mm>12) return {reason:'Month out of range. Is the format MMDDYY?'};
+  if(dd<1||dd>31) return {reason:'Day out of range. Verify format.'};
+
+  const year=yy<70?2000+yy:1900+yy;
+  return {
+    date:new Date(year,mm-1,dd),
+    confidence:'high',
+    breakdown:[
+      {label:'Format',val:'MMDDYY'},
+      {label:'Month',val:String(mm).padStart(2,'0')},
+      {label:'Day',val:String(dd).padStart(2,'0')},
+      {label:'Year',val:year}
+    ]
+  };
+}
+
+// Enersys: letter + digits (varies by product line)
+function decodeEnersys(code){
+  if(code.length<3) return {reason:'Enersys codes need at least 3 characters. Format varies by product line — check datasheet if unsure.'};
+
+  const yearNow=new Date().getFullYear();
+  const yearLetter=code[0];
+  if(!/[A-Z]/.test(yearLetter)) return {reason:'First character should be a letter (year code).'};
+
+  // Enersys: A=1997, cycling A-Z, then restarts
+  // More reliably: A-Z maps to 1997-2022, then AA, AB... etc.
+  const yearIdx=yearLetter.charCodeAt(0)-65;
+  const baseYear=1997;
+  const possibleYears=[];
+  for(let cycle=0;cycle<3;cycle++){
+    const candidateYear=baseYear+cycle*26+yearIdx;
+    if(candidateYear<=yearNow && candidateYear>=yearNow-30){
+      possibleYears.push(candidateYear);
+    }
+  }
+
+  if(possibleYears.length===0){
+    return {reason:`Letter "${yearLetter}" does not match a recent year in the Enersys A=1997 cycle. Verify brand and check product datasheet.`};
+  }
+
+  // Pick most recent
+  const year=possibleYears[possibleYears.length-1];
+  const rest=code.substr(1).replace(/[^0-9]/g,'');
+  // Try to parse month/day from remaining — format varies
+  let month=6,day=15; // default to middle of year if we can't parse
+  let breakdown=[
+    {label:'Format',val:'Letter + digits (Enersys)'},
+    {label:'Year letter',val:yearLetter+' → '+year}
+  ];
+  if(rest.length>=4){
+    const mmTry=parseInt(rest.substr(0,2));
+    const ddTry=parseInt(rest.substr(2,2));
+    if(mmTry>=1&&mmTry<=12&&ddTry>=1&&ddTry<=31){
+      month=mmTry; day=ddTry;
+      breakdown.push({label:'Month',val:String(mmTry).padStart(2,'0')});
+      breakdown.push({label:'Day',val:String(ddTry).padStart(2,'0')});
+    } else {
+      breakdown.push({label:'Remaining digits',val:rest+' (format varies)'});
+    }
+  }
+
+  const alternatives=possibleYears.length>1
+    ? [`Could also be year ${possibleYears.slice(0,-1).join(' or ')} — Enersys year letters cycle every 26 years`]
+    : [];
+
+  return {
+    date:new Date(year,month-1,day),
+    confidence:possibleYears.length===1?'medium':'low',
+    breakdown,
+    alternatives
+  };
+}
+
+function setBattDateBrand(id){S.calcBattDate.brand=id;S.calcBattDate.code='';R();}
+function updateBattDateCode(v){S.calcBattDate.code=v;const el=document.getElementById('main');if(el)el.innerHTML=rCalc();}
+
 let timerInterval=null;
 function rTimer(){
   const t=S.timer;
@@ -2121,7 +2829,8 @@ function rNoteDetail(){const n=S.notes[S.noteIdx];const tagMap={finding:'f',acti
 function rAddEntry(){const tags=[{k:'finding',l:'Finding',c:'f'},{k:'action',l:'Action Taken',c:'a'},{k:'parts',l:'Parts Needed',c:'p'},{k:'callback',l:'Callback Required',c:'c'}];return `<div class="form-wrap"><label class="fl">Note</label><textarea class="fta" id="et" placeholder="What did you find or do?" oninput="sNT(this.value)">${S.newText}</textarea><label class="fl">Tag</label><div class="tag-btns">${tags.map(t=>`<button class="tag-btn ${S.newTag===t.k?`sel-${t.c}`:''}" onclick="sTag('${t.k}')">${t.l}</button>`).join('')}</div><button class="sbmt" onclick="saveE()">Add Entry</button><button class="cncl" onclick="togE()">Cancel</button></div>`;}
 
 function gTab(t){S.tab=t;S.scode=null;if(t!=='diagnose'){S.dtree=null;S.dcur=null;S.dhist=[];}if(t!=='reference'){S.refSub=null;}if(t!=='tools'){/* keep tool state */}if(t!=='notes'){S.noteIdx=null;S.addEntry=false;S.makingSession=false;}R();}
-function setRef(sub){S.refSub=sub;S.scode=null;S.pb=null;S.pm=null;S.pt=null;R();}
+function setRef(sub){S.refSub=sub;S.scode=null;S.pb=null;S.pm=null;S.pt=null;S.equipCat=null;R();}
+function setEquipCat(cat){S.equipCat=cat;S.pb=null;S.pm=null;S.pt=null;R();}
 function setTool(sub){S.toolSub=sub;R();}
 function setCalcTab(t){S.calcTab=t;R();}
 function updateCalc(type,field,val){if(type==='nac')S.calcNAC[field]=val;else if(type==='battery')S.calcBatt[field]=val;else if(type==='volt')S.calcVolt[field]=val;const el=document.getElementById('main');if(el)el.innerHTML=rCalc();}
@@ -2370,17 +3079,24 @@ function renderQuickSearch(q){
     (c.symptoms||[]).some(s=>s.toLowerCase().includes(q))
   ).slice(0,6);
 
-  // EOL/panel hits from PNL data
+  // EOL/equipment hits — search across panels AND power supplies
   const refHits=[];
   try{
-    for(const b of (typeof PNL!=='undefined'?PNL:[])){
-      for(const m of b.models){
-        for(const t of m.tasks){
-          const hay=(t.t+' '+(t.rows?JSON.stringify(t.rows):'')+' '+(t.warn||'')+' '+(t.steps?t.steps.join(' '):'')).toLowerCase();
-          if(hay.includes(q)){
-            refHits.push({brand:b.brand,model:m.name,task:t.t,pb:PNL.indexOf(b),pm:b.models.indexOf(m),pt:m.tasks.indexOf(t),isEol:t.eol});
-            if(refHits.length>=6)break;
+    const searchSets=[
+      {cat:'panels',data:typeof PNL!=='undefined'?PNL:[]},
+      {cat:'power-supplies',data:typeof POWER_SUPPLIES!=='undefined'?POWER_SUPPLIES:[]}
+    ];
+    for(const set of searchSets){
+      for(const b of set.data){
+        for(const m of b.models){
+          for(const t of m.tasks){
+            const hay=(t.t+' '+(t.rows?JSON.stringify(t.rows):'')+' '+(t.warn||'')+' '+(t.steps?t.steps.join(' '):'')).toLowerCase();
+            if(hay.includes(q)){
+              refHits.push({cat:set.cat,brand:b.brand,model:m.name,task:t.t,pb:set.data.indexOf(b),pm:b.models.indexOf(m),pt:m.tasks.indexOf(t),isEol:t.eol});
+              if(refHits.length>=6)break;
+            }
           }
+          if(refHits.length>=6)break;
         }
         if(refHits.length>=6)break;
       }
@@ -2430,7 +3146,7 @@ function renderQuickSearch(q){
   if(refHits.length){
     html+=`<div class="qm-result-group">
       <div class="qm-result-label"><span>Reference</span><div class="qm-result-label-rule"></div><span class="qm-result-count">${refHits.length}</span></div>
-      <div class="qm-rec-list">${refHits.map(r=>`<div class="qm-rec-item" onclick="openQmRef(${r.pb},${r.pm},${r.pt})"><span class="qm-rec-type ref">${r.isEol?'EOL':'REF'}</span><span class="qm-rec-text">${r.brand} · ${r.model} · ${r.task}</span><span class="qm-rec-time">›</span></div>`).join('')}</div>
+      <div class="qm-rec-list">${refHits.map(r=>`<div class="qm-rec-item" onclick="openQmRef('${r.cat}',${r.pb},${r.pm},${r.pt})"><span class="qm-rec-type ref">${r.isEol?'EOL':'REF'}</span><span class="qm-rec-text">${r.brand} · ${r.model} · ${r.task}</span><span class="qm-rec-time">›</span></div>`).join('')}</div>
     </div>`;
   }
   if(toolHits.length){
@@ -2462,7 +3178,7 @@ function openQmTile(type,id){
     }
   } else if(type==='ref'){
     // For EOL quick references — map known default IDs to PNL locations
-    S.tab='reference';S.refSub='panels';
+    S.tab='reference';S.refSub='panels';S.equipCat='panels';
     const map={
       'eol-notifier':{pb:0,pm:0,pt:0},
       'eol-simplex':{pb:null,pm:null,pt:null}
@@ -2493,15 +3209,16 @@ function openQmTile(type,id){
   R();
 }
 
-function openQmRef(pb,pm,pt){
+function openQmRef(cat,pb,pm,pt){
   haptic(15);
   S.mode='study';
   localStorage.setItem('fa_mode','study');
-  S.tab='reference';S.refSub='panels';
+  S.tab='reference';S.refSub='panels';S.equipCat=cat;
   S.pb=pb;S.pm=pm;S.pt=pt;
   try{
-    const b=PNL[pb],m=b.models[pm],t=m.tasks[pt];
-    addRecent('ref','pnl-'+pb+'-'+pm+'-'+pt,t.t,b.brand+' · '+m.name);
+    const DATA=cat==='power-supplies'?POWER_SUPPLIES:PNL;
+    const b=DATA[pb],m=b.models[pm],t=m.tasks[pt];
+    addRecent('ref',cat+'-'+pb+'-'+pm+'-'+pt,t.t,b.brand+' · '+m.name);
   }catch(e){}
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode==='study'));
   R();
